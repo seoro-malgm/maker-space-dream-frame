@@ -1,18 +1,15 @@
 <template>
   <div id="app">
-    <global-nav />
     <!-- 내용 -->
     <main id="main">
       <Nuxt />
     </main>
-    <!-- footer -->
-    <global-footer />
   </div>
 </template>
 
 <script>
 export default {
-  name: "default",
+  name: "empty",
   mounted() {
     window.toast = this.toast;
   },
@@ -53,7 +50,5 @@ export default {
 <style lang="scss" scoped>
 #main {
   min-height: 100vh;
-  padding-top: 2rem;
-  padding-bottom: 2.5rem;
 }
 </style>

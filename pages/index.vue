@@ -1,26 +1,27 @@
 <template>
   <div>
-    <b-container>
-      <section class="intro mb-5">
-        <div class="bg-img ratio-40 bg-primary">
-          <div class="text-white">
-            광고영상, 광고배너, 이미지 슬라이드로 활용
-          </div>
-        </div>
+    <div class="position-relative min-vh-100 min-vw-100" v-if="!viewed">
+      <section class="intro bg-light">
+        <div class="text-white">인트로 이미지, 영상</div>
+        <h1 class="text-white text-30 text-md-48 text-lg-96">공주특별시</h1>
       </section>
-      <b-row>
-        <b-col cols="12" md="6" v-for="(board, i) in boards" :key="i">
-          <board-item
-            :title="board.title"
-            :items="board.items"
-            :boardId="board.id"
-          />
+    </div>
+
+    <!-- gnb -->
+    <global-nav class="mt-3" />
+
+    <b-container>
+      <b-row class="py-5">
+        <b-col cols="12" md="6" lg="4" v-for="(item, i) in items" :key="i">
+          <article-item :item="item" :class="{ 'mt-lg-5': i % 2 }">
+          </article-item>
         </b-col>
       </b-row>
     </b-container>
-    <div class="my-5">
-      <newsletter-invite />
-    </div>
+    <!-- 뉴스레터 -->
+    <newsletter-invite />
+    <!-- footer -->
+    <global-footer />
   </div>
 </template>
 
@@ -28,35 +29,49 @@
 // import firebase from '~/plugins/firebase'
 
 export default {
-  layout: "default",
+  layout: "empty",
   async asyncData({ app, $firebase }) {
-    const [news, boardItems] = await Promise.all([
-      $firebase().getAllNews(5),
-      $firebase().getAllBoardItems(5),
-    ]);
+    const items = await $firebase().getAllBoardItems(null, 9);
     return {
-      news,
-      boardItems,
+      items,
     };
   },
-
+  data() {
+    return {
+      items: [
+        {
+          id: 0,
+          category: "category",
+          title: "asd",
+          date: "2023년 3월 1일",
+          src: null,
+        },
+      ],
+    };
+  },
   computed: {
-    boards() {
-      return [
-        {
-          title: "소식",
-          id: "news",
-          items: this.news?.length ? this.news : [],
-        },
-        {
-          title: "잡담게시판",
-          id: "board",
-          items: this.boardItems?.length ? this.boardItems : [],
-        },
-      ];
+    viewed() {
+      // const storage = window?.sessionStorage || sessionStorage;
+      return null; // storage?.getItem("gongju-archive-viewed");
     },
+  },
+  mounted() {
+    // 방분 한 경우, 다시 intro가 나타나지 않게 함
+    // sessionStorage.setItem("gongju-archive-viewed", true);
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.intro {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+</style>

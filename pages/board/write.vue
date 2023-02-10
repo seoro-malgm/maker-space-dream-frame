@@ -1,27 +1,78 @@
 <template>
-  <div>
+  <b-container>
     <section class="mb-4">
-      <h6 class="py-2">제목</h6>
-      <b-form-input v-model="form.title" placeholder="제목을 입력하세요" />
+      <b-row>
+        <b-col cols="8">
+          <h6 class="py-2">제목</h6>
+          <b-form-input v-model="form.title" placeholder="제목을 입력하세요" />
+        </b-col>
+        <b-col cols="4">
+          <h6 class="py-2">카테고리</h6>
+          <b-form-select v-model="form.category">
+            <b-form-select-option :value="null"
+              >선택하세요</b-form-select-option
+            >
+            <b-form-select-option value="food">Food</b-form-select-option>
+            <b-form-select-option value="human">Huamn</b-form-select-option>
+            <b-form-select-option value="art">Art</b-form-select-option>
+          </b-form-select>
+        </b-col>
+      </b-row>
     </section>
     <section class="mb-4">
       <client-only>
         <h6 class="mt-3 mb-2">내용</h6>
-        <vue-editor v-model="form.desc" placeholder="텍스트를 입력하세요" />
+        <vue-editor
+          useCustomImageHandler
+          @image-added="onImageAdded"
+          @image-removed="onImageRemoved"
+          v-model="form.desc"
+          placeholder="내용을 입력하세요"
+        />
       </client-only>
     </section>
-    <b-row align-h="center" class="mt-3">
-      <b-col cols="12" md="5">
-        <template v-if="id">
-          <b-btn variant="outline-primary w-100" @click="update">수정</b-btn>
-        </template>
-        <template v-else>
-          <b-btn variant="outline-primary w-100" @click="submit">업로드</b-btn>
-        </template>
-      </b-col>
-    </b-row>
-    <pre>user ::{{ user }}</pre>
-  </div>
+
+    <section class="mt-5 border-top border-bottom pb-4">
+      <header class="mt-2 mb-3">
+        <h5>썸네일</h5>
+      </header>
+      <ul class="thumbnail-list">
+        <li v-for="(url, index) in imagesAttached">
+          <input
+            :id="`file-${index}`"
+            type="radio"
+            v-model="form.thumbnail"
+            :value="url"
+          />
+          <label
+            :for="`file-${index}`"
+            name="thumnaiilSelected"
+            class="label-thumbnail"
+          >
+            <img :src="url" :alt="`${index + 1}번째로 추가된 이미지`" />
+          </label>
+        </li>
+      </ul>
+    </section>
+    <section class="mt-4">
+      <b-row align-h="center" class="mt-3">
+        <b-col cols="12" md="5">
+          <template v-if="id">
+            <b-btn variant="outline-primary w-100" @click="update">수정</b-btn>
+          </template>
+          <template v-else>
+            <b-btn variant="outline-primary w-100" @click="submit"
+              >업로드</b-btn
+            >
+          </template>
+        </b-col>
+      </b-row>
+    </section>
+
+    <pre>
+      form:: {{ form }} <br>
+      user ::{{ user }}</pre>
+  </b-container>
 </template>
 
 <script>
@@ -30,7 +81,7 @@ import { resize } from "~/plugins/commons.js";
 // import { getImageURL, this.$firebase().deleteImage, addBoardItem } from '~/plugins/firebase.js'
 
 export default {
-  layout: "Dashboard",
+  layout: "default",
   name: "create",
   data() {
     return {
@@ -40,8 +91,11 @@ export default {
       form: {
         title: null,
         desc: null,
+        category: null,
         createdAt: null,
+        thumbnail: null,
       },
+      imagesAttached: [],
       resize,
     };
   },
@@ -118,6 +172,8 @@ export default {
           );
           if (uploadedFile?.url) {
             Editor.insertEmbed(cursorLocation, "image", uploadedFile.url); //업로드한 이미지를 에디터 안(커서로케이션)에 나타나게 한다
+            // 이미지 목록에도 추가
+            this.imagesAttached.push(uploadedFile.url);
             resetUploader();
           }
         });
@@ -126,6 +182,7 @@ export default {
     // 이미지가 제거되었을 때 file의 url을 불러옴
     onImageRemoved(url) {
       this.$firebase().deleteImage(url);
+      this.imagesAttached.splice(url, 1);
     },
     // 업로드
     async submit() {
@@ -135,7 +192,7 @@ export default {
         if (id) {
           window.toast("업로드에 성공했습니다.");
           // this.reset()
-          this.$router.push("/board");
+          this.$router.push(`/board/${id}`);
         }
       } catch (error) {
         window.toast("업로드에 실패했습니다.");
@@ -195,5 +252,56 @@ export default {
   padding: 16px;
   overflow-y: auto;
   background-color: #ededed;
+}
+
+.thumbnail-list {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  li {
+    margin-right: 8px;
+    margin-bottom: 8px;
+    img {
+    }
+    input {
+      display: none;
+      + label {
+        width: 94px;
+        height: 94px;
+        overflow: hidden;
+        position: relative;
+        img {
+          width: 100%;
+          position: absolute;
+          height: 96px;
+          width: auto;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+        border: 2px solid $white;
+      }
+      &:checked {
+        + label {
+          border-color: $primary;
+          &:after {
+            position: absolute;
+            z-index: 2;
+            content: "선택됨";
+            background-color: $primary;
+            color: white;
+            display: block;
+            padding: 2px 4px;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+        }
+      }
+    }
+  }
 }
 </style>

@@ -3,11 +3,14 @@
     <template v-if="currentBoardItem">
       <article class="mb-5">
         <header class="mb-4">
-          <h1 class="text-18 text-md-20">
+          <span class="text-category mb-1">
+            {{ currentBoardItem.category }}
+          </span>
+          <h1 class="text-24 text-md-28 mt-1">
             {{ currentBoardItem.title }}
           </h1>
           <div
-            class="mt-2 d-flex justify-content-between bg-lightest border-top border-bottom border-gray p-2 text-13"
+            class="mt-3 d-flex justify-content-between border-top border-bottom border-skeleton p-2 text-13"
           >
             <span>username</span>
             <small
@@ -19,6 +22,17 @@
         <section class="bg-white p-4">
           <div class="board-desc" v-html="currentBoardItem.desc" />
         </section>
+        <section>
+          <b-btn
+            variant="outline-gray d-flex flex-column align-items-center mx-auto p-3"
+            @click="addLike"
+          >
+            <i class="icon icon-heart text-16 text-md-22" />
+            <span class="text-14 text-md-18 mt-1">
+              {{ currentBoardItem?.like }}
+            </span>
+          </b-btn>
+        </section>
       </article>
       <article class="mb-5 py-3 border-top border-bottom">
         <h6>댓글</h6>
@@ -28,7 +42,11 @@
         <section class="mt-3">
           <b-row align-v="stretch" class="mx-n1">
             <b-col cols="11" class="px-1">
-              <b-textarea v-model="newReply" placeholder="새 댓글" />
+              <b-textarea
+                class="border"
+                v-model="newReply"
+                placeholder="새 댓글"
+              />
             </b-col>
             <b-col cols="1" class="px-1">
               <b-btn variant="primary w-100 h-100" @click="addReply"
@@ -69,6 +87,9 @@ export default {
     return {
       active: false,
       newReply: null,
+      // pending: {
+      //   like: false,
+      // },
     };
   },
   computed: {
@@ -88,6 +109,12 @@ export default {
     },
     addReply() {
       console.log("%c Hello ", "background: #333399; color: #ededed");
+    },
+    async addLike() {
+      // this.pending.like = true;
+      this.$firebase().addLike("boardItems", this.id);
+      this.currentBoardItem.like += 1;
+      // this.pending.like = false;
     },
   },
 
@@ -121,5 +148,54 @@ export default {
     width: 100%;
     height: 360px;
   }
+}
+
+.board-desc::v-deep p {
+  margin: 0;
+}
+
+.board-desc::v-deep img {
+  width: 100%;
+  margin-bottom: 24px;
+}
+.writing-text::v-deep * {
+  margin-bottom: 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: $gray;
+  word-break: keep-all;
+  @media (min-width: 1024px) {
+    font-size: 18px;
+    line-height: 1.9;
+  }
+}
+.writing-text::v-deep h2 {
+  strong {
+    font-size: 20px;
+    line-height: 1.8;
+    color: $gray;
+    font-weight: 700;
+    @media (min-width: 1024px) {
+      font-size: 22px;
+      line-height: 2;
+    }
+  }
+}
+
+.writing-text::v-deep h3 {
+  strong {
+    font-size: 18px;
+    line-height: 1.8;
+    color: $gray;
+    font-weight: 700;
+    @media (min-width: 1024px) {
+      font-size: 20x;
+      line-height: 2;
+    }
+  }
+}
+.writing-text::v-deep a {
+  color: $gray;
+  text-decoration: underline;
 }
 </style>

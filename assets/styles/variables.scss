@@ -62,18 +62,21 @@ $colors: (
 ) !default;
 // scss-docs-end colors-map
 
-$primary: #500303;
-$secondary: #20c997;
+$primary: rgb(112, 112, 255);
+$secondary: rgb(255, 73, 103);
 $darkest: #222;
 $gray: #444;
 $light: #777;
 $lightest: #ddd;
 $alert: #ff0a5c;
 
+$skeleton: #e7e7e7e7;
+
 $toast-max-width: 50px;
 $theme-colors: (
   "primary": $primary,
   "secondary": $secondary,
+  // "primary-gradient": $primary-gradient,
   "darkest": $darkest,
   "gray": $gray,
   "light": $light,
@@ -93,6 +96,7 @@ $theme-colors: (
   "white": $white,
   "gray-dark": $gray-800,
   "alert": $alert,
+  "skeleton": $skeleton,
 ) !default;
 
 // variant
@@ -106,3 +110,16 @@ $theme-colors: (
 // transition variables
 $ease-out: cubic-bezier(0.03, 0.57, 0.15, 0.99);
 $ease-in-out: cubic-bezier(0.73, 0.33, 0.31, 0.89);
+
+button,
+.btn {
+  &:disabled,
+  &.disabled {
+    cursor: not-allowed;
+  }
+}
+
+ul {
+  padding: 0;
+  list-style-type: none;
+}

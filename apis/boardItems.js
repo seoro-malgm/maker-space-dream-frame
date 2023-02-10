@@ -15,18 +15,23 @@ import {
   updateDoc,
   increment,
   limit,
+  where,
 } from "firebase/firestore";
 
 const db = getFirestore(app);
 
 class boardItemsAPI {
   // boardItem 전체 불러오기
-  getAllBoardItems = async (count) => {
+  getAllBoardItems = async (category, count) => {
     try {
-      const col = collection(db, "boardItems");
-      const q = count
-        ? query(col, orderBy("createdAt", "desc"), limit(count))
-        : query(col, orderBy("createdAt", "desc"));
+      const queryConstraints = [];
+      if (category) queryConstraints.push(where("category", "==", category));
+      if (count) queryConstraints.push(limit(count));
+      queryConstraints.push(orderBy("createdAt", "desc"));
+
+      // 최종 쿼리
+      const q = query(collection(db, "boardItems"), ...queryConstraints);
+      console.log("q:", queryConstraints);
       const snapshot = await getDocs(q);
       if (snapshot) {
         const boardItems = snapshot.docs.map((doc) => {
@@ -35,6 +40,7 @@ class boardItemsAPI {
             ...doc.data(),
           };
         });
+
         return boardItems;
       }
     } catch (error) {
@@ -83,7 +89,16 @@ class boardItemsAPI {
     const e = await updateDoc(ref, {
       viewer: increment(1),
     });
-    console.log("e:", e);
+    // console.log("e:", e);
+  };
+
+  // 좋아요 추가
+  addLike = async (collection, id) => {
+    const ref = doc(db, collection, id);
+    const e = await updateDoc(ref, {
+      like: increment(1),
+    });
+    // console.log("e:", e);
   };
 }
 

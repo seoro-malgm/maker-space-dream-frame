@@ -101,29 +101,6 @@ $font-size: (
   96
 );
 
-$font-md-size: (
-  11,
-  12,
-  13,
-  14,
-  15,
-  16,
-  18,
-  20,
-  24,
-  26,
-  28,
-  30,
-  32,
-  34,
-  36,
-  40,
-  52,
-  63,
-  100,
-  150
-);
-
 @media print {
   @each $var in $font-size {
     .text-pr-#{$var} {
@@ -149,7 +126,7 @@ $font-md-size: (
 }
 
 @media screen and (min-width: 768px) {
-  @each $var in $font-md-size {
+  @each $var in $font-size {
     .text-md-#{$var} {
       font-size: #{$var}px;
     }
@@ -160,6 +137,23 @@ $font-md-size: (
     }
     input {
       &.text-md-#{$var} {
+        font-size: #{$var}px;
+      }
+    }
+  }
+}
+@media screen and (min-width: 992px) {
+  @each $var in $font-size {
+    .text-lg-#{$var} {
+      font-size: #{$var}px;
+    }
+    .btn {
+      &.text-lg-#{$var} {
+        font-size: #{$var}px;
+      }
+    }
+    input {
+      &.text-lg-#{$var} {
         font-size: #{$var}px;
       }
     }

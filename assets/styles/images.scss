@@ -24,7 +24,10 @@ $ratios: (
   149,
   200
 );
-
+figure,
+figcaption {
+  margin: 0;
+}
 .bg-img {
   width: 100%;
   height: 0;
@@ -39,7 +42,8 @@ $ratios: (
     left: 50%;
     object-fit: contain;
     transform: translate(-50%, -50%);
-    width: 100%;
+    height: 100%;
+    width: auto;
   }
   @each $var in $ratios {
     &.ratio-#{$var} {

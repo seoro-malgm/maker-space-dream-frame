@@ -2,11 +2,11 @@
   <div class="min-vh-100">
     <b-container
       fluid
-      class="min-vh-100 w-100 d-flex flex-column align-items-center justify-content-center"
+      class="py-5 my-5 w-100 d-flex flex-column align-items-center justify-content-center"
     >
       <b-row align-h="center" class="w-100">
         <b-col cols="12" md="7" xl="5">
-          <b-card class="bg-white w-100">
+          <b-card class="bg-white w-100 shadow rounded-lg">
             <b-card-header
               header-bg-variant="white"
               header-border-variant="white"
