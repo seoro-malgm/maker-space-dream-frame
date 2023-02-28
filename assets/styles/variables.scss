@@ -62,8 +62,9 @@ $colors: (
 ) !default;
 // scss-docs-end colors-map
 
-$primary: rgb(112, 112, 255);
-$secondary: rgb(255, 73, 103);
+$primary: #00ffe6;
+// $primary: #970404;
+$secondary: #383332;
 $darkest: #222;
 $gray: #444;
 $light: #777;
@@ -122,4 +123,51 @@ button,
 ul {
   padding: 0;
   list-style-type: none;
+}
+
+.btn-link {
+  color: $darkest;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+figcaption {
+  margin: 0;
+}
+
+// $breakpoint-sm: 360px;
+$breakpoint-md: 575.55px;
+$breakpoint-lg: 767.55px;
+$breakpoint-xl: 1439.55px;
+$breakpoint-xxl: 1919.55px;
+// girds
+$grid-breakpoints: (
+  xs: 0,
+  // sm: 576px,
+  md: $breakpoint-md,
+  lg: $breakpoint-lg,
+  xl: $breakpoint-xl,
+  xxl: $breakpoint-xxl,
+) !default;
+
+.btn-arr-right {
+  i.icon {
+    transition: all 0.2s $ease-in-out;
+  }
+  &:hover {
+    i.icon {
+      transform: translateX(10px);
+    }
+  }
+}
+
+hr.hr {
+  border-top: 1px solid $gray;
+  margin: 48px 0;
 }

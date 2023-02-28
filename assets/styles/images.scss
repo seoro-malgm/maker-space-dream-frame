@@ -42,14 +42,15 @@ figcaption {
     left: 50%;
     object-fit: contain;
     transform: translate(-50%, -50%);
-    height: 100%;
-    width: auto;
+    // height: 100%;
+    width: 100%;
+    height: auto;
   }
   @each $var in $ratios {
     &.ratio-#{$var} {
       padding-bottom: #{$var}#{"%"};
     }
-    @media screen and (max-width: 940px) {
+    @media screen and (max-width: $breakpoint-md) {
       &.ratio-sm-#{$var} {
         padding-bottom: #{$var}#{"%"} !important;
         background-position: left top;

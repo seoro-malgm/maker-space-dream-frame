@@ -6,7 +6,7 @@ export default {
   ssr: true,
   target: "server",
   head: {
-    title: "공주특별시",
+    title: "신물결",
     htmlAttrs: {
       lang: "ko-KR",
     },
@@ -18,7 +18,7 @@ export default {
         hid: "title",
         name: "title",
         property: "title",
-        content: "공주특별시",
+        content: "신물결",
       },
       {
         hid: "description",
@@ -34,13 +34,13 @@ export default {
         hid: "og:image",
         name: "og:image",
         property: "og:image",
-        content: "/og-image-221227-1.png",
+        content: "/og-image.png",
       },
       {
         hid: "og:title",
         name: "og:title",
         property: "og:title",
-        content: "공주특별시",
+        content: "신물결",
       },
       {
         hid: "og:description",
@@ -61,7 +61,7 @@ export default {
       {
         name: "og:site_name",
         property: "og:site_name",
-        content: "공주특별시",
+        content: "신물결",
       },
       {
         name: "msapplication-TileImage",
@@ -81,31 +81,31 @@ export default {
       {
         name: "twitter:card",
         hid: "twitter:card",
-        content: "/og-image-221227-1.png",
+        content: "/og-image.png",
       },
       {
         property: "twitter:domain",
         content: "seoro-malgm.studio",
       },
-      {
-        property: "twitter:url",
-        hid: "twitter:url",
-        content: "https://seoro-malgm.studio",
-      },
+      // {
+      //   property: "twitter:url",
+      //   hid: "twitter:url",
+      //   content: "https://seoro-malgm.studio",
+      // },
       {
         name: "twitter:title",
         hid: "twitter:title",
-        content: "공주특별시",
+        content: "신물결",
       },
-      {
-        name: "twitter:description",
-        hid: "twitter:description",
-        content: "UI/UX, Branding, Calligraphy, Graphic",
-      },
+      // {
+      //   name: "twitter:description",
+      //   hid: "twitter:description",
+      //   content: "UI/UX, Branding, Calligraphy, Graphic",
+      // },
       {
         name: "twitter:image",
         hid: "twitter:image",
-        content: "/og-image-221227-1.png",
+        content: "/og-image.png",
       },
     ],
     link: [
@@ -188,7 +188,10 @@ export default {
     },
   ],
 
-  plugins: [{ src: "~/plugins/firebase.js" }],
+  plugins: [
+    { src: "~/plugins/firebase.js" },
+    { src: "~/plugins/carousel.js", mode: "client" },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

@@ -2,11 +2,11 @@
   <div id="gnb">
     <b-navbar toggleable="lg" type="light" variant="white">
       <b-navbar-brand href="/">
-        <span
-          class="text-koreail fw-700 text-20 text-md-24 text-lg-30 text-primary"
-        >
-          공주특별시
-        </span>
+        <!-- <brand-symbol /> -->
+        <img
+          :src="require('@/assets/logo-horizontal.svg')"
+          alt="신물결 로고 이미지, 메인으로 이동"
+        />
       </b-navbar-brand>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -22,24 +22,25 @@
                 :key="i"
                 class="mb-2 mb-lg-0 mx-lg-3 text-20 text-md-24 text-lg-30"
               >
-                <nuxt-link :to="item.url" class="nuxt-link px-3 py-1">
+                <nuxt-link :to="item.url" class="nuxt-link px-4 py-1">
                   {{ item.name }}
                 </nuxt-link>
               </li>
             </ul>
           </div>
-
-          <template v-if="auth">
-            <b-btn variant="link " to="/auth/mypage">
-              <b-avatar size="2rem"></b-avatar>
-            </b-btn>
-            <b-btn variant="link " to="/board/write">글쓰기</b-btn>
-            <b-btn variant="link " to="/auth/logout">로그아웃</b-btn>
-          </template>
-          <template v-else>
-            <b-btn variant="link " to="/auth/login">로그인</b-btn>
-            <b-btn variant="link " to="/auth/signup">에디터 신청</b-btn>
-          </template>
+          <div class="ml-auto">
+            <template v-if="auth">
+              <b-btn variant="link " to="/auth/mypage">
+                <b-avatar size="2rem"></b-avatar>
+              </b-btn>
+              <b-btn variant="link" to="/archive/write">글쓰기</b-btn>
+              <b-btn variant="link" to="/auth/logout">로그아웃</b-btn>
+            </template>
+            <template v-else>
+              <b-btn variant="link" to="/auth/login">로그인</b-btn>
+              <b-btn variant="link" to="/auth/signup">회원가입</b-btn>
+            </template>
+          </div>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -52,20 +53,16 @@ export default {
     return {
       links: [
         // {
-        //   name: "Home",
-        //   url: "/",
+        //   name: "About",
+        //   url: "/about",
         // },
         {
-          name: "Food",
-          url: "/board?category=foods",
+          name: "아카이브",
+          url: "/archive",
         },
         {
-          name: "Human",
-          url: "/board?category=human",
-        },
-        {
-          name: "Art",
-          url: "/board?category=art",
+          name: "토론",
+          url: "/discussion",
         },
       ],
     };
@@ -81,19 +78,34 @@ export default {
 <style lang="scss" scoped>
 #gnb {
   padding: 1rem 1rem 0;
-  margin-bottom: 48px;
+  margin-bottom: 28px;
   // border: 1px solid $primary;
   .navbar {
-    padding-left: 3rem;
-    padding-right: 3rem;
-    box-shadow: 0px 0px 10px rgba($color: #000000, $alpha: 0.15);
     border-radius: 24px;
+    .navbar-brand {
+      width: 200px;
+      > svg {
+        width: 100%;
+      }
+    }
     .utils {
+      @media (min-width: $breakpoint-lg) {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
       .nuxt-link {
         text-decoration: none;
         border-radius: 20rem;
+        color: $darkest;
+        font-weight: 700;
+        border: 1px solid $darkest;
+        transition: all 0.3s $ease-in-out;
+        &:hover,
         &.nuxt-link-exact-active {
           background-color: $primary;
+          border-color: $primary;
           color: white;
         }
       }

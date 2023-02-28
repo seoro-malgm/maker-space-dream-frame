@@ -2,7 +2,7 @@
   <footer id="gnf">
     <b-container fluid>
       <nav class="nav">
-        <div class="utils pt-4 mb-2">
+        <!-- <div class="utils pt-4 mb-2">
           <ul class="btns">
             <b-btn
               variant="light rounded-circle"
@@ -12,9 +12,11 @@
               <i class="icon" :class="`icon-${item.icon}`" />
             </b-btn>
           </ul>
-        </div>
-        <div class="text-center pb-3">
-          <h4 class="logo">공주특별시</h4>
+        </div> -->
+        <div class="text-center py-3">
+          <h4 class="logo mb-3">
+            <img :src="require('@/assets/symbol-dark.svg')" />
+          </h4>
           <span class="copyright"> &copy; copyright gongstar reserved. </span>
         </div>
       </nav>
@@ -52,7 +54,6 @@ export default {
 <style lang="scss" scoped>
 #gnf {
   border-top: 1px solid $light;
-  background-color: transparent;
   nav.nav {
     padding: 10px 0;
     display: flex;
@@ -77,8 +78,9 @@ export default {
       }
     }
     h4.logo {
-      font-size: 16px;
-      color: $gray;
+      > img {
+        width: 100px;
+      }
     }
     .copyright {
       font-size: 13px;

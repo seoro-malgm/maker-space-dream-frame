@@ -6,7 +6,7 @@
     >
       <b-row align-h="center" class="w-100">
         <b-col cols="12" md="7" xl="5">
-          <b-card class="bg-white w-100 shadow rounded-lg">
+          <b-card class="w-100">
             <b-card-header
               header-bg-variant="white"
               header-border-variant="white"
@@ -76,7 +76,7 @@ export default {
   layout: "default",
   head() {
     return {
-      title: `공주특별시 | 로그인`,
+      title: `신물결 | 로그인`,
     };
   },
   data() {

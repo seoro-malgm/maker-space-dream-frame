@@ -5,6 +5,7 @@ service cloud.firestore {
     }
     match /{path}/{item} {
       allow create: if path == 'subscribers';
+      allow create: if path == 'discussionApply';
       allow create, update, delete: if request.auth != null;
     }
   }

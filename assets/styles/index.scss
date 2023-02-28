@@ -41,7 +41,7 @@ body {
   * {
     &::selection {
       background-color: $primary;
-      color: $white;
+      color: $darkest;
     }
   }
   &.modal-open {
@@ -53,6 +53,12 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  color: $darkest;
+  background-color: white;
+  &.dark-mode {
+    color: white;
+    background-color: $darkest;
+  }
 }
 
 .form-control {
@@ -118,4 +124,22 @@ textarea {
   text-transform: capitalize;
   display: inline-block;
   font-size: 12px;
+}
+
+.section-header {
+  padding-top: 8px;
+  margin-top: 8px;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bg-flow {
+  position: relative;
+  padding-right: 16px;
+  overflow: hidden;
+  z-index: 2;
+  display: inline-block;
 }

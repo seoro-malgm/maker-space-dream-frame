@@ -1,13 +1,13 @@
 <template>
   <b-container class="pt-4 pb-5">
-    <template v-if="currentBoardItem">
+    <template v-if="currentArchiveItem">
       <article class="mb-5">
         <header class="mb-4">
           <span class="text-category mb-1">
-            {{ currentBoardItem.category }}
+            {{ currentArchiveItem.category }}
           </span>
           <h1 class="text-24 text-md-28 mt-1">
-            {{ currentBoardItem.title }}
+            {{ currentArchiveItem.title }}
           </h1>
           <div
             class="mt-3 d-flex justify-content-between border-top border-bottom border-skeleton p-2 text-13"
@@ -15,12 +15,12 @@
             <span>username</span>
             <small
               >{{ createdDate }} | 조회수
-              {{ currentBoardItem.viewer || 0 }}</small
+              {{ currentArchiveItem.viewer || 0 }}</small
             >
           </div>
         </header>
         <section class="bg-white p-4">
-          <div class="board-desc" v-html="currentBoardItem.desc" />
+          <div class="archive-desc" v-html="currentArchiveItem.desc" />
         </section>
         <section>
           <b-btn
@@ -29,7 +29,7 @@
           >
             <i class="icon icon-heart text-16 text-md-22" />
             <span class="text-14 text-md-18 mt-1">
-              {{ currentBoardItem?.like }}
+              {{ currentArchiveItem?.like }}
             </span>
           </b-btn>
         </section>
@@ -76,10 +76,10 @@
 export default {
   layout: "default",
   async asyncData({ params, $firebase }) {
-    const boardItem = await $firebase().getBoardItem(params.id);
+    const archiveItem = await $firebase().getArchiveItem(params.id);
     return {
       id: params.id,
-      currentBoardItem: boardItem,
+      currentArchiveItem: archiveItem,
     };
   },
 
@@ -94,13 +94,13 @@ export default {
   },
   computed: {
     createdDate() {
-      const { seconds } = this.currentBoardItem?.createdAt;
+      const { seconds } = this.currentArchiveItem?.createdAt;
       return new Date(seconds * 1000).toLocaleDateString() || "";
     },
   },
 
   mounted() {
-    this.$firebase().addViewer("boardItems", this.id);
+    this.$firebase().addViewer("archiveItems", this.id);
   },
 
   methods: {
@@ -112,25 +112,25 @@ export default {
     },
     async addLike() {
       // this.pending.like = true;
-      this.$firebase().addLike("boardItems", this.id);
-      this.currentBoardItem.like += 1;
+      this.$firebase().addLike("archiveItems", this.id);
+      this.currentArchiveItem.like += 1;
       // this.pending.like = false;
     },
   },
 
   head() {
     return {
-      title: `${this.currentBoardItem.title}`,
+      title: `${this.currentArchiveItem.title}`,
       meta: [
         {
           hid: "title",
           name: "title",
-          content: `${this.currentBoardItem.title}`,
+          content: `${this.currentArchiveItem.title}`,
         },
         {
           hid: "description",
           name: "description",
-          content: this.currentBoardItem.desc,
+          content: this.currentArchiveItem.desc,
         },
       ],
     };
@@ -139,22 +139,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.board-desc::v-deep iframe {
+.archive-desc::v-deep iframe {
   width: 50%;
   height: 320px;
 }
 @media all and (max-width: 768px) {
-  .board-desc::v-deep iframe {
+  .archive-desc::v-deep iframe {
     width: 100%;
     height: 360px;
   }
 }
 
-.board-desc::v-deep p {
+.archive-desc::v-deep p {
   margin: 0;
 }
 
-.board-desc::v-deep img {
+.archive-desc::v-deep img {
   width: 100%;
   margin-bottom: 24px;
 }

@@ -20,9 +20,9 @@ import {
 
 const db = getFirestore(app);
 
-class boardItemsAPI {
-  // boardItem 전체 불러오기
-  getAllBoardItems = async (category, count) => {
+class archiveItemsAPI {
+  // archiveItem 전체 불러오기
+  getAllArchiveItems = async (category, count) => {
     try {
       const queryConstraints = [];
       if (category) queryConstraints.push(where("category", "==", category));
@@ -30,28 +30,28 @@ class boardItemsAPI {
       queryConstraints.push(orderBy("createdAt", "desc"));
 
       // 최종 쿼리
-      const q = query(collection(db, "boardItems"), ...queryConstraints);
-      console.log("q:", queryConstraints);
+      const q = query(collection(db, "archiveItems"), ...queryConstraints);
+      // console.log("q:", queryConstraints);
       const snapshot = await getDocs(q);
       if (snapshot) {
-        const boardItems = snapshot.docs.map((doc) => {
+        const archiveItems = snapshot.docs.map((doc) => {
           return {
             id: doc.id,
             ...doc.data(),
           };
         });
 
-        return boardItems;
+        return archiveItems;
       }
     } catch (error) {
       console.error("error::", error);
     }
   };
 
-  // boardItem 디테일 불러오기
-  getBoardItem = async (id) => {
+  // archiveItem 디테일 불러오기
+  getArchiveItem = async (id) => {
     try {
-      const col = doc(db, "boardItems", id);
+      const col = doc(db, "archiveItems", id);
       const snapshot = await getDoc(col);
       if (snapshot) {
         return snapshot.data();
@@ -61,25 +61,25 @@ class boardItemsAPI {
     }
   };
 
-  // boardItem 추가
-  addBoardItem = async (data) => {
-    const docRef = await addDoc(collection(db, "boardItems"), data);
+  // archiveItem 추가
+  addArchiveItem = async (data) => {
+    const docRef = await addDoc(collection(db, "archiveItems"), data);
     // console.log('docRef:', docRef)
     if (docRef?.id) {
       return docRef.id;
     }
   };
 
-  // boardItem 삭제
-  removeBoardItem = async (id) => {
+  // archiveItem 삭제
+  removeArchiveItem = async (id) => {
     if (!id) throw new Error("id가 없습니다");
-    await deleteDoc(doc(db, "boardItems", id));
+    await deleteDoc(doc(db, "archiveItems", id));
     return true;
   };
 
-  // boardItem 수정
-  updateBoardItem = async (id, data) => {
-    await setDoc(doc(db, "boardItems", id), data);
+  // archiveItem 수정
+  updateArchiveItem = async (id, data) => {
+    await setDoc(doc(db, "archiveItems", id), data);
     return true;
   };
 
@@ -102,4 +102,4 @@ class boardItemsAPI {
   };
 }
 
-export default new boardItemsAPI();
+export default new archiveItemsAPI();

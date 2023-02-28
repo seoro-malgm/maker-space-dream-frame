@@ -88,7 +88,7 @@ import { resize } from "~/plugins/commons.js";
 export default {
   head() {
     return {
-      title: `공주특별시 | 마이페이지`,
+      title: `신물결 | 마이페이지`,
     };
   },
   data() {

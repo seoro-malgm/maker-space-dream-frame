@@ -25,10 +25,10 @@
         <vue-editor
           useCustomImageHandler
           @image-added="onImageAdded"
-          @image-removed="onImageRemoved"
           v-model="form.desc"
           placeholder="내용을 입력하세요"
         />
+        <!-- @image-removed="onImageRemoved" -->
       </client-only>
     </section>
 
@@ -78,7 +78,7 @@
 <script>
 import { resize } from "~/plugins/commons.js";
 // import firebase from '~/plugins/firebase'
-// import { getImageURL, this.$firebase().deleteImage, addBoardItem } from '~/plugins/firebase.js'
+// import { getImageURL, this.$firebase().deleteImage, addArchiveItem } from '~/plugins/firebase.js'
 
 export default {
   layout: "default",
@@ -94,6 +94,7 @@ export default {
         category: null,
         createdAt: null,
         thumbnail: null,
+        like: 0,
       },
       imagesAttached: [],
       resize,
@@ -121,11 +122,11 @@ export default {
         return;
       } else {
         try {
-          const loadBoardItem = await this.$firebase().getBoardItem(id);
-          if (loadBoardItem) {
+          const loadArchiveItem = await this.$firebase().getArchiveItem(id);
+          if (loadArchiveItem) {
             // ref를 찾은 뒤에 form에 적용함
             this.form = {
-              ...loadBoardItem,
+              ...loadArchiveItem,
             };
             // 완료
             this.pending.init = false;
@@ -174,6 +175,7 @@ export default {
             Editor.insertEmbed(cursorLocation, "image", uploadedFile.url); //업로드한 이미지를 에디터 안(커서로케이션)에 나타나게 한다
             // 이미지 목록에도 추가
             this.imagesAttached.push(uploadedFile.url);
+            this.input.thumbnail = uploadedFile.url;
             resetUploader();
           }
         });
@@ -188,11 +190,11 @@ export default {
     async submit() {
       this.form.createdAt = new Date();
       try {
-        const id = await this.$firebase().addBoardItem(this.form);
+        const id = await this.$firebase().addArchiveItem(this.form);
         if (id) {
           window.toast("업로드에 성공했습니다.");
           // this.reset()
-          this.$router.push(`/board/${id}`);
+          this.$router.push(`/archive/${id}`);
         }
       } catch (error) {
         window.toast("업로드에 실패했습니다.");
@@ -203,7 +205,7 @@ export default {
     async update() {
       this.form.createdAt = new Date();
       try {
-        const updated = await this.$firebase().updateBoardItem(
+        const updated = await this.$firebase().updateArchiveItem(
           this.id,
           this.form
         );
@@ -211,7 +213,7 @@ export default {
         if (updated) {
           window.toast("수정에 성공했습니다.");
           // this.reset()
-          this.$router.push("/board");
+          this.$router.push("/archive");
         }
       } catch (error) {
         window.toast("수정에 실패했습니다.");

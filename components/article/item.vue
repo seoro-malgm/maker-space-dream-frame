@@ -3,19 +3,14 @@
     class="ariticle-item mb-5"
     @click="
       $router.push({
-        path: `/board/${item.id}`,
+        path: `/archive/${item.id}`,
       })
     "
     :spread="spread"
   >
     <header class="article-header">
-      <figure
-        class="bg-img ratio-57"
-        :class="{ 'bg-skeleton': !item?.thumbnail }"
-      >
-        <template v-if="item?.thumbnail">
-          <img :src="item.thumbnail" :alt="`${item.title} 썸네일`" />
-        </template>
+      <figure class="bg-img ratio-70" v-if="item?.thumbnail">
+        <img :src="item.thumbnail" :alt="`${item.title} 썸네일`" />
       </figure>
     </header>
     <div class="article-info">
@@ -54,7 +49,9 @@ export default {
   computed: {
     createdDate() {
       const { seconds } = this.item?.createdAt;
-      return new Date(seconds * 1000).toLocaleDateString() || "";
+      return seconds
+        ? new Date(seconds * 1000).toLocaleDateString()
+        : "2023-01-01";
     },
   },
 };
@@ -71,7 +68,7 @@ export default {
     overflow: hidden;
   }
   .article-body {
-    padding: 0.5rem 1rem 0;
+    padding: 1rem 1rem 0;
     transition: all 0.2s;
     .category {
       font-size: 13px;
@@ -101,7 +98,7 @@ export default {
     }
     .article-body {
       h6.title {
-        color: $primary;
+        // color: $primary;
       }
     }
   }
