@@ -2,7 +2,7 @@
   <b-container>
     <header class="text-center">
       <h1 class="mb-2">신물결에 대하여</h1>
-      <p class="text-14">
+      <p class="text-1">
         웹진이고 커뮤니티고 에디터고~~~에 대하여 어쩌구 Lorem ipsum dolor sit
         amet, consectetur adipisicing elit. Ad ex laudantium nam minus tenetur
         fugit alias facilis voluptatem sed nobis impedit magni temporibus,

@@ -45,63 +45,63 @@ export default {
   async asyncData({ app, $firebase, query }) {
     // const { category } = query;
     // if (!category) app.router.push("/");
-    // const items = await $firebase().getAllArchiveItems(category);
+    const items = await $firebase().getAllArchiveItems(null);
     return {
-      // items,
+      items,
     };
   },
   data() {
     return {
-      items: [
-        {
-          id: 0,
-          category: "category",
-          title: "asd",
-          createdAt: "2023-01-01",
-          thumbnail:
-            "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-square.jpg",
-        },
-        {
-          id: 0,
-          category: "category",
-          title: "asd",
-          createdAt: "2023-01-01",
-          thumbnail:
-            "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-square.jpg",
-        },
-        {
-          id: 0,
-          category: "category",
-          title: "asd",
-          createdAt: "2023-01-01",
-          thumbnail:
-            "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-square.jpg",
-        },
-        {
-          id: 0,
-          category: "category",
-          title: "asd",
-          createdAt: "2023-01-01",
-          thumbnail:
-            "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-square.jpg",
-        },
-        {
-          id: 0,
-          category: "category",
-          title: "asd",
-          createdAt: "2023-01-01",
-          thumbnail:
-            "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-square.jpg",
-        },
-        {
-          id: 0,
-          category: "category",
-          title: "asd",
-          createdAt: "2023-01-01",
-          thumbnail:
-            "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-square.jpg",
-        },
-      ],
+      // items: [
+      //   {
+      //     id: 0,
+      //     category: "category",
+      //     title: "asd",
+      //     createdAt: "2023-01-01",
+      //     thumbnail:
+      //       "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-square.jpg",
+      //   },
+      //   {
+      //     id: 0,
+      //     category: "category",
+      //     title: "asd",
+      //     createdAt: "2023-01-01",
+      //     thumbnail:
+      //       "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-square.jpg",
+      //   },
+      //   {
+      //     id: 0,
+      //     category: "category",
+      //     title: "asd",
+      //     createdAt: "2023-01-01",
+      //     thumbnail:
+      //       "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-square.jpg",
+      //   },
+      //   {
+      //     id: 0,
+      //     category: "category",
+      //     title: "asd",
+      //     createdAt: "2023-01-01",
+      //     thumbnail:
+      //       "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-square.jpg",
+      //   },
+      //   {
+      //     id: 0,
+      //     category: "category",
+      //     title: "asd",
+      //     createdAt: "2023-01-01",
+      //     thumbnail:
+      //       "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-square.jpg",
+      //   },
+      //   {
+      //     id: 0,
+      //     category: "category",
+      //     title: "asd",
+      //     createdAt: "2023-01-01",
+      //     thumbnail:
+      //       "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-square.jpg",
+      //   },
+      // ],
       pending: {
         items: false,
       },

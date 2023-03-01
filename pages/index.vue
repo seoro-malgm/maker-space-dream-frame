@@ -7,15 +7,15 @@
       <div
         class="bg-primary d-flex align-items-center justify-content-center py-2"
       >
-        <span class="text-14">아직 가입 안하셨나요? 지금 가입하세요 </span>
-        <b-btn variant="white text-13 ml-2" pill to="/auth/signup">
+        <span class="text-1">아직 가입 안하셨나요? 지금 가입하세요 </span>
+        <b-btn variant="white text-1 ml-2" pill to="/auth/signup">
           회원가입하기
         </b-btn>
       </div>
     </div>
 
-    <!-- <section class="section-intro">
-      <client-only>
+    <section class="section-intro">
+      <!-- <client-only>
         <carousel
           :perPage="1"
           :navigationEnabled="false"
@@ -24,22 +24,20 @@
           :loop="true"
         >
           <slide v-for="slide in slides" :key="slide">
-            <div
-              class="bg-img w-100 ratio-40 ratio-sm-100"
-              :style="{
-                backgroundColor: slide,
-              }"
-            />
+            
           </slide>
         </carousel>
-      </client-only>
-    </section> -->
+      </client-only> -->
+      <div class="bg-img w-100 ratio-40 ratio-sm-70">
+        <img :src="require('@/assets/intro.png')" alt="" />
+      </div>
+    </section>
 
     <b-container class="py-5">
       <section>
         <header class="section-header">
           <div>
-            <h1 class="bg-flow text-48 pr-1">
+            <h1 class="bg-flow text-4 pr-1">
               New Archives
               <svg-line-path />
             </h1>
@@ -48,14 +46,19 @@
           <div class="ml-auto"></div>
         </header>
         <b-row>
-          <b-col cols="12" md="6" lg="4" v-for="(item, i) in items" :key="i">
+          <b-col cols="6" lg="4" v-for="(item, i) in items" :key="i">
             <article-item :item="item" />
           </b-col>
         </b-row>
         <div class="text-center">
-          <b-btn variant="outline-light" class="btn-arr-right px-4" pill>
-            <span class="text-24 fw-700">More Archives</span>
-            <i class="icon icon-right-big text-24" />
+          <b-btn
+            variant="outline-light"
+            class="btn-arr-right px-4"
+            pill
+            to="/archive"
+          >
+            <span class="text-2 fw-700">More Archives</span>
+            <i class="icon icon-right-big text-2" />
           </b-btn>
         </div>
       </section>
@@ -67,7 +70,7 @@
       <section>
         <header class="section-header">
           <div>
-            <h1 class="bg-flow text-48 pr-2">
+            <h1 class="bg-flow text-4 pr-2">
               Discussions
               <svg-line-path />
             </h1>
@@ -75,7 +78,7 @@
           </div>
           <!-- <div class="ml-auto">
             <b-btn variant="text" class="btn-arr-right">
-              <i class="icon icon-right-big text-32" />
+              <i class="icon icon-right-big text-4" />
             </b-btn>
           </div> -->
         </header>
@@ -86,9 +89,9 @@
           <b-col cols="12" md="6">
             <article>
               <header class="py-3 mb-2">
-                <h2>AI는 도구가 될 수 있을까요?</h2>
+                <h2 class="text-2 text-md-4">AI는 도구가 될 수 있을까요?</h2>
               </header>
-              <p class="text-14 text-md-20 lh-180 mb-3">
+              <p class="text-1 lh-180 mb-3">
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque
                 ad veritatis laboriosam? Provident dolore quo magnam tempore
                 nam. Unde distinctio rem iusto sed vero harum sint eius illo.
@@ -105,31 +108,40 @@
           <discuss-item :items="discussItems"></discuss-item>
         </section>
         <div class="text-center">
-          <b-btn variant="outline-light" class="btn-arr-right px-4" pill>
-            <span class="text-24 fw-700">More Discussions</span>
-            <i class="icon icon-right-big text-24" />
+          <b-btn
+            variant="outline-light"
+            class="btn-arr-right px-4"
+            pill
+            to="/discussion"
+          >
+            <span class="text-2 fw-700">More Discussions</span>
+            <i class="icon icon-right-big text-2" />
           </b-btn>
         </div>
       </section>
     </b-container>
     <section class="my-5">
       <marquee-bar :items="allTags" variant="primary" />
-      <b-container class="py-5">
-        <b-row align-v="center" align-h="center">
+      <b-container class="my-5 py-5">
+        <b-row align-v="center" align-h="center" class="my-lg-5">
           <b-col cols="12" md="8" order="1" order-md="0">
             <div class="py-3 px-lg-4">
-              <h3 class="mb-2 text-24 text-md-48 bg-flow pr-0 pt-2 pt-md-0">
-                토론하고싶은 주제가 있나요?
+              <h3 class="mb-2 text-2 text-lg-3 bg-flow pr-0 pt-2 pt-md-0">
+                토론하고 싶은 주제가 있나요?
                 <svg-line-path />
               </h3>
-              <p class="text-14 text-md-16 my-4">
+              <p class="text-1 text-md-1 my-4">
                 토론에 참여하세요 주제신청이 가능합니다 Lorem ipsum dolor sit
                 amet consectetur adipisicing elit. Iure quod facilis nobis
                 voluptatibus necessitatibus, eaque eius quaerat velit illo,
                 placeat obcaecati numquam iusto consectetur labore! dolor unde
                 reiciendis!
               </p>
-              <discuss-apply-form />
+              <b-row>
+                <b-col cols="12" lg="8">
+                  <discuss-apply-form />
+                </b-col>
+              </b-row>
             </div>
           </b-col>
           <b-col cols="10" md="4" order="0" order-md="1">
@@ -152,64 +164,64 @@ export default {
   layout: "empty",
   components: {},
   async asyncData({ app, $firebase }) {
-    // const items = await $firebase().getAllArchiveItems(null, 9);
+    const items = await $firebase().getAllArchiveItems(null, 9);
     return {
-      // items,
+      items,
     };
   },
   data() {
     return {
       slides: ["lightgray", "gray", "brown"],
-      items: [
-        {
-          id: 0,
-          category: "category",
-          title: "asd",
-          createdAt: "2023-01-01",
-          thumbnail:
-            "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-square.jpg",
-        },
-        {
-          id: 0,
-          category: "category",
-          title: "asd",
-          createdAt: "2023-01-01",
-          thumbnail:
-            "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-square.jpg",
-        },
-        {
-          id: 0,
-          category: "category",
-          title: "asd",
-          createdAt: "2023-01-01",
-          thumbnail:
-            "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-square.jpg",
-        },
-        {
-          id: 0,
-          category: "category",
-          title: "asd",
-          createdAt: "2023-01-01",
-          thumbnail:
-            "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-square.jpg",
-        },
-        {
-          id: 0,
-          category: "category",
-          title: "asd",
-          createdAt: "2023-01-01",
-          thumbnail:
-            "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-square.jpg",
-        },
-        {
-          id: 0,
-          category: "category",
-          title: "asd",
-          createdAt: "2023-01-01",
-          thumbnail:
-            "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-square.jpg",
-        },
-      ],
+      // items: [
+      //   {
+      //     id: 0,
+      //     category: "category",
+      //     title: "asd",
+      //     createdAt: "2023-01-01",
+      //     thumbnail:
+      //       "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-square.jpg",
+      //   },
+      //   {
+      //     id: 0,
+      //     category: "category",
+      //     title: "asd",
+      //     createdAt: "2023-01-01",
+      //     thumbnail:
+      //       "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-square.jpg",
+      //   },
+      //   {
+      //     id: 0,
+      //     category: "category",
+      //     title: "asd",
+      //     createdAt: "2023-01-01",
+      //     thumbnail:
+      //       "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-square.jpg",
+      //   },
+      //   {
+      //     id: 0,
+      //     category: "category",
+      //     title: "asd",
+      //     createdAt: "2023-01-01",
+      //     thumbnail:
+      //       "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-square.jpg",
+      //   },
+      //   {
+      //     id: 0,
+      //     category: "category",
+      //     title: "asd",
+      //     createdAt: "2023-01-01",
+      //     thumbnail:
+      //       "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-square.jpg",
+      //   },
+      //   {
+      //     id: 0,
+      //     category: "category",
+      //     title: "asd",
+      //     createdAt: "2023-01-01",
+      //     thumbnail:
+      //       "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-square.jpg",
+      //   },
+      // ],
       discussItems: [
         {
           thumbnail:

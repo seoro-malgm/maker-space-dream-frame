@@ -61,17 +61,11 @@
             <b-btn variant="outline-primary w-100" @click="update">수정</b-btn>
           </template>
           <template v-else>
-            <b-btn variant="outline-primary w-100" @click="submit"
-              >업로드</b-btn
-            >
+            <b-btn variant="primary w-100" @click="submit">업로드</b-btn>
           </template>
         </b-col>
       </b-row>
     </section>
-
-    <pre>
-      form:: {{ form }} <br>
-      user ::{{ user }}</pre>
   </b-container>
 </template>
 

@@ -1,12 +1,13 @@
 <template>
   <div id="gnb">
     <b-navbar toggleable="lg" type="light" variant="white">
-      <b-navbar-brand href="/">
-        <!-- <brand-symbol /> -->
-        <img
-          :src="require('@/assets/logo-horizontal.svg')"
-          alt="신물결 로고 이미지, 메인으로 이동"
-        />
+      <b-navbar-brand>
+        <nuxt-link to="/">
+          <img
+            :src="require('@/assets/logo-horizontal.svg')"
+            alt="신물결 로고 이미지, 메인으로 이동"
+          />
+        </nuxt-link>
       </b-navbar-brand>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -20,7 +21,7 @@
               <li
                 v-for="(item, i) in links"
                 :key="i"
-                class="mb-2 mb-lg-0 mx-lg-3 text-20 text-md-24 text-lg-30"
+                class="mb-2 mb-lg-0 mx-lg-3 text-2 text-lg-430"
               >
                 <nuxt-link :to="item.url" class="nuxt-link px-4 py-1">
                   {{ item.name }}
@@ -77,7 +78,7 @@ export default {
 
 <style lang="scss" scoped>
 #gnb {
-  padding: 1rem 1rem 0;
+  padding: 0.5rem 1rem;
   margin-bottom: 28px;
   // border: 1px solid $primary;
   .navbar {

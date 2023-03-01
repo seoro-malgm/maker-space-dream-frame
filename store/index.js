@@ -4,9 +4,6 @@ export const state = () => ({
 });
 
 export const getters = {
-  // getCounter(state) {
-  //   return state.counter
-  // },
   getUser(state) {
     return state.user;
   },
@@ -19,6 +16,7 @@ export const mutations = {
   // store.commit('auth/setState', ['key', value]);
   setState(state, [key, value]) {
     state[key] = value;
+    console.log("key, value:", key, value);
   },
 };
 
@@ -28,5 +26,10 @@ export const actions = {
   // },
   setState({ commit }, [key, value]) {
     commit("setState", [key, value]);
+  },
+  setUser({ commit }, value) {
+    // 세션스토리지에 저장
+    sessionStorage.setItem(process.env.TOKEN_NAME, value.token);
+    commit("setState", ["user", value]);
   },
 };

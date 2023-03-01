@@ -66,12 +66,12 @@
         <b-row align-h="start">
           <b-col cols="6" md="3" lg="2">
             <b-btn variant="outline-black w-100" @click="submit">
-              <span class="text-14"> 저장하기</span>
+              <span class="text-1"> 저장하기</span>
             </b-btn>
           </b-col>
         </b-row>
         <div class="text-right">
-          <b-btn variant="link p-0 text-light text-12">회원 탈퇴하기</b-btn>
+          <b-btn variant="link p-0 text-light text-1">회원 탈퇴하기</b-btn>
         </div>
       </template>
       <!-- <pre>

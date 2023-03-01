@@ -9,7 +9,7 @@
       </template>
       <template v-else>
         <b-row class="flex-column">
-          <b-col cols="12" md="5">
+          <b-col cols="12" md="8">
             <b-form-select
               class="mb-2"
               v-model="input.category"
@@ -38,7 +38,7 @@
         </b-row>
         <div>
           <template v-if="lastSubmitted">
-            <span class="text-13">
+            <span class="text-1">
               신청이 완료되었습니다! 토론에 추가될 수 있도록 검토해보도록
               하겠습니다!
             </span>

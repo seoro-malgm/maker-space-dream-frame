@@ -35,11 +35,11 @@ export default {
     margin-right: 8px;
     a,
     span {
-      font-size: 14px;
+      font-size: 1rem;
       color: $light;
       border: 1px solid $light;
       border-radius: 8rem;
-      padding: 2px 8px;
+      padding: 2px 10px;
       &:hover {
         text-decoration: none;
       }

@@ -9,7 +9,7 @@
     :spread="spread"
   >
     <header class="article-header">
-      <figure class="bg-img ratio-70" v-if="item?.thumbnail">
+      <figure class="article-image" v-if="item?.thumbnail">
         <img :src="item.thumbnail" :alt="`${item.title} 썸네일`" />
       </figure>
     </header>
@@ -19,7 +19,7 @@
           {{ item.category }}
         </span>
         <h6
-          class="title text-truncate line-2 text-18 text-md-20"
+          class="title text-truncate line-2 text-1 text-md-2"
           v-if="item?.title"
         >
           {{ item.title }}
@@ -79,6 +79,21 @@ export default {
     h6.title {
       margin-top: 2px;
       margin-bottom: 6px;
+    }
+  }
+  .article-image {
+    min-height: 270px;
+    position: relative;
+
+    img {
+      min-width: 100%;
+      width: auto;
+      height: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      object-fit: contain;
+      transform: translate(-50%, -50%);
     }
   }
   .article-footer {

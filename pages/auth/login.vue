@@ -82,8 +82,8 @@ export default {
   data() {
     return {
       form: {
-        email: null,
-        password: null,
+        email: "test@test.com",
+        password: "test1234",
       },
     };
   },
@@ -93,9 +93,9 @@ export default {
         const user = await this.$firebase().login(email, password);
         if (user) {
           // 세션스토리지에 저장
-          sessionStorage.setItem(this.$config.TOKEN_NAME, user.token);
+          // sessionStorage.setItem(process.env.TOKEN_NAME, user.token);
           // store에 저장
-          this.$store.dispatch("setState", ["user", user]);
+          this.$store.dispatch("setUser", user);
           this.$router.push("/");
         }
       } catch (error) {

@@ -15,7 +15,7 @@
             <b-col cols="12" md="8" lg="10">
               <div class="pt-lg-3">
                 <h4>{{ item.title }}</h4>
-                <p class="text-13 mt-2">
+                <p class="text-1 mt-2">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Dignissimos aliquam officiis a aperiam nihil voluptate velit
                   amet perferendis quae odit? Dolorum eligendi dolor commodi
@@ -71,8 +71,8 @@ export default {
     margin: 0;
     padding: 0;
     .discuss-item {
-      padding: 8px 8px 12px;
-      margin-bottom: 8px;
+      padding: 0.5rem 0.5rem 1.5rem;
+      margin-bottom: 1.8rem;
       border-bottom: 1px solid $light;
       .discuss-item-thumbnail {
         position: relative;

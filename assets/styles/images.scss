@@ -10,6 +10,9 @@ $ratios: (
   67,
   38,
   40,
+  56,
+  60,
+  67,
   70,
   90,
   96,
@@ -36,6 +39,7 @@ figcaption {
   background-size: cover;
   overflow: hidden;
   position: relative;
+  background-position: center;
   img {
     position: absolute;
     top: 50%;
@@ -63,6 +67,11 @@ figcaption {
   background-position: center center;
   background-size: contain;
   background-repeat: no-repeat;
+  img {
+    height: 100%;
+    width: auto;
+    min-width: 100%;
+  }
 }
 
 $md-ratios: (38);

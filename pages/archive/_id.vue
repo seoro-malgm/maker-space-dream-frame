@@ -6,11 +6,11 @@
           <span class="text-category mb-1">
             {{ currentArchiveItem.category }}
           </span>
-          <h1 class="text-24 text-md-28 mt-1">
+          <h1 class="text-3 text-md-4 mt-1">
             {{ currentArchiveItem.title }}
           </h1>
           <div
-            class="mt-3 d-flex justify-content-between border-top border-bottom border-skeleton p-2 text-13"
+            class="mt-3 d-flex justify-content-between border-top border-bottom border-skeleton p-2 text-1"
           >
             <span>username</span>
             <small
@@ -27,8 +27,8 @@
             variant="outline-gray d-flex flex-column align-items-center mx-auto p-3"
             @click="addLike"
           >
-            <i class="icon icon-heart text-16 text-md-22" />
-            <span class="text-14 text-md-18 mt-1">
+            <i class="icon icon-heart text-1 text-md-2" />
+            <span class="text-1 text-md-1 mt-1">
               {{ currentArchiveItem?.like }}
             </span>
           </b-btn>
