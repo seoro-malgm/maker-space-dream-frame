@@ -1,6 +1,10 @@
 <template>
   <footer id="gnf">
-    <b-container fluid>
+    <b-container>
+      <div class="d-flex justify-content-between py-3">
+        <b-btn variant="light mr-2" pill>랜덤글</b-btn>
+        <b-btn variant="dark" pill>다크모드</b-btn>
+      </div>
       <nav class="nav">
         <!-- <div class="utils pt-4 mb-2">
           <ul class="btns">
@@ -14,7 +18,7 @@
           </ul>
         </div> -->
         <div class="text-center py-3">
-          <h4 class="logo mb-3">
+          <h4 class="logo mb-2">
             <img :src="require('@/assets/symbol-dark.svg')" />
           </h4>
           <span class="copyright"> &copy; copyright gongstar reserved. </span>
@@ -79,7 +83,7 @@ export default {
     }
     h4.logo {
       > img {
-        width: 100px;
+        width: 80px;
       }
     }
     .copyright {

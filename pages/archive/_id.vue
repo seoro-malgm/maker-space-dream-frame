@@ -6,7 +6,7 @@
           <span class="text-category mb-1">
             {{ currentArchiveItem.category }}
           </span>
-          <h1 class="text-3 text-md-4 mt-1">
+          <h1 class="text-2 text-md-4 mt-1">
             {{ currentArchiveItem.title }}
           </h1>
           <div
@@ -41,14 +41,14 @@
         </ul>
         <section class="mt-3">
           <b-row align-v="stretch" class="mx-n1">
-            <b-col cols="11" class="px-1">
+            <b-col cols="10" class="px-1">
               <b-textarea
                 class="border"
                 v-model="newReply"
                 placeholder="새 댓글"
               />
             </b-col>
-            <b-col cols="1" class="px-1">
+            <b-col cols="2" class="px-1">
               <b-btn variant="primary w-100 h-100" @click="addReply"
                 >등록</b-btn
               >
@@ -56,15 +56,17 @@
           </b-row>
         </section>
       </article>
-      <b-btn
-        variant="secondary btn-go-top d-inline-flex align-items-center shadow"
-        :class="{ active }"
-        @click="goTop"
-        aria-label="맨 위로 이동 버튼"
-        aria-description="스크롤을 맨 위로 이동시키는 버튼입니다"
-      >
-        맨위로
-      </b-btn>
+      <div class="text-right">
+        <b-btn
+          variant="secondary btn-go-top d-inline-flex align-items-center"
+          pill
+          @click="goTop"
+          aria-label="맨 위로 이동 버튼"
+          aria-description="스크롤을 맨 위로 이동시키는 버튼입니다"
+        >
+          맨위로
+        </b-btn>
+      </div>
     </template>
     <template v-else>
       <Loading />
@@ -85,7 +87,6 @@ export default {
 
   data() {
     return {
-      active: false,
       newReply: null,
       // pending: {
       //   like: false,

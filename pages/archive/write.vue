@@ -13,7 +13,7 @@
               >선택하세요</b-form-select-option
             >
             <b-form-select-option value="food">Food</b-form-select-option>
-            <b-form-select-option value="human">Huamn</b-form-select-option>
+            <b-form-select-option value="human">Human</b-form-select-option>
             <b-form-select-option value="art">Art</b-form-select-option>
           </b-form-select>
         </b-col>

@@ -33,31 +33,33 @@ export default {
     this.list = [...this.items, ...this.items];
     this.setLoop();
   },
+  computed: {
+    route() {
+      return this.$route.path;
+    },
+  },
   methods: {
     setLoop() {
-      document.addEventListener("DOMContentLoaded", (_) => {
-        const items = [...this.list, ...this.list];
-        const containerElem = this.$refs["loop-container"];
-        const leftSideOfContainer = containerElem.getBoundingClientRect().left;
-        const listElem = this.$refs["list"];
-        let currentLeftValue = 0;
-        window.setInterval(animationLoop, 50);
+      const items = [...this.list, ...this.list];
+      const containerElem = this.$refs["loop-container"];
+      const leftSideOfContainer = containerElem.getBoundingClientRect().left;
+      const listElem = this.$refs["list"];
+      let currentLeftValue = 0;
+      window.setInterval(animationLoop, 50);
 
-        function animationLoop() {
-          const firstListItem = listElem.querySelector(".item");
+      function animationLoop() {
+        const firstListItem = listElem.querySelector(".item");
 
-          let rightSideOfFirstItem =
-            firstListItem.getBoundingClientRect().right;
+        let rightSideOfFirstItem = firstListItem.getBoundingClientRect().right;
 
-          if (rightSideOfFirstItem == leftSideOfContainer) {
-            currentLeftValue = -1;
-            listElem.appendChild(firstListItem);
-          }
-
-          listElem.style.marginLeft = `${currentLeftValue}px`;
-          currentLeftValue--;
+        if (rightSideOfFirstItem == leftSideOfContainer) {
+          currentLeftValue = -1;
+          listElem.appendChild(firstListItem);
         }
-      });
+
+        listElem.style.marginLeft = `${currentLeftValue}px`;
+        currentLeftValue--;
+      }
     },
   },
 };

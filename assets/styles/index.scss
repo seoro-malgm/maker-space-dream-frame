@@ -126,6 +126,11 @@ textarea {
   font-size: 12px;
 }
 
+// .waves-wrapper {
+//   max-height: 658px;
+//   overflow-y: auto;
+//   overflow-x: hidden;
+// }
 .section-header {
   padding-top: 8px;
   margin-top: 8px;
@@ -133,6 +138,7 @@ textarea {
   margin-bottom: 8px;
   display: flex;
   align-items: center;
+  // justify-content: center;
   justify-content: space-between;
 }
 

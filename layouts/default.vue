@@ -21,7 +21,7 @@ export default {
       msg,
       opt = {
         id: "toast",
-        variant: "primary",
+        variant: "darkest",
         textVariant: "white",
       }
     ) {
@@ -31,7 +31,7 @@ export default {
         class: "px-2",
         domProps: {
           innerHTML: `
-          <div class="text-${opt.textVariant}">
+          <div class="text-${opt.textVariant} text-center">
             <span class="text-1 fw-500">${msg}</span>
           </div>
           `,
@@ -53,7 +53,10 @@ export default {
 <style lang="scss" scoped>
 #main {
   min-height: 100vh;
-  padding-top: 2rem;
+  // @media (max-width: $breakpoint-md) {
+  //   padding-top: 72px;
+  // }
+  padding-top: 82px;
   padding-bottom: 2.5rem;
 }
 </style>
