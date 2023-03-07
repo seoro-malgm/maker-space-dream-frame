@@ -6,16 +6,19 @@
 
 <script>
 export default {
+  name: "auth-logout",
   mounted() {
-    this.logout();
+    this.logoutProcess();
   },
   methods: {
-    logout() {
+    async logoutProcess() {
+      const { logout } = this.$firebase();
+      await logout();
       // 스토리지에서 제거
-      sessionStorage.removeItem(this.$config.TOKEN_NAME);
+      sessionStorage.removeItem(process.env.TOKEN_NAME);
       // store에서 제거
       this.$store.dispatch("setState", ["user", null]);
-      this.$router.push("/auth/login");
+      window.location.href = "/";
     },
   },
 };

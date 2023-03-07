@@ -1,11 +1,11 @@
 <template>
   <ul class="tag-group mt-2">
-    <li class="tag-item" v-for="(tag, i) in tags" :key="i">
+    <li class="tag-item" v-for="(value, key) in items" :key="key">
       <template v-if="readonly">
-        <span> # {{ tag }} </span>
+        <span> {{ value }} </span>
       </template>
       <template v-else>
-        <a href="#"> # {{ tag }} </a>
+        <button @click="$emit('btn-clicked')">{{ value }}</button>
       </template>
     </li>
   </ul>
@@ -14,8 +14,8 @@
 <script>
 export default {
   props: {
-    tags: {
-      type: Array,
+    items: {
+      type: [Array, Object],
       default: [],
     },
     readonly: {
@@ -33,15 +33,25 @@ export default {
   list-style: none;
   .tag-item {
     margin-right: 8px;
-    a,
+    margin-bottom: 8px;
+    button,
     span {
-      font-size: 1rem;
+      font-size: 0.85rem;
       color: $light;
       border: 1px solid $light;
+      background-color: transparent;
       border-radius: 8rem;
       padding: 2px 10px;
+      transition: all 0.2s;
       &:hover {
         text-decoration: none;
+      }
+    }
+    &:hover {
+      button,
+      span {
+        background-color: $light;
+        color: white;
       }
     }
   }

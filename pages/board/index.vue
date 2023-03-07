@@ -45,7 +45,7 @@ export default {
   async asyncData({ app, $firebase, query }) {
     // const { category } = query;
     // if (!category) app.router.push("/");
-    const items = await $firebase().getAllArchiveItems(null);
+    const items = await $firebase().getAllBoardItems(null);
     return {
       items,
     };
@@ -124,7 +124,7 @@ export default {
   methods: {
     async getItems(category) {
       this.pending.items = true;
-      this.items = await this.$firebase().getAllArchiveItems(category);
+      this.items = await this.$firebase().getAllBoardItems(category);
       this.pending.items = false;
     },
     async goWrite() {

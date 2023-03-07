@@ -24,7 +24,7 @@
                   repellat asperiores nihil recusandae, consequuntur sit soluta.
                   Quaerat, possimus deserunt!
                 </p>
-                <group-tags :tags="item.tags" :readonly="true" />
+                <!-- <group-tags :tags="item.tags" :readonly="true" /> -->
               </div>
               <!-- <nuxt-link :to="`${discussId}/${item.id}`">
                 {{ item.title }}

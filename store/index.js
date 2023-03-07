@@ -1,6 +1,7 @@
 export const state = () => ({
   // counter: 0,
   user: null,
+  userLogined: false,
 });
 
 export const getters = {
@@ -10,26 +11,26 @@ export const getters = {
 };
 
 export const mutations = {
-  // increment(state) {
-  //   state.counter++
-  // },
-  // store.commit('auth/setState', ['key', value]);
   setState(state, [key, value]) {
     state[key] = value;
-    console.log("key, value:", key, value);
   },
 };
 
 export const actions = {
-  // async fetchCounter({ state }) {
-  //   return res.data
-  // },
   setState({ commit }, [key, value]) {
     commit("setState", [key, value]);
   },
-  setUser({ commit }, value) {
+  async setUser({ commit }) {
     // 세션스토리지에 저장
-    sessionStorage.setItem(process.env.TOKEN_NAME, value.token);
-    commit("setState", ["user", value]);
+    const { authWatcher, getUserInfo } = this.$firebase();
+    const userEmail = await authWatcher();
+    if (userEmail) {
+      const currentUser = await getUserInfo(userEmail);
+      if (currentUser) {
+        commit("setState", ["user", currentUser]);
+      } else {
+        commit("setState", ["user", null]);
+      }
+    }
   },
 };

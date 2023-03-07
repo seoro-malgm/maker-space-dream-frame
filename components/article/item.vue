@@ -3,34 +3,10 @@
     class="ariticle-item"
     @click="
       $router.push({
-        path: `/archive/${item.id}`,
+        path: `/board/${item.no}`,
       })
     "
-    :spread="spread"
   >
-    <!-- <header class="article-header">
-      <figure class="article-image" v-if="item?.thumbnail">
-        <img :src="item.thumbnail" :alt="`${item.title} 썸네일`" />
-      </figure>
-    </header>
-    <div class="article-info">
-      <section class="article-body">
-        <span class="text-category mb-1" v-if="item?.category">
-          {{ item.category }}
-        </span>
-        <h6
-          class="title text-truncate line-2 text-1 text-md-2"
-          v-if="item?.title"
-        >
-          {{ item.title }}
-        </h6>
-      </section>
-      <footer class="article-footer">
-        <time>
-          {{ createdDate }}
-        </time>
-      </footer>
-    </div> -->
     <b-row class="mx-n1">
       <b-col cols="2" md="1" v-if="item?.thumbnail" class="px-1">
         <figure class="article-image" v-if="item?.thumbnail">
@@ -43,7 +19,7 @@
         class="px-1 article-body"
       >
         <span class="text-category mb-1" v-if="item?.category">
-          {{ item.category }}
+          {{ getCategory(item.category) }}
         </span>
         <h6 class="title text-truncate line-2" v-if="item?.title">
           {{ item.title }}
@@ -62,7 +38,7 @@
         </li>
         <li class="d-flex align-items-center">
           <i class="icon icon-comment"></i>
-          <span>999+</span>
+          <span>0</span>
         </li>
       </ul>
     </footer>
@@ -76,10 +52,6 @@ export default {
       type: Object,
       default: null,
     },
-    spread: {
-      type: String,
-      defualt: null,
-    },
   },
   computed: {
     createdDate() {
@@ -89,8 +61,21 @@ export default {
         : "2023-01-01";
     },
   },
-  mounted() {
-    console.log("this.item:", this.item);
+  methods: {
+    getCategory(category) {
+      const allCategories = {
+        FREE: "아무말",
+        QUESTION: "질문",
+        ANNOUNCE: "알립니다",
+        JOB: "구인/구직",
+        WORRY: "고민",
+        GROUPING: "모임/스터디",
+        ETC: "기타",
+      };
+      return allCategories[category]
+        ? allCategories[category]
+        : allCategories["ETC"];
+    },
   },
 };
 </script>
@@ -100,7 +85,7 @@ export default {
   // border-radius: 24px;
   padding: 12px 0 8px;
   margin-bottom: 8px;
-  border-bottom: 1px solid $light;
+  border-bottom: 1px solid $gray-500;
 
   .article-header {
     transition: all 0.2s;
@@ -118,7 +103,7 @@ export default {
     h6.title {
       margin-top: 2px;
       margin-bottom: 6px;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
     }
   }
   .article-image {
@@ -160,6 +145,7 @@ export default {
     .article-body {
       h6.title {
         // color: $primary;
+        text-decoration: underline;
       }
     }
   }

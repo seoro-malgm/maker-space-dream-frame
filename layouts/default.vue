@@ -1,11 +1,30 @@
 <template>
   <div id="app">
-    <global-nav />
+    <global-nav :auth="auth" />
     <!-- 내용 -->
     <main id="main">
-      <Nuxt />
+      <nuxt-child :auth="auth" />
     </main>
+    <btn-floating
+      v-if="auth && routeName !== 'board-write'"
+      :position="{
+        bottom: '2.5rem',
+        right: '1.5rem',
+      }"
+      variant="primary text-darkest"
+      @click="
+        $router.push({
+          name: 'board-write',
+        })
+      "
+    >
+      <template #content>
+        <i class="icon icon-pencil" />
+        <span class="mx-1 fw-700">글쓰기</span>
+      </template>
+    </btn-floating>
     <!-- footer -->
+
     <global-footer />
   </div>
 </template>
@@ -15,6 +34,14 @@ export default {
   name: "default",
   mounted() {
     window.toast = this.toast;
+  },
+  computed: {
+    auth() {
+      return this.$store.getters.getUser;
+    },
+    routeName() {
+      return this.$route.name;
+    },
   },
   methods: {
     async toast(
@@ -51,12 +78,17 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+$gnb-height: 82px;
 #main {
   min-height: 100vh;
   // @media (max-width: $breakpoint-md) {
   //   padding-top: 72px;
   // }
-  padding-top: 82px;
+  // padding-top: 82px;
+  padding-top: calc($gnb-height + 12px);
+  // @media (min-width: $breakpoint-md) {
+  //   padding-top: calc($gnb-height + 12px);
+  // }
   padding-bottom: 2.5rem;
 }
 </style>

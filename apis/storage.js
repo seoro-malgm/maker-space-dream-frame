@@ -36,6 +36,7 @@ class storageAPI {
   deleteImage = (path) => {
     const storage = getStorage();
     let desertRef = ref(storage, path);
+    if (!desertRef) return;
     deleteObject(desertRef);
   };
 }

@@ -189,6 +189,8 @@ export default {
   ],
 
   plugins: [
+    // { src: "~/plugins/axios.js" },
+    { src: "~/plugins/router.js", mode: "client" },
     { src: "~/plugins/firebase.js" },
     { src: "~/plugins/carousel.js", mode: "client" },
   ],
@@ -234,7 +236,7 @@ export default {
   },
   // 로딩바
   loading: {
-    color: "#2f318e",
+    color: "#00ffe6",
   },
   // 환경변수
   env: {
@@ -247,5 +249,6 @@ export default {
     MESSAGING_SENDER_ID: process.env.MESSAGING_SENDER_ID,
     MEASUREMENT_ID: process.env.MEASUREMENT_ID,
     TOKEN_NAME: process.env.TOKEN_NAME,
+    NAVER_CLIENT_ID: process.env.NAVER_CLIENT_ID,
   },
 };

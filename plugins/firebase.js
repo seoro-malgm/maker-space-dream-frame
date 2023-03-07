@@ -1,5 +1,5 @@
 import authAPI from "~/apis/auth";
-import archiveItemsAPI from "~/apis/archiveItems";
+import boardItemsAPI from "~/apis/boardItems";
 import storageAPI from "~/apis/storage";
 import newsAPI from "~/apis/news";
 import newsletterAPI from "~/apis/newsletter";
@@ -10,7 +10,7 @@ export default ({ app }, inject) => {
   inject("firebase", () => {
     return {
       ...authAPI,
-      ...archiveItemsAPI,
+      ...boardItemsAPI,
       ...storageAPI,
       ...newsAPI,
       ...newsletterAPI,

@@ -4,8 +4,9 @@ service cloud.firestore {
       allow get, read: if true;
     }
     match /{path}/{item} {
-      allow create: if path == 'subscribers';
-      allow create: if path == 'discussionApply';
+      // allow create: if path == 'subscribers';
+      // allow create: if path == 'discussionApply';
+      allow create: if path == 'users';
       allow create, update, delete: if request.auth != null;
     }
   }
