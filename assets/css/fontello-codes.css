@@ -45,6 +45,9 @@
 .icon-calendar:before { content: '\e82b'; } /* '' */
 .icon-basket:before { content: '\e82c'; } /* '' */
 .icon-folder:before { content: '\e82d'; } /* '' */
+.icon-flag:before { content: '\e82e'; } /* '' */
+.icon-attention:before { content: '\e82f'; } /* '' */
+.icon-block:before { content: '\e830'; } /* '' */
 .icon-filter:before { content: '\f0b0'; } /* '' */
 .icon-comment-empty:before { content: '\f0e5'; } /* '' */
 .icon-bell-alt:before { content: '\f0f3'; } /* '' */

@@ -87,10 +87,6 @@ class boardItemsAPI {
     }
   };
 
-  /**
-   *
-   * @des
-   */
   // collection의 글 갯수 구하기
   // 글 갯수를 수정하면 no가 덮어져서 count가 아니라 변경됨
   // getBoardCount = async () => {
@@ -183,6 +179,21 @@ class boardItemsAPI {
         like: increment(1),
       });
     }
+  };
+
+  // 글 신고하기
+  reportBoardItem = async (data) => {
+    const response = new Promise(async (resolve, reject) => {
+      try {
+        const docRef = await addDoc(collection(db, "boardReports"), data);
+        if (docRef) {
+          return resolve(true);
+        }
+      } catch (error) {
+        return reject(false);
+      }
+    });
+    return response;
   };
 }
 

@@ -6,7 +6,7 @@
           <span class="text-category mb-1" v-if="currentBoardItem.category">
             {{ getCategory(currentBoardItem.category) }}
           </span>
-          <h1 class="text-2 text-md-4 mt-1">
+          <h1 class="text-2 text-md-3 mt-1">
             {{ currentBoardItem.title }}
           </h1>
           <div
@@ -23,15 +23,58 @@
                 currentBoardItem?.user?.nickname
               }}</span>
             </div>
-            <small
-              >{{ createdDate }} | 조회수
-              {{ currentBoardItem.viewer + 1 || 0 }}</small
-            >
+            <div class="d-flex align-items-center">
+              <small>
+                {{ createdDate }} | 조회수
+                {{ currentBoardItem.viewer + 1 || 0 }}
+              </small>
+              <template v-if="auth">
+                <b-dd variant="text p-0" class="ml-2" no-caret>
+                  <template #button-content>
+                    <i class="icon icon-cog" />
+                  </template>
+                  <template v-if="isMine">
+                    <b-dd-item-btn
+                      @click="
+                        $router.push({
+                          name: 'board-write',
+                          query: {
+                            no: currentBoardItem.no,
+                          },
+                        })
+                      "
+                    >
+                      <i class="icon icon-pencil" /> <span>글 수정하기</span>
+                    </b-dd-item-btn>
+                    <b-dd-item-btn @click="onRemove">
+                      <i class="icon icon-cancel" /> <span>글 삭제하기</span>
+                    </b-dd-item-btn>
+                  </template>
+                  <template v-else-if="!isMine">
+                    <!-- v-if="!isMine" -->
+                    <b-dd-item-btn @click="$bvModal.show('modal-report-board')">
+                      <i class="icon icon-attention" /> <span>글 신고하기</span>
+                    </b-dd-item-btn>
+                    <b-dd-item-btn @click="blockUser(currentBoardItem.user)">
+                      <i class="icon icon-block" /> <span>유저 차단하기</span>
+                    </b-dd-item-btn>
+                  </template>
+                  <!-- v-if="!isMine" -->
+                  <!-- <b-dd-item-btn @click="blockUser(currentBoardItem.user)">
+                  <i class="icon icon-block" /> <span>유저 차단하기</span>
+                </b-dd-item-btn> -->
+                  <!-- <b-dd-item-btn>
+                  <i class="icon icon-share" /> <span>글 공유하기</span>
+                </b-dd-item-btn> -->
+                </b-dd>
+              </template>
+            </div>
           </div>
         </header>
         <section class="bg-white p-4">
           <div class="board-desc" v-html="currentBoardItem.desc" />
         </section>
+        <!-- 글 하단 버튼 -->
         <section>
           <b-btn
             variant="outline-heart d-flex align-items-center mx-auto px-4 py-3 like-button"
@@ -45,9 +88,19 @@
               {{ currentBoardItem?.like }}
             </span>
           </b-btn>
+          <div class="mt-2 text-center">
+            <b-btn
+              variant="outline-gray-600"
+              pill
+              @click="copyText(url, '글 주소가')"
+            >
+              <i class="icon icon-share" />
+              공유하기
+            </b-btn>
+          </div>
         </section>
         <!-- 수정/삭제용 utils -->
-        <client-only>
+        <!-- <client-only>
           <section
             class="d-flex align-items-center justify-content-end"
             v-if="isMine"
@@ -66,7 +119,7 @@
             >
             <b-btn variant="outline-light" @click="onRemove">삭제</b-btn>
           </section>
-        </client-only>
+        </client-only> -->
       </article>
       <article class="mb-5 py-3 border-top border-bottom">
         <h6>댓글</h6>
@@ -94,7 +147,7 @@
           </b-row>
         </section>
       </article>
-      <div class="text-right">
+      <div class="d-flex justify-content-between">
         <b-btn
           variant="secondary btn-go-top d-inline-flex align-items-center"
           pill
@@ -105,6 +158,13 @@
           맨 위로
         </b-btn>
       </div>
+      <!-- 글 신고 모달 -->
+      <modal-report-board
+        :boardUser="currentBoardItem.user"
+        :boardNo="no"
+        :reportUser="auth"
+        @reported="isReported = true"
+      />
     </template>
     <template v-else>
       <Loading />
@@ -113,6 +173,8 @@
 </template>
 
 <script>
+import allCategories from "~/assets/json/allCategories";
+import { getTimestamp, copyText } from "~/plugins/commons";
 export default {
   layout: "default",
   name: "board-detail",
@@ -150,20 +212,30 @@ export default {
     return {
       newReply: null,
       onLikeToggle: false,
+      allCategories,
+      toggleUtil: false,
+      isReported: false,
     };
   },
   computed: {
     no() {
       return this.$route.params?.no;
     },
+    url() {
+      return process.env.BASE_URL + this.$route.fullPath;
+    },
     createdDate() {
       const { seconds } = this.currentBoardItem?.createdAt;
-      return new Date(seconds * 1000).toLocaleString() || "";
+      return seconds ? getTimestamp(new Date(seconds * 1000)) : "";
     },
     // 내가 쓴 글인경우
     isMine() {
       return this.currentBoardItem?.user?.id === this.auth?.id;
     },
+    // todo: 신고한 글인 경우
+    // isReported(){
+
+    // }
   },
   onLikeToggle: {
     onLikeToggle(n) {
@@ -177,27 +249,22 @@ export default {
   },
 
   methods: {
+    copyText,
+    // 카테고리 불러오기
     getCategory(category) {
-      const allCategories = {
-        FREE: "아무말",
-        QUESTION: "질문",
-        ANNOUNCE: "알립니다",
-        JOB: "구인/구직",
-        WORRY: "고민",
-        GROUPING: "모임/스터디",
-        ETC: "기타",
-      };
-      return allCategories[category]
-        ? allCategories[category]
-        : allCategories["ETC"];
+      return this.allCategories[category]
+        ? this.allCategories[category]
+        : this.allCategories["ETC"];
     },
+    // 맨 위로
     goTop() {
       window.scrollTo(0, 0);
     },
+    // 댓글 추가
     addReply() {
       console.log("%c Hello ", "background: #333399; color: #ededed");
     },
-
+    // 좋아요 버튼
     async likeToggle() {
       this.onLikeToggle = true;
       const { incrementLike } = this.$firebase();
@@ -206,7 +273,7 @@ export default {
       // this.pending.like = false;
       this.onLikeToggle = false;
     },
-
+    // 글 삭제
     async onRemove() {
       const bool = await window.confirm("정말 삭제하시겠습니까?");
       if (bool) {

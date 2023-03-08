@@ -3,7 +3,7 @@
     <b-navbar type="light" variant="white">
       <b-container>
         <b-navbar-brand class="mr-5 mr-md-0">
-          <nuxt-link to="/">
+          <nuxt-link to="/" replace>
             <img
               :src="require('@/assets/logo-horizontal.svg')"
               alt="신물결 로고 이미지, 메인으로 이동"

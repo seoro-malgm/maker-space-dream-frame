@@ -1,7 +1,7 @@
 service cloud.firestore {
   match /databases/{database}/documents {
     match /{path}/{item} {
-      allow get, read: if true;
+      allow get, read;
     }
     match /{path}/{item} {
       // allow create: if path == 'subscribers';

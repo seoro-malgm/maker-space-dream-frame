@@ -32,7 +32,8 @@
 <script>
 export default {
   name: "default",
-  mounted() {
+  async mounted() {
+    this.modal();
     window.toast = this.toast;
   },
   computed: {
@@ -44,6 +45,82 @@ export default {
     },
   },
   methods: {
+    modal() {
+      window.alert = async (
+        msg,
+        obj = {
+          title: "알림",
+        }
+      ) => {
+        const opt = {
+          titleClass: "text-left text-1",
+          dangerMsg: "",
+          bodyClass: "px-3 pt-3 pb-2",
+          contentClass: "confirm border-0 overflow-hidden ",
+          headerClass: "rounded-0 bg-primary bg-opacity-15 text-left ",
+          footerClass: "border-0 d-flex justify-content-end ",
+          okTitle: "예",
+          okVariant: "primary text-1 py-1 px-3",
+          centered: true,
+          size: "sm",
+          noCloseOnBackdrop: true,
+          autoFocusButton: "ok",
+          returnFocus: this.$refs.app,
+          hideHeaderClose: false,
+          headerCloseContent: `<i class="icon icon-times text-1"></i>`,
+          ...obj,
+        };
+        const msgVNode =
+          typeof msg === "string"
+            ? this.$createElement("div", {
+                domProps: {
+                  innerHTML: `
+        <span class="text-1 lh-200 opacity-8">${msg}</span>
+      `,
+                },
+              })
+            : msg;
+        return await this.$bvModal.msgBoxOk([msgVNode], opt);
+      };
+      window.confirm = async (
+        msg,
+        obj = {
+          title: "알림",
+        }
+      ) => {
+        const options = {
+          titleClass: "text-left text-1",
+          dangerMsg: "",
+          bodyClass: "px-3 pt-3 pb-2",
+          contentClass: "confirm border-0 overflow-hidden",
+          headerClass: "rounded-0 bg-primary bg-opacity-15 text-left ",
+          footerClass: "border-0 d-flex justify-content-end",
+          okTitle: "예",
+          cancelTitle: "아니오",
+          okVariant: "primary text-1 py-1 px-3 text-white",
+          cancelVariant: "secondary text-1 py-1 px-3",
+          centered: true,
+          size: "sm",
+          noCloseOnBackdrop: true,
+          autoFocusButton: "ok",
+          hideHeaderClose: false,
+          headerCloseContent: `<i class="icon icon-times text-1"></i>`,
+          ...obj,
+        };
+        const msgVNode =
+          typeof msg === "string"
+            ? this.$createElement("div", {
+                domProps: {
+                  innerHTML: `
+        <span class="mb-4 text-1 lh-200 opacity-8">${msg}</span>
+        <span class="text-danger text-1 lh-200">${options.dangerMsg}</span>
+      `,
+                },
+              })
+            : msg;
+        return await this.$bvModal.msgBoxConfirm([msgVNode], options);
+      };
+    },
     async toast(
       msg,
       opt = {

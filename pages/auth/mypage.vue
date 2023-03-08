@@ -61,9 +61,9 @@
                   </li>
                 </ul>
               </b-card-body>
-              <b-card-footer class="bg-white border-0">
-                <b-btn variant="outline-black w-100" @click="submit">
-                  <span class="text-1"> 저장하기</span>
+              <b-card-footer class="bg-white border-0 pt-0">
+                <b-btn variant="primary w-100 py-2" @click="submit" pill>
+                  <span class="text-1"> 정보 저장하기</span>
                 </b-btn>
               </b-card-footer>
             </b-card>

@@ -43,6 +43,7 @@ class authAPI {
           email: user.email,
           uid: user.uid,
           nickname,
+          emailVerified: false,
         };
         const token = {
           accessToken: user.accessToken,
@@ -153,6 +154,26 @@ class authAPI {
   setUserInfo = async (data) => {
     await setDoc(doc(db, "users", data.id), data);
     return true;
+  };
+
+  // 계정 활성화 동의하기
+  setUserVerify = async (id) => {
+    const response = new Promise(async (resolve, reject) => {
+      if (!id) {
+        window.toast("오류가 발생했습니다.");
+        return reject(false);
+      }
+      try {
+        const ref = doc(db, "users", id);
+        await updateDoc(ref, {
+          emailVerified: true,
+        });
+        return resolve(true);
+      } catch (error) {
+        return reject(false);
+      }
+    });
+    return response;
   };
 
   // 토큰 갱신 취소

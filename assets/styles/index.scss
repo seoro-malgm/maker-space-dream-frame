@@ -147,6 +147,9 @@ textarea {
   padding-right: 16px;
   overflow: hidden;
   z-index: 2;
-  display: inline-block;
+  // display: inline-block;
   letter-spacing: -2px;
+  > * {
+    font-weight: 900;
+  }
 }

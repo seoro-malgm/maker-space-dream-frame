@@ -3,10 +3,10 @@ require("dotenv").config();
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
-  ssr: true,
-  target: "server",
+  // ssr: true,
+  // target: "server",
   head: {
-    title: "신물결",
+    title: "신물결 | 공주인들을 위한 커뮤니티 플랫폼!",
     htmlAttrs: {
       lang: "ko-KR",
     },
@@ -18,17 +18,18 @@ export default {
         hid: "title",
         name: "title",
         property: "title",
-        content: "신물결",
+        content: "신물결 | 공주인들을 위한 커뮤니티 플랫폼!",
       },
       {
         hid: "description",
         name: "description",
         property: "description",
-        content: "",
+        content: "공주시를 위한 새로운 커뮤니티 플랫폼, 신물결입니다.",
       },
       {
         name: "keyword",
-        content: "",
+        content:
+          "공주시, 공주인, 공주, 충남, 충청남도, 충청도, 공주여행, 커뮤니티, 공주커뮤니티, 공주시웹사이트, 공주시청, 공주대학교, 공주원룸, 공주대, 공주교대, 공주원도심, 공주신도심, 신관동, 반죽동, 중학동",
       },
       {
         hid: "og:image",
@@ -40,7 +41,7 @@ export default {
         hid: "og:title",
         name: "og:title",
         property: "og:title",
-        content: "신물결",
+        content: "신물결 | 공주인들을 위한 커뮤니티 플랫폼!",
       },
       {
         hid: "og:description",
@@ -61,7 +62,7 @@ export default {
       {
         name: "og:site_name",
         property: "og:site_name",
-        content: "신물결",
+        content: "신물결 | 공주인들을 위한 커뮤니티 플랫폼!",
       },
       {
         name: "msapplication-TileImage",
@@ -95,7 +96,7 @@ export default {
       {
         name: "twitter:title",
         hid: "twitter:title",
-        content: "신물결",
+        content: "신물결 | 공주인들을 위한 커뮤니티 플랫폼!",
       },
       // {
       //   name: "twitter:description",
@@ -240,6 +241,7 @@ export default {
   },
   // 환경변수
   env: {
+    BASE_URL: process.env.BASE_URL || "http://localhost:3000",
     API_KEY: process.env.API_KEY,
     PROJECT_ID: process.env.PROJECT_ID,
     APP_ID: process.env.APP_ID,

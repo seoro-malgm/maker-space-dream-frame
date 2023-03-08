@@ -1,15 +1,19 @@
-export const copyText = (text) => {
+// 클립보드 복사
+export const copyText = (text, target) => {
   const board = navigator.clipboard;
   board
     .writeText(text)
     .then(() => {
-      window.toast("클립보드에 복사되었습니다");
+      window.toast(
+        `${target ? `${target} ` : ""}` + "클립보드에 복사되었습니다."
+      );
     })
     .catch((error) => {
       window.toast(error);
     });
 };
 
+// 이미지 리사이즈
 export const resize = {
   init: function (outputQuality) {
     this.outputQuality = outputQuality === "undefined" ? 1 : outputQuality;
@@ -111,6 +115,7 @@ export const resize = {
   },
 };
 
+// 해시 생성
 export const createHash = () => {
   const timestamp = new Date().getTime();
   let hashString = "";
@@ -122,4 +127,48 @@ export const createHash = () => {
     );
   }
   return timestamp.toString() + hashString;
+};
+
+// 시간 생성
+export const getTimestamp = (date) => {
+  const value = new Date(date);
+  // const val = value.setHours(value.getHours() + 9);
+  const time = new Date(value).getTime();
+  const now = new Date().getTime();
+  const gap = (now - time) / (1000 * 60);
+
+  if (gap < 1) {
+    return "지금";
+  }
+  if (gap < 2) {
+    return "1분 전";
+  }
+  if (gap < 3) {
+    return "3분 전";
+  }
+  if (gap < 5) {
+    return `5분 전`;
+  } else if (gap > 5 && gap < 30) {
+    return `30분 전`;
+  } else if (gap > 60 && gap < 120) {
+    // 60~120분 전
+    return `1시간 이내`;
+  } else if (gap > 120 && gap < 180) {
+    // 120~180분 전
+    return `3시간 이내`;
+  } else if (gap > 180 && gap < 1440) {
+    // 180분 ~ 24시간 전
+    return `오늘`;
+  } else if (gap > 1440 && gap < 2880) {
+    // 24시간 ~ 48시간 전
+    return `하루 전`;
+  } else if (gap > 2880 && gap < 8640) {
+    // 48시간 ~ 48시간 전
+    return `2일 전`;
+  } else if (gap > 8640 && gap < 20160) {
+    // 48시간 ~ 6일 전
+    return `이번 주`;
+  } else {
+    return value.toLocaleDateString();
+  }
 };

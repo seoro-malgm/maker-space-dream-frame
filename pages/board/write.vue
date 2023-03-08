@@ -2,7 +2,7 @@
   <b-container>
     <section class="mb-4">
       <b-row>
-        <b-col cols="4" lg="3">
+        <b-col cols="12" md="4" lg="3">
           <h6 class="py-2">카테고리</h6>
           <b-form-select v-model="form.category">
             <b-form-select-option :value="null" disabled
@@ -10,7 +10,7 @@
             >
             <client-only>
               <b-form-select-option
-                v-for="(value, key) in categories"
+                v-for="(value, key) in allCategories"
                 :key="key"
                 :value="key"
                 >{{ value }}
@@ -18,7 +18,7 @@
             </client-only>
           </b-form-select>
         </b-col>
-        <b-col cols="8" md="9">
+        <b-col cols="12" md="8" lg="9">
           <h6 class="py-2">제목</h6>
           <b-form-input v-model="form.title" placeholder="제목을 입력하세요" />
         </b-col>
@@ -78,6 +78,7 @@
 
 <script>
 import { resize, createHash } from "~/plugins/commons.js";
+import allCategories from "~/assets/json/allCategories";
 // import firebase from '~/plugins/firebase'
 // import { getImageURL, this.$firebase().deleteImage, addBoardItem } from '~/plugins/firebase.js'
 
@@ -111,15 +112,7 @@ export default {
         like: 0,
       },
       imagesAttached: [],
-      categories: {
-        FREE: "아무말",
-        QUESTION: "질문",
-        ANNOUNCE: "알립니다",
-        JOB: "구인/구직",
-        WORRY: "고민",
-        GROUPING: "모임/스터디",
-        ETC: "기타",
-      },
+      allCategories,
       resize,
     };
   },
@@ -141,6 +134,7 @@ export default {
     if (!this.auth) {
       this.$router.push("/");
     }
+
     if (this.no) {
       await this.init(this.no);
     }

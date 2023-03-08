@@ -28,7 +28,13 @@ export default {
           this.$store.dispatch("setUser", data);
           // 세션스토리지에 저장
           sessionStorage.setItem(process.env.TOKEN_NAME, token.accessToken);
-          this.$router.push("/");
+          this.$router.push(
+            data?.emailVerified
+              ? "/"
+              : {
+                  name: "auth-verifiedForm",
+                }
+          );
         }
       } catch (error) {
         console.error("error:", error);

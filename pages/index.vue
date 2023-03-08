@@ -20,16 +20,17 @@
         </div> -->
       <!-- </section> -->
       <b-row>
-        <b-col cols="12" md="5" lg="4" class="mb-4" order="1" order-md="0">
-          <article class="bg-darkest text-white p-4">
-            <header class="mb-3 pb-2 border-bottom border-white">
-              <h3>신물결은 무엇이고 왜 만들어졌는가?</h3>
+        <b-col cols="12" md="5" class="mb-4" order="1" order-md="0">
+          <article class="bg-primary p-4 mb-4">
+            <header class="mb-3 pb-2 border-bottom border-darkest">
+              <h3>신물결이 뭔가요?</h3>
             </header>
             <section>
               <p class="lh-200 break-keep">
-                폐쇄적인 커뮤니티 문화를 개선하고 많은 사람들이 쉽게 소통할 수
-                있게 도와주는 툴(tool)로서 익명을 보장하며 자유롭게 이야기할 수
-                있는 공간을 사용해보세요.
+                충남 공주시의 폐쇄적인 커뮤니티 문화를 개선하고 많은 사람들이
+                쉽게 소통할 수 있게 도와주는 커뮤니티 툴(tool)입니다!
+                <br />
+                익명을 보장하며 자유롭게 이야기할 수 있는 공간을 사용해보세요.
                 <br />
                 동네 정보, 구인구직, 모임결성, 소식을 나누는 입니다.
               </p>
@@ -46,7 +47,7 @@
             </b-input-group>
           </section> -->
           <!-- hot topics -->
-          <section class="mt-3 mb-4 mb-md-5">
+          <!-- <section class="mt-3 mb-4 mb-md-5">
             <header class="mb-2 text-center text-md-left">
               <h5 class="bg-flow pr-1 text-2">
                 Hot Topics
@@ -55,10 +56,10 @@
               <strong class="fw-700 d-block">인기 글</strong>
             </header>
             <article-list-item :items="hotTopics" title="인기 글" />
-          </section>
+          </section> -->
 
           <!-- hot tags -->
-          <section class="mt-3 mb-4 mb-md-5">
+          <section class="mb-4">
             <header class="mb-2 text-center text-md-left">
               <h5 class="bg-flow pr-1 text-2">
                 Categories
@@ -66,11 +67,11 @@
               </h5>
               <strong class="fw-700 d-block">카테고리</strong>
             </header>
-            <group-tags :items="categories" />
+            <group-tags :items="allCategories" />
           </section>
         </b-col>
-        <b-col cols="12" md="7" lg="8" class="mb-4" order="0" order-md="1">
-          <section class="mb-4 mb-md-5">
+        <b-col cols="12" md="7" class="mb-4" order="0" order-md="1">
+          <section class="mb-5">
             <header class="mb-2 text-center text-md-left">
               <h1 class="bg-flow text-2 text-lg-4 pr-1">
                 New Waves
@@ -185,6 +186,8 @@
 </template>
 
 <script>
+import allCategories from "~/assets/json/allCategories";
+
 export default {
   layout: "default",
   components: {},
@@ -230,15 +233,7 @@ export default {
           title: "당진 놀러가려는데 갈만한 곳 있음?",
         },
       ],
-      categories: {
-        FREE: "아무말",
-        QUESTION: "질문",
-        ANNOUNCE: "알립니다",
-        JOB: "구인/구직",
-        WORRY: "고민",
-        GROUPING: "모임/스터디",
-        ETC: "기타",
-      },
+      allCategories,
       items: [],
     };
   },

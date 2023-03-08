@@ -36,9 +36,13 @@
           <i class="icon icon-eye"></i>
           <span>{{ item?.viewer }}</span>
         </li>
-        <li class="d-flex align-items-center">
+
+        <!-- <li class="d-flex align-items-center">
           <i class="icon icon-comment"></i>
           <span>0</span>
+        </li> -->
+        <li class="ml-auto">
+          {{ createdDate }}
         </li>
       </ul>
     </footer>
@@ -46,6 +50,8 @@
 </template>
 
 <script>
+import allCategories from "~/assets/json/allCategories";
+import { getTimestamp } from "~/plugins/commons";
 export default {
   props: {
     item: {
@@ -53,28 +59,23 @@ export default {
       default: null,
     },
   },
+  data() {
+    return {
+      allCategories,
+    };
+  },
   computed: {
     createdDate() {
       const { seconds } = this.item?.createdAt;
-      return seconds
-        ? new Date(seconds * 1000).toLocaleDateString()
-        : "2023-01-01";
+      return seconds ? getTimestamp(new Date(seconds * 1000)) : "";
     },
   },
   methods: {
+    // getTimestamp,
     getCategory(category) {
-      const allCategories = {
-        FREE: "아무말",
-        QUESTION: "질문",
-        ANNOUNCE: "알립니다",
-        JOB: "구인/구직",
-        WORRY: "고민",
-        GROUPING: "모임/스터디",
-        ETC: "기타",
-      };
-      return allCategories[category]
-        ? allCategories[category]
-        : allCategories["ETC"];
+      return this.allCategories[category]
+        ? this.allCategories[category]
+        : this.allCategories["ETC"];
     },
   },
 };
@@ -108,6 +109,7 @@ export default {
   }
   .article-image {
     // min-height: 270px;
+    border: 1px solid $gray-300;
     width: 100%;
     position: relative;
     padding-bottom: 100%;
