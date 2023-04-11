@@ -18,9 +18,20 @@
         :md="item?.thumbnail ? 11 : 12"
         class="px-1 article-body"
       >
-        <span class="text-category mb-1" v-if="item?.category">
-          {{ getCategory(item.category) }}
-        </span>
+        <div class="">
+          <template
+            v-if="item?.pinned?.seconds && isPinned(item.pinned.seconds)"
+          >
+            <span class="text-category bg-primary border-primary pr-3">
+              <i class="icon icon-rocket" />
+              <strong>Sponsored</strong>
+            </span>
+          </template>
+          <span class="text-category mb-1" v-if="item?.category">
+            {{ getCategory(item.category) }}
+          </span>
+        </div>
+
         <h6 class="title text-truncate line-2" v-if="item?.title">
           {{ item.title }}
         </h6>
@@ -51,7 +62,7 @@
 
 <script>
 import allCategories from "~/assets/json/allCategories";
-import { getTimestamp } from "~/plugins/commons";
+import { getTimestamp, isPinned } from "~/plugins/commons";
 export default {
   props: {
     item: {
@@ -72,6 +83,7 @@ export default {
   },
   methods: {
     // getTimestamp,
+    isPinned,
     getCategory(category) {
       return this.allCategories[category]
         ? this.allCategories[category]

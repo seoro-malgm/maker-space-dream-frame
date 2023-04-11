@@ -15,31 +15,6 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav class="d-flex align-items-center w-100">
-            <!-- <div class="utils mx-auto"> -->
-            <!-- <ul
-                class="list-unstyled d-flex flex-column flex-lg-row align-items-center"
-              >
-                <li
-                  v-for="(item, i) in links"
-                  :key="i"
-                  class="mb-3 mb-lg-0 mx-lg-3 text-2"
-                >
-                  <nuxt-link :to="item.url" class="nuxt-link px-4 py-1">
-                    {{ item.name }}
-                  </nuxt-link>
-                </li>
-              </ul> -->
-            <!-- <div class="mx-5 px-5 d-none d-lg-block flex-grow-1">
-              <b-input-group class="w-100">
-                <b-form-input class="" :placeholder="searchPlaceholder" />
-                <template #append>
-                  <b-btn>
-                    <i class="icon icon-search"></i>
-                  </b-btn>
-                </template>
-              </b-input-group>
-            </div> -->
-            <!-- </div> -->
             <client-only>
               <div class="ml-auto uitls-auth">
                 <template v-if="auth">
@@ -55,12 +30,6 @@
                     :to="{ name: 'board-write' }"
                     >글쓰기</b-btn
                   >
-                  <!-- <b-btn
-                    variant="outline-light"
-                    pill
-                    :to="{ name: 'auth-logout' }"
-                    >로그아웃</b-btn
-                  > -->
                 </template>
                 <template v-else>
                   <b-btn
@@ -82,24 +51,6 @@
         </b-collapse>
       </b-container>
     </b-navbar>
-    <!-- <client-only>
-      <div v-if="!auth">
-        <div
-          class="bg-primary d-flex align-items-center justify-content-center py-2"
-        >
-          <span class="text-1">아직 가입 안하셨나요? 지금 가입하세요 </span>
-          <b-btn
-            variant="white text-1 ml-2"
-            pill
-            :to="{
-              name: 'auth-signup',
-            }"
-          >
-            회원가입하기
-          </b-btn>
-        </div>
-      </div>
-    </client-only> -->
   </div>
 </template>
 
@@ -114,26 +65,7 @@ export default {
   data() {
     return {
       isBeta: true,
-      links: [
-        // {
-        //   name: "About",
-        //   url: "/about",
-        // },
-        // {
-        //   name: "아카이브",
-        //   url: "/board",
-        // },
-        // {
-        //   name: "토론",
-        //   url: "/discussion",
-        // },
-      ],
     };
-  },
-  computed: {
-    searchPlaceholder() {
-      return "공주시 신관동에서 무슨 일이 일어났나요?";
-    },
   },
 };
 </script>

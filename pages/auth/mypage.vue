@@ -54,15 +54,25 @@
                   </li>
                   <li class="mb-4">
                     <h6 class="mb-2">별명</h6>
-                    <b-form-input
-                      v-model="input.nickname"
-                      placeholder="8자 이하의 한글, 영문, 숫자로 조합 가능합니다"
-                    />
+                    <b-form-group
+                      :state="validate.nickname"
+                      invalid-feedback="8자 이하의 한글, 영문, 숫자로 조합 가능합니다"
+                    >
+                      <b-form-input
+                        v-model="input.nickname"
+                        placeholder="새 별명을 입력해주세요."
+                      />
+                    </b-form-group>
                   </li>
                 </ul>
               </b-card-body>
               <b-card-footer class="bg-white border-0 pt-0">
-                <b-btn variant="primary w-100 py-2" @click="submit" pill>
+                <b-btn
+                  variant="primary w-100 py-2"
+                  @click="submit"
+                  pill
+                  :disabled="Object.values(validate).includes(false)"
+                >
                   <span class="text-1"> 정보 저장하기</span>
                 </b-btn>
               </b-card-footer>
@@ -117,6 +127,17 @@ export default {
       },
       resize,
     };
+  },
+  computed: {
+    validate() {
+      const nicknameRegex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]+$/;
+      const nickname =
+        nicknameRegex.test(this.input.nickname) &&
+        String(this.input.nickname).length <= 8;
+      return {
+        nickname,
+      };
+    },
   },
 
   mounted() {

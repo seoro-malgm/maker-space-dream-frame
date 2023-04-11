@@ -1,11 +1,18 @@
 <template>
   <ul class="tag-group mt-2">
+    <slot name="default"> </slot>
+
     <li class="tag-item" v-for="(value, key) in items" :key="key">
       <template v-if="readonly">
         <span> {{ value }} </span>
       </template>
       <template v-else>
-        <button @click="$emit('btn-clicked')">{{ value }}</button>
+        <button
+          @click="$emit('btn-clicked', key)"
+          :class="{ active: activeCondition === key }"
+        >
+          {{ value }}
+        </button>
       </template>
     </li>
   </ul>
@@ -21,6 +28,10 @@ export default {
     readonly: {
       type: Boolean,
       default: false,
+    },
+    activeCondition: {
+      type: [String, Object],
+      default: null,
     },
   },
 };
@@ -46,8 +57,13 @@ export default {
       &:hover {
         text-decoration: none;
       }
+      &.active {
+        background-color: $light;
+        color: white;
+      }
     }
-    &:hover {
+    &:hover,
+    &.active {
       button,
       span {
         background-color: $light;

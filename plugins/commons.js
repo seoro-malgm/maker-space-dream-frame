@@ -129,6 +129,16 @@ export const createHash = () => {
   return timestamp.toString() + hashString;
 };
 
+// pin 상태인지 표시
+export const isPinned = (date) => {
+  const value = new Date(date);
+  // const val = value.setHours(value.getHours() + 9);
+  const time = new Date(value).getTime();
+  const now = new Date().getTime();
+  const gap = (now - time) / (1000 * 60);
+  return !!(gap > 0);
+};
+
 // 시간 생성
 export const getTimestamp = (date) => {
   const value = new Date(date);

@@ -52,7 +52,9 @@ export default {
     return {
       title: `신물결 | 로그인`,
       script: [
-        { src: "https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" },
+        {
+          src: "https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2-nopolyfill.js",
+        },
       ],
     };
   },
@@ -70,6 +72,9 @@ export default {
   computed: {
     validate() {
       return false;
+    },
+    redirect() {
+      return this.$route.query.redirect;
     },
   },
   mounted() {
@@ -97,7 +102,9 @@ export default {
     loginWithNaver() {
       const naverLogin = new naver.LoginWithNaverId({
         clientId: process.env.NAVER_CLIENT_ID,
-        callbackUrl: `${window.location.origin}/auth/callback/naver`,
+        callbackUrl: `${window.location.origin}/auth/callback/naver${
+          this.redirect ? `?redirect=${this.redirect}` : ""
+        }`,
         callbackHandle: true,
       });
       naverLogin.init();

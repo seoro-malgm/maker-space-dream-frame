@@ -23,10 +23,17 @@ const db = getFirestore(app);
 
 class boardItemsAPI {
   // boardItem 전체 불러오기
-  getAllBoardItems = async (category, count) => {
+  getAllBoardItems = async (
+    queryData = {
+      category: null,
+      page: 0,
+    },
+    count
+  ) => {
     try {
       const queryConstraints = [];
-      if (category) queryConstraints.push(where("category", "==", category));
+      if (queryData?.category)
+        queryConstraints.push(where("category", "==", queryData?.category));
       if (count) queryConstraints.push(limit(count));
       queryConstraints.push(orderBy("createdAt", "desc"));
 
@@ -41,6 +48,13 @@ class boardItemsAPI {
             ...doc.data(),
           };
         });
+        // for (let index = 0; index < snapshot.docs.length; index++) {
+        //   const isPinned = [];
+        //   const defaults = []
+        //   const item = snapshot.docs[index];
+        //   if (item.isPinned) isPinned.push(item)
+        //   else defaults.push(item);
+        // }
 
         return boardItems;
       }

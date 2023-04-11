@@ -1,13 +1,19 @@
 <template>
   <b-container>
-    <section class="mb-4">
+    <section class="mt-3 mb-4">
+      <header class="mb-3 pb-2">
+        <h1 class="bg-flow text-2 text-lg-3">
+          글쓰기
+          <svg-line-path />
+        </h1>
+      </header>
       <b-row>
         <b-col cols="12" md="4" lg="3">
           <h6 class="py-2">카테고리</h6>
           <b-form-select v-model="form.category">
-            <b-form-select-option :value="null" disabled
-              >카테고리를 선택하세요</b-form-select-option
-            >
+            <b-form-select-option :value="null" disabled>
+              카테고리를 선택하세요
+            </b-form-select-option>
             <client-only>
               <b-form-select-option
                 v-for="(value, key) in allCategories"
@@ -60,14 +66,22 @@
       </ul>
     </section> -->
     <section class="mt-4">
-      <b-row align-h="center" class="mt-3">
-        <b-col cols="12" md="5">
+      <b-row align-h="end" class="mt-3">
+        <b-col cols="12" md="3">
           <template v-if="no">
-            <b-btn variant="outline-primary w-100" @click="update">수정</b-btn>
+            <b-btn variant="outline-primary w-100 py-3 fw-700" @click="update">
+              <i class="icon icon-edit" />
+
+              수정</b-btn
+            >
           </template>
           <template v-else>
-            <b-btn variant="primary w-100" @click="submit" :disabled="!validate"
-              >업로드</b-btn
+            <b-btn
+              variant="primary w-100 py-3 fw-700"
+              @click="submit"
+              :disabled="!validate"
+            >
+              <i class="icon icon-pencil" /> 업로드</b-btn
             >
           </template>
         </b-col>
@@ -132,7 +146,13 @@ export default {
   },
   async mounted() {
     if (!this.auth) {
-      this.$router.push("/");
+      window.toast("로그인이 필요한 페이지입니다.");
+      this.$router.push({
+        name: "auth-login",
+        query: {
+          redirect: "board-write",
+        },
+      });
     }
 
     if (this.no) {
