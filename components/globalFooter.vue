@@ -4,7 +4,7 @@
       <ul class="list-unstyled">
         <li>
           <h4 class="logo mb-2">
-            <img :src="require('@/assets/symbol-dark.svg')" />
+            <!-- <img :src="require('@/assets/symbol-dark.svg')" /> -->
           </h4>
         </li>
         <li>
@@ -65,7 +65,8 @@ export default {
 
 <style lang="scss" scoped>
 #gnf {
-  border-top: 1px solid $gray-600;
+  background-color: #111;
+  color: white;
 
   .footer-nav {
     display: flex;
@@ -86,7 +87,7 @@ export default {
   li {
     margin-bottom: 2px;
     font-size: 13px;
-    color: $gray;
+    color: $white;
     .btn {
       font-size: 0.85rem;
     }

@@ -1,15 +1,12 @@
-// @use 'sass:math';
 @import "./variables.scss";
 
 // bootstrap-vue
 @import "node_modules/bootstrap/scss/bootstrap.scss";
 @import "node_modules/bootstrap-vue/src/index.scss";
-// @import "node_modules/bootstrap/scss/functions";
-// @import "node_modules/bootstrap/scss/variables";
-// @import "node_modules/bootstrap/scss/mixins";
-// @import "bootstrap/scss/bootstrap.scss";
-// @import "bootstrap-vue/src/index.scss";
 
+// reset
+@import "./reset.scss";
+// modules
 @import "./font.scss";
 @import "./icons.scss";
 @import "./images.scss";
@@ -108,6 +105,11 @@ textarea {
   resize: none;
 }
 
+// 메인 내부 기본 패딩
+.main-inner-padding {
+  padding-top: 72px;
+}
+// 섹션끼리의 갭
 .section-gap {
   margin-top: 96px;
   margin-bottom: 96px;
@@ -115,15 +117,6 @@ textarea {
     margin-top: 132px;
     margin-bottom: 132px;
   }
-}
-
-.text-category {
-  border: 1px solid $light;
-  border-radius: 10rem;
-  padding: 4px 8px;
-  text-transform: capitalize;
-  display: inline-block;
-  font-size: 12px;
 }
 
 // .waves-wrapper {
@@ -152,4 +145,39 @@ textarea {
   > * {
     font-weight: 900;
   }
+}
+
+.page-header {
+  padding-top: 12px;
+  padding-bottom: 24px;
+  text-align: center;
+  .page-title {
+    font-size: 18px;
+    font-weight: 700;
+    @media (min-width: $breakpoint-md) {
+      font-size: 28px;
+    }
+    margin-bottom: 12px;
+  }
+  .page-description {
+    font-size: 13px;
+    @media (min-width: $breakpoint-md) {
+      font-size: 14px;
+    }
+  }
+}
+
+.nuxt-link {
+  text-decoration: none;
+}
+a.link {
+  &:hover {
+    cursor: pointer;
+    text-decoration: none;
+  }
+}
+
+// 카테고리
+.text-category {
+  font-size: 14px;
 }

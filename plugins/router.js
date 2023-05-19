@@ -3,7 +3,10 @@ export default ({ app, store }) => {
     // authWatcher();
     if (window.sessionStorage.getItem(process.env.TOKEN_NAME)) {
       // console.log("%c Hello ", "background: #333399; color: #ededed");
-      store.dispatch("setUser");
+      store.dispatch(
+        "user",
+        window.sessionStorage.getItem(process.env.TOKEN_NAME)
+      );
       next();
     }
     // // 계정이 필요한 페이지에 접근한 경우 : meta에 requireAuth 속성이 있는 경우

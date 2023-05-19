@@ -6,7 +6,7 @@ export default {
   // ssr: true,
   // target: "server",
   head: {
-    title: "신물결 | 공주인들을 위한 커뮤니티 플랫폼!",
+    title: "공주살롱",
     htmlAttrs: {
       lang: "ko-KR",
     },
@@ -18,13 +18,13 @@ export default {
         hid: "title",
         name: "title",
         property: "title",
-        content: "신물결 | 공주인들을 위한 커뮤니티 플랫폼!",
+        content: "공주살롱",
       },
       {
         hid: "description",
         name: "description",
         property: "description",
-        content: "공주시를 위한 새로운 커뮤니티 플랫폼, 신물결입니다.",
+        content: "공주살롱",
       },
       {
         name: "keyword",
@@ -41,7 +41,7 @@ export default {
         hid: "og:title",
         name: "og:title",
         property: "og:title",
-        content: "신물결 | 공주인들을 위한 커뮤니티 플랫폼!",
+        content: "공주살롱",
       },
       {
         hid: "og:description",
@@ -62,7 +62,7 @@ export default {
       {
         name: "og:site_name",
         property: "og:site_name",
-        content: "신물결 | 공주인들을 위한 커뮤니티 플랫폼!",
+        content: "공주살롱",
       },
       {
         name: "msapplication-TileImage",
@@ -96,7 +96,7 @@ export default {
       {
         name: "twitter:title",
         hid: "twitter:title",
-        content: "신물결 | 공주인들을 위한 커뮤니티 플랫폼!",
+        content: "공주살롱",
       },
       // {
       //   name: "twitter:description",

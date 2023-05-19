@@ -50,15 +50,16 @@ figcaption {
     width: 100%;
     height: auto;
   }
-  @each $var in $ratios {
-    &.ratio-#{$var} {
-      padding-bottom: #{$var}#{"%"};
-    }
-    @media screen and (max-width: $breakpoint-md) {
-      &.ratio-sm-#{$var} {
-        padding-bottom: #{$var}#{"%"} !important;
-        background-position: left top;
-      }
+}
+
+@each $var in $ratios {
+  .ratio-#{$var} {
+    padding-bottom: #{$var}#{"%"};
+  }
+  @media screen and (max-width: $breakpoint-md) {
+    .ratio-sm-#{$var} {
+      padding-bottom: #{$var}#{"%"} !important;
+      background-position: left top;
     }
   }
 }
@@ -86,6 +87,28 @@ $md-ratios: (38);
       &.md-ratios-#{$var} {
         padding-bottom: #{$var}#{"%"} !important;
       }
+    }
+  }
+}
+
+figure.image-wrapper {
+  position: relative;
+  overflow: hidden;
+  object-fit: contain;
+  img {
+    position: absolute;
+    content: "";
+    display: block;
+    top: 50%;
+    left: 50%;
+    height: 100%;
+    width: auto;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s;
+  }
+  &:hover {
+    img {
+      transform: translate(-50%, -50%) scale(1.2);
     }
   }
 }

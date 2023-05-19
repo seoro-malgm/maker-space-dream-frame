@@ -3,7 +3,7 @@
     class="ariticle-item"
     @click="
       $router.push({
-        path: `/board/${item.no}`,
+        path: `/${path}/${item.no}`,
       })
     "
   >
@@ -65,6 +65,10 @@ import allCategories from "~/assets/json/allCategories";
 import { getTimestamp, isPinned } from "~/plugins/commons";
 export default {
   props: {
+    path: {
+      type: String,
+      default: "/",
+    },
     item: {
       type: Object,
       default: null,

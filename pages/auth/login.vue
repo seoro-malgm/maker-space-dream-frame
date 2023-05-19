@@ -12,28 +12,45 @@
               header-border-variant="white"
               header-tag="header"
             >
-              <b-card-title title-tag="h1" class="text-center">
+              <b-card-title
+                title-tag="h1"
+                class="text-center text-16 text-md-20"
+              >
                 로그인
               </b-card-title>
             </b-card-header>
             <b-card-body>
-              <b-btn
-                variant="naver"
-                class="btn-naver w-100 py-2"
-                @click="loginWithNaver"
-                :disabled="disabled"
-              >
-                <img :src="require('@/assets/naver.svg')" alt="네이버 심볼" />
-                <span class="ml-2">Naver로 로그인</span>
-              </b-btn>
-              <div class="mt-4 text-center">
-                <small>이미 가입된 아이디가 있다면?</small>
-                <b-btn
-                  variant="outline-light ml-2"
-                  :to="{ name: 'auth-signup' }"
-                  >회원가입</b-btn
-                >
-              </div>
+              <b-form @submit.prevent="login">
+                <div class="mb-4">
+                  <label for="email" class="text-16 text-md-18 fw-700 mb-1"
+                    >이메일</label
+                  >
+                  <b-form-input
+                    id="email"
+                    v-model="form.email"
+                    type="email"
+                    placeholder="이메일을 입력하세요"
+                  >
+                    asd
+                  </b-form-input>
+                </div>
+                <div class="mb-4">
+                  <label for="pwd" class="text-16 text-md-18 fw-700 mb-1"
+                    >비밀번호</label
+                  >
+                  <b-form-input
+                    id="pwd"
+                    v-model="form.pwd"
+                    placeholder="비밀번호를 입력하세요"
+                    type="password"
+                  >
+                    asd
+                  </b-form-input>
+                </div>
+                <div class="mt-3">
+                  <b-btn class="w-100" type="submit"> 로그인 </b-btn>
+                </div>
+              </b-form>
             </b-card-body>
           </b-card>
         </b-col>
@@ -43,19 +60,14 @@
 </template>
 
 <script>
-// import firebase from '~/plugins/firebase'
+// import firebase from "~/plugins/firebase";
 
 export default {
   layout: "default",
   name: "auth-login",
   head() {
     return {
-      title: `신물결 | 로그인`,
-      script: [
-        {
-          src: "https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2-nopolyfill.js",
-        },
-      ],
+      title: `공주살롱 | 로그인`,
     };
   },
   props: {
@@ -67,6 +79,10 @@ export default {
   data() {
     return {
       disabled: false,
+      form: {
+        email: process.env.NODE_ENV === "development" ? "test@test.com" : null,
+        pwd: process.env.NODE_ENV === "development" ? "!2xptmxm" : null,
+      },
     };
   },
   computed: {
@@ -83,44 +99,22 @@ export default {
     }
   },
   methods: {
-    // async login(info) {
-    //   const { login } = this.$firebase();
-    //   try {
-    //     const { data, token } = await login(info);
-    //     console.log("data, token:", data, token);
-    //     if (data) {
-    //       // 세션스토리지에 저장
-    //       sessionStorage.setItem(process.env.TOKEN_NAME, token.accessToken);
-    //       // store에 저장
-    //       this.$store.dispatch("setUser", data);
-    //       this.$router.push("/");
-    //     }
-    //   } catch (error) {
-    //     console.error("error:", error);
-    //   }
-    // },
-    loginWithNaver() {
-      const naverLogin = new naver.LoginWithNaverId({
-        clientId: process.env.NAVER_CLIENT_ID,
-        callbackUrl: `${window.location.origin}/auth/callback/naver${
-          this.redirect ? `?redirect=${this.redirect}` : ""
-        }`,
-        callbackHandle: true,
-      });
-      naverLogin.init();
-      // 로그인 진행
-      naverLogin.reprompt();
-      // naverLogin.getLoginStatus(async (status) => {
-      //   if (!status) {
-      //     window.toast("죄송합니다. 현재 오류로 인해 로그인이 불가합니다.");
-      //     this.disabled = true;
-      //     return;
-      //   }
-      //   if (status) {
-      //     this.login(naverLogin.user);
-      //   }
-      //   // }
-      // });
+    async login(e) {
+      try {
+        const token = await this.$firebase().login(this.form);
+        if (token) {
+          window.toast("로그인되었습니다.", {
+            toaster: "b-toaster-bottom-left",
+          });
+          // 세션스토리지에 저장
+          sessionStorage.setItem(process.env.TOKEN_NAME, token);
+          // store에 저장
+          this.$store.dispatch("user", token);
+          this.$router.push("/admin");
+        }
+      } catch (error) {
+        console.error("error:", error);
+      }
     },
   },
 };

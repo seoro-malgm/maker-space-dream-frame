@@ -2,53 +2,39 @@
   <div id="gnb">
     <b-navbar type="light" variant="white">
       <b-container>
-        <b-navbar-brand class="mr-5 mr-md-0">
-          <nuxt-link to="/" replace>
+        <!-- 로고 -->
+        <b-navbar-brand class="mx-auto">
+          <nuxt-link to="/" replace class="logo-link">
+            <div
+              class="symbol"
+              :style="{
+                backgroundImage: `url(${require('@/assets/symbol-empty.svg')})`,
+              }"
+            >
+              <div
+                class="icon"
+                :style="{
+                  backgroundImage: `url(${require(`@/assets/icons/play.svg`)})`,
+                }"
+              />
+            </div>
             <img
-              :src="require('@/assets/logo-horizontal.svg')"
+              :src="require('@/assets/lettertype-en.svg')"
               alt="신물결 로고 이미지, 메인으로 이동"
+              class="lettertype"
             />
           </nuxt-link>
-          <span class="status-beta" v-if="isBeta"> BETA</span>
         </b-navbar-brand>
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-        <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-nav class="d-flex align-items-center w-100">
-            <client-only>
-              <div class="ml-auto uitls-auth">
-                <template v-if="auth">
-                  <b-btn variant="text p-0" pill :to="{ name: 'auth-mypage' }">
-                    <b-avatar
-                      size="3rem"
-                      :src="auth?.profile_image_url"
-                    ></b-avatar>
-                  </b-btn>
-                  <b-btn
-                    variant="outline-light mx-2 d-none d-lg-block px-3"
-                    pill
-                    :to="{ name: 'board-write' }"
-                    >글쓰기</b-btn
-                  >
-                </template>
-                <template v-else>
-                  <b-btn
-                    variant="primary mr-1"
-                    pill
-                    :to="{ name: 'auth-login' }"
-                    >로그인</b-btn
-                  >
-                  <b-btn
-                    variant="outline-light"
-                    pill
-                    :to="{ name: 'auth-signup' }"
-                    >회원가입</b-btn
-                  >
-                </template>
-              </div>
-            </client-only>
-          </b-navbar-nav>
-        </b-collapse>
+        <!-- 링크 -->
+        <section class="utils">
+          <ul class="list-links">
+            <li v-for="(link, i) in links" :key="i">
+              <nuxt-link :to="link.path" class="btn btn-text">
+                {{ link.name }}
+              </nuxt-link>
+            </li>
+          </ul>
+        </section>
       </b-container>
     </b-navbar>
   </div>
@@ -64,72 +50,108 @@ export default {
   },
   data() {
     return {
-      isBeta: true,
+      links: [
+        {
+          name: "Menu",
+          path: "/menu",
+          icon: "beverage",
+        },
+        {
+          name: "About",
+          path: "/about",
+          icon: "signature",
+        },
+        {
+          name: "Shop",
+          path: "/shop",
+          icon: "beverage",
+        },
+        {
+          name: "Store",
+          path: "/store",
+          icon: "dessart",
+        },
+        {
+          name: "Notice",
+          path: "/notice",
+          icon: "notice",
+        },
+        {
+          name: "New Waves",
+          path: "/new-waves",
+          icon: "services",
+        },
+      ],
     };
+  },
+  computed: {
+    path() {
+      return this.data;
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 #gnb {
-  border-bottom: 1px solid $primary;
-  position: fixed;
-  width: 100%;
   padding: 0.5rem 0 0;
-  background-color: white;
-  backdrop-filter: blur(2px);
-  z-index: 1055;
-  margin-top: 0;
-  left: 0;
-  right: 0;
+  border-bottom: 1px solid #111;
   .navbar {
-    border-radius: 24px;
-    .navbar-brand {
+    padding: 0;
+  }
+  .container {
+    flex-direction: column;
+  }
+  .logo-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .symbol {
+      width: 100px;
+      height: 100px;
+      background-size: cover;
+      background-position: center center;
       position: relative;
-      width: 140px;
-      > svg {
-        width: 100%;
-      }
-      .status-beta {
-        position: absolute;
-        top: 0;
-        right: -40px;
-        background-color: $primary;
-        color: $darkest;
-        font-size: 12px;
-        font-weight: 700;
-        border-radius: 20rem;
-        padding: 2px 4px;
-      }
-    }
-    .utils {
-      @media (min-width: $breakpoint-lg) {
+      .icon {
+        width: 64px;
+        height: 64px;
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
-      }
-      .nuxt-link {
-        text-decoration: none;
-        border-radius: 20rem;
-        color: $darkest;
-        font-weight: 700;
-        border: 1px solid $darkest;
-        transition: all 0.3s $ease-in-out;
-        &:hover,
-        &.nuxt-link-exact-active {
-          background-color: $primary;
-          border-color: $primary;
-          color: white;
-        }
+        transform: translate(-50%, -45%);
+        background-size: cover;
+        background-position: center center;
+        transition: background-image 0.3s;
       }
     }
-    .uitls-auth {
-      display: flex;
-      align-items: center;
-      a,
-      button {
-        white-space: nowrap;
+    .lettertype {
+      margin-top: 4px;
+      width: 240px;
+    }
+  }
+
+  .list-links {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    align-items: stretch;
+    margin-top: 1rem;
+    li {
+      width: 100%;
+      margin: 0;
+      white-space: nowrap;
+      text-align: center;
+      a {
+        padding: 0.75rem 2rem;
+        transition: all 0.2s;
+        border-radius: 0;
+        width: 100%;
+        &.nuxt-link-active,
+        &:hover {
+          font-weight: 700;
+          background-color: #111;
+          color: white;
+        }
       }
     }
   }

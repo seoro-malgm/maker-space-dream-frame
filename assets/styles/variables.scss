@@ -73,12 +73,12 @@ $colors: (
 ) !default;
 // scss-docs-end colors-map
 
-$primary: #00ffe6;
+$primary: #111;
 // $primary: #970404;
 $secondary: #383332;
-$darkest: #222;
-$gray: #444;
-$light: #777;
+$darkest: #111;
+$gray: #333;
+$light: #555;
 $lightest: #ddd;
 $alert: #ff0a5c;
 
@@ -142,11 +142,6 @@ button,
   &.disabled {
     cursor: not-allowed;
   }
-}
-
-ul {
-  padding: 0;
-  list-style-type: none;
 }
 
 .btn-link {

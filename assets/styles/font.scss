@@ -94,23 +94,23 @@ $font-size: (
 @media print {
   @each $var in $font-size {
     .text-pr-#{$var} {
-      font-size: #{$var}rem;
+      font-size: #{$var}px;
     }
   }
 }
 
 @each $var in $font-size {
   .text-#{$var} {
-    font-size: #{$var}rem;
+    font-size: #{$var}px;
   }
   .btn {
     &.text-#{$var} {
-      font-size: #{$var}rem;
+      font-size: #{$var}px;
     }
   }
   input {
     &.text-#{$var} {
-      font-size: #{$var}rem;
+      font-size: #{$var}px;
     }
   }
 }
@@ -118,16 +118,16 @@ $font-size: (
 @media screen and (min-width: $breakpoint-md) {
   @each $var in $font-size {
     .text-md-#{$var} {
-      font-size: #{$var}rem;
+      font-size: #{$var}px;
     }
     .btn {
       &.text-md-#{$var} {
-        font-size: #{$var}rem;
+        font-size: #{$var}px;
       }
     }
     input {
       &.text-md-#{$var} {
-        font-size: #{$var}rem;
+        font-size: #{$var}px;
       }
     }
   }
@@ -135,16 +135,16 @@ $font-size: (
 @media screen and (min-width: $breakpoint-lg) {
   @each $var in $font-size {
     .text-lg-#{$var} {
-      font-size: #{$var}rem;
+      font-size: #{$var}px;
     }
     .btn {
       &.text-lg-#{$var} {
-        font-size: #{$var}rem;
+        font-size: #{$var}px;
       }
     }
     input {
       &.text-lg-#{$var} {
-        font-size: #{$var}rem;
+        font-size: #{$var}px;
       }
     }
   }
