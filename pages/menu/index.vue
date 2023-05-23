@@ -13,7 +13,13 @@
     <section class="section-gap mt-3">
       <b-container>
         <b-row>
-          <b-col cols="6" md="4" v-for="(item, i) in 10" :key="i" class="mb-4">
+          <b-col
+            cols="6"
+            md="4"
+            v-for="(item, i) in items"
+            :key="i"
+            class="mb-4"
+          >
             <a
               class="link"
               @click="
@@ -41,7 +47,21 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      items: null,
+    };
+  },
+  async mounted() {
+    await this.getItems();
+  },
+  methods: {
+    async getItems() {
+      console.log("%c Hello ", "background: #333399; color: #ededed");
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped></style>

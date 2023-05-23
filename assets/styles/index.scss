@@ -37,13 +37,14 @@ body {
   scroll-behavior: smooth;
   * {
     &::selection {
-      background-color: $primary;
-      color: $darkest;
+      background-color: $darkest;
+      color: white;
     }
   }
   &.modal-open {
     padding-right: 0 !important;
   }
+  word-break: keep-all;
 }
 
 #app {
@@ -180,4 +181,31 @@ a.link {
 // 카테고리
 .text-category {
   font-size: 14px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+  vertical-align: middle;
+  > table {
+    width: 100%;
+    thead {
+      tr {
+        th {
+          background-color: $gray-100;
+          text-align: center;
+          font-weight: 700;
+          padding: 0.75rem 1rem;
+        }
+      }
+    }
+    tbody {
+      tr {
+        td {
+          padding: 0.5rem;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
 }

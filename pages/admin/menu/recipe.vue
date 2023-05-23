@@ -5,6 +5,7 @@
 <script>
 export default {
   layout: "dashboard",
+  name: "admin-menu-recipe",
 };
 </script>
 

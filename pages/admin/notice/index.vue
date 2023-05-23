@@ -1,9 +1,12 @@
 <template>
-  <div>공지사항 목록</div>
+  <div>공지사항 관리</div>
 </template>
 
 <script>
-export default {};
+export default {
+  layout: "dashboard",
+  name: "admin-notice-list",
+};
 </script>
 
 <style lang="scss" scoped></style>

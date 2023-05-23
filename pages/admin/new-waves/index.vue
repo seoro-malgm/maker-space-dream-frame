@@ -1,9 +1,12 @@
 <template>
-  <div>뉴 웨이브 관리</div>
+  <div>예술가 관리</div>
 </template>
 
 <script>
-export default {};
+export default {
+  layout: "dashboard",
+  name: "admin-new-waves-list",
+};
 </script>
 
 <style lang="scss" scoped></style>

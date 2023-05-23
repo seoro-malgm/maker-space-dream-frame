@@ -101,8 +101,8 @@ export default {
   name: "board-write",
   props: {
     auth: {
-      type: Object,
-      default: null,
+      type: [String, Boolean],
+      default: false,
     },
   },
   // async asyncData({ params, $firebase }) {

@@ -9,7 +9,7 @@ class authAPI {
   login = ({ email, pwd }) => {
     return signInWithEmailAndPassword(auth, email, pwd)
       .then((response) => {
-        console.log("response:", response);
+        // console.log("response:", response);
         const user = response?.user;
         if (user) {
           const { accessToken: token } = user;

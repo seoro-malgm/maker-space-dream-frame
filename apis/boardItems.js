@@ -24,6 +24,7 @@ const db = getFirestore(app);
 class boardItemsAPI {
   // boardItem 전체 불러오기
   getAllBoardItems = async (
+    collectionName,
     queryData = {
       category: null,
       page: 0,
@@ -38,7 +39,7 @@ class boardItemsAPI {
       queryConstraints.push(orderBy("createdAt", "desc"));
 
       // 최종 쿼리
-      const q = query(collection(db, "boardItems"), ...queryConstraints);
+      const q = query(collection(db, collectionName), ...queryConstraints);
       // console.log("q:", queryConstraints);
       const snapshot = await getDocs(q);
       if (snapshot) {
@@ -64,9 +65,9 @@ class boardItemsAPI {
   };
 
   // boardItem 디테일 불러오기
-  getBoardItem = async (no) => {
+  getBoardItem = async (collectionName, id) => {
     try {
-      const q = query(collection(db, "boardItems"), where("no", "==", no));
+      const q = query(collection(db, collectionName), where("id", "==", id));
       const snapshot = await getDocs(q);
       if (snapshot) {
         const docs = snapshot.docs.map((doc) => {
@@ -84,9 +85,9 @@ class boardItemsAPI {
   };
 
   // id 구하기
-  getDocItem = async (no) => {
+  getDocItem = async (collectionName, id) => {
     try {
-      const q = query(collection(db, "boardItems"), where("no", "==", no));
+      const q = query(collection(db, collectionName), where("id", "==", id));
       const snapshot = await getDocs(q);
       if (snapshot) {
         const docs = snapshot?.docs.map((doc) => {
@@ -104,17 +105,17 @@ class boardItemsAPI {
   // collection의 글 갯수 구하기
   // 글 갯수를 수정하면 no가 덮어져서 count가 아니라 변경됨
   // getBoardCount = async () => {
-  //   const col = collection(db, "boardItems");
+  //   const col = collection(db, collectionName);
   //   const snapshot = await getCountFromServer(col);
   //   const count = snapshot.data().count;
   //   return count;
   // };
 
   // boardItem 추가
-  addBoardItem = async (data) => {
+  addBoardItem = async (collectionName, data) => {
     const response = new Promise(async (resolve, reject) => {
       try {
-        const docRef = await addDoc(collection(db, "boardItems"), data);
+        const docRef = await addDoc(collection(db, collectionName), data);
         if (docRef) {
           return resolve(true);
         }
@@ -126,12 +127,12 @@ class boardItemsAPI {
   };
 
   // boardItem 삭제
-  removeBoardItem = async (no) => {
-    if (!no) throw new Error("id가 없습니다");
+  removeBoardItem = async (collectionName, id) => {
+    if (!id) throw new Error("id가 없습니다");
     const response = new Promise(async (resolve, reject) => {
-      const docId = await this.getDocItem(no);
+      const docId = await this.getDocItem(collectionName, id);
       try {
-        await deleteDoc(doc(db, "boardItems", docId));
+        await deleteDoc(doc(db, collectionName, docId));
         return resolve(true);
       } catch (error) {
         return reject(false);
@@ -141,12 +142,12 @@ class boardItemsAPI {
   };
 
   // boardItem 수정
-  updateBoardItem = async (no, data) => {
-    if (!no) throw new Error("id가 없습니다");
+  updateBoardItem = async (collectionName, id, data) => {
+    if (!id) throw new Error("id가 없습니다");
     const response = new Promise(async (resolve, reject) => {
-      const docId = await this.getDocItem(no);
+      const docId = await this.getDocItem(collectionName, id);
       try {
-        await setDoc(doc(db, "boardItems", docId), data);
+        await setDoc(doc(db, collectionName, docId), data);
         return resolve(true);
       } catch (error) {
         return reject(false);
@@ -174,10 +175,10 @@ class boardItemsAPI {
   };
 
   // 조회수 추가
-  incrementViewer = async (no) => {
-    const docId = await this.getDocItem(no);
+  incrementViewer = async (collectionName, id) => {
+    const docId = await this.getDocItem(collectionName, id);
     if (docId) {
-      const ref = doc(db, "boardItems", docId);
+      const ref = doc(db, collectionName, docId);
       updateDoc(ref, {
         viewer: increment(1),
       });
@@ -185,10 +186,10 @@ class boardItemsAPI {
   };
 
   // 좋아요 추가
-  incrementLike = async (no) => {
-    const docId = await this.getDocItem(no);
+  incrementLike = async (collectionName, id) => {
+    const docId = await this.getDocItem(collectionName, id);
     if (docId) {
-      const ref = doc(db, "boardItems", docId);
+      const ref = doc(db, collectionName, docId);
       updateDoc(ref, {
         like: increment(1),
       });
@@ -196,19 +197,19 @@ class boardItemsAPI {
   };
 
   // 글 신고하기
-  reportBoardItem = async (data) => {
-    const response = new Promise(async (resolve, reject) => {
-      try {
-        const docRef = await addDoc(collection(db, "boardReports"), data);
-        if (docRef) {
-          return resolve(true);
-        }
-      } catch (error) {
-        return reject(false);
-      }
-    });
-    return response;
-  };
+  //   reportBoardItem = async (data) => {
+  //     const response = new Promise(async (resolve, reject) => {
+  //       try {
+  //         const docRef = await addDoc(collection(db, "boardReports"), data);
+  //         if (docRef) {
+  //           return resolve(true);
+  //         }
+  //       } catch (error) {
+  //         return reject(false);
+  //       }
+  //     });
+  //     return response;
+  //   };
 }
 
 export default new boardItemsAPI();

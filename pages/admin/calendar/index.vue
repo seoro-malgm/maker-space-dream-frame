@@ -1,5 +1,5 @@
 <template>
-  <div>메뉴 관리</div>
+  <div>caledar</div>
 </template>
 
 <script>

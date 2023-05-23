@@ -1,9 +1,12 @@
 <template>
-  <div>예술가 신청 관리</div>
+  <div>예술가 연락 관리</div>
 </template>
 
 <script>
-export default {};
+export default {
+  layout: "dashboard",
+  name: "admin-new-waves-contact",
+};
 </script>
 
 <style lang="scss" scoped></style>

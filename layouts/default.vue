@@ -3,7 +3,7 @@
     <global-nav :auth="auth" />
     <!-- 내용 -->
     <main id="main">
-      <nuxt-child :auth="auth" />
+      <Nuxt />
     </main>
     <btn-floating
       :position="{
@@ -27,7 +27,7 @@
 <script>
 export default {
   name: "default",
-  async mounted() {
+  mounted() {
     this.modal();
     window.toast = this.toast;
   },

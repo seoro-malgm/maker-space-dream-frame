@@ -4,7 +4,7 @@
       <b-container>
         <!-- 로고 -->
         <b-navbar-brand class="mx-auto">
-          <nuxt-link to="/" replace class="logo-link">
+          <router-link to="/" replace class="logo-link">
             <div
               class="symbol"
               :style="{
@@ -23,15 +23,15 @@
               alt="신물결 로고 이미지, 메인으로 이동"
               class="lettertype"
             />
-          </nuxt-link>
+          </router-link>
         </b-navbar-brand>
         <!-- 링크 -->
         <section class="utils">
           <ul class="list-links">
             <li v-for="(link, i) in links" :key="i">
-              <nuxt-link :to="link.path" class="btn btn-text">
+              <router-link :to="link.path" class="btn btn-text">
                 {{ link.name }}
-              </nuxt-link>
+              </router-link>
             </li>
           </ul>
         </section>
@@ -44,8 +44,8 @@
 export default {
   props: {
     auth: {
-      type: Object,
-      default: null,
+      type: [String, Boolean],
+      default: false,
     },
   },
   data() {
@@ -146,7 +146,7 @@ export default {
         transition: all 0.2s;
         border-radius: 0;
         width: 100%;
-        &.nuxt-link-active,
+        &.router-link-active,
         &:hover {
           font-weight: 700;
           background-color: #111;

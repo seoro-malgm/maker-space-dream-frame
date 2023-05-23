@@ -1,7 +1,7 @@
 <template>
   <b-container class="main-inner-padding">
     <header class="page-header">
-      <h1 class="page-title">About</h1>
+      <h1 class="page-title">Notice</h1>
       <p class="page-description">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, aliquam!
       </p>
@@ -84,7 +84,7 @@ export default {
           "로그인이 필요합니다. 로그인하시겠습니까?"
         );
         if (bool) {
-          this.$queryr.push("/auth/login");
+          this.$queryr.push({ name: "auth-login" });
         }
       } else {
         this.$router.push("/write");

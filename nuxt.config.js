@@ -219,7 +219,7 @@ export default {
     scss: ["~/assets/styles/variables.scss"],
   },
   dev: process.env.NODE_ENV === "development",
-
+  watchQuery: ["page"],
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/bootstrap
@@ -239,6 +239,8 @@ export default {
   loading: {
     color: "#00ffe6",
   },
+  // 페이지 트랜지션
+  // transition: '',
   // 환경변수
   env: {
     BASE_URL: process.env.BASE_URL || "http://localhost:3000",

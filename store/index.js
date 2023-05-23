@@ -1,7 +1,6 @@
 export const state = () => ({
   // counter: 0,
   user: null,
-  userLogined: false,
 });
 
 export const getters = {

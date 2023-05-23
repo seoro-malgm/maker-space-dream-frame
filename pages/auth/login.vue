@@ -63,7 +63,7 @@
 // import firebase from "~/plugins/firebase";
 
 export default {
-  layout: "default",
+  layout: "dashboard",
   name: "auth-login",
   head() {
     return {
@@ -72,8 +72,8 @@ export default {
   },
   props: {
     auth: {
-      type: Object,
-      default: null,
+      type: [Boolean, String],
+      default: false,
     },
   },
   data() {
@@ -94,8 +94,8 @@ export default {
     },
   },
   mounted() {
-    if (this.auth) {
-      this.$router.push("/");
+    if (this.auth || window.sessionStorage.getItem(process.env.TOKEN_NAME)) {
+      this.$router.push({ name: "admin-main" });
     }
   },
   methods: {
@@ -109,8 +109,8 @@ export default {
           // 세션스토리지에 저장
           sessionStorage.setItem(process.env.TOKEN_NAME, token);
           // store에 저장
-          this.$store.dispatch("user", token);
-          this.$router.push("/admin");
+          this.$store.dispatch("setState", ["user", token]);
+          this.$router.push({ name: "admin-main" });
         }
       } catch (error) {
         console.error("error:", error);
