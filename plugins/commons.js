@@ -182,3 +182,13 @@ export const getTimestamp = (date) => {
     return value.toLocaleDateString();
   }
 };
+
+// 원가 계산기
+export const getCostPrice = (a, b) => {
+  const result = Number(+a / +b);
+  return !result ? "ERROR" : result.toLocaleString();
+};
+
+export const getLocale = (str) => {
+  return Number(str).toLocaleString();
+};

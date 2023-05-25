@@ -112,3 +112,10 @@ figure.image-wrapper {
     }
   }
 }
+
+// 더미이미지
+.image-dummy {
+  background-image: url("../images/dummy-square.png");
+  background-size: cover;
+  background-position: center center;
+}

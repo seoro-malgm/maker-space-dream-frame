@@ -101,14 +101,38 @@ export default {
           name: "메인 관리",
           path: "main",
         },
+        // {
+        //   name: "공지사항",
+        //   path: "notice",
+        // },
+        // {
+        //   name: "물품",
+        //   path: "products",
+        //   children: [
+        //     {
+        //       name: "발주 관리",
+        //       path: "list",
+        //     },
+        //     {
+        //       name: "물품 상세 관리",
+        //       path: "write",
+        //       hidden: true,
+        //     },
+        //   ],
+        // },
         {
           name: "메뉴",
           path: "menu",
           children: [
             {
+              name: "원재료 관리",
+              path: "material",
+            },
+            {
               name: "메뉴 구성 관리",
               path: "list",
             },
+
             {
               name: "메뉴 상세 관리",
               path: "write",
@@ -117,25 +141,35 @@ export default {
             {
               name: "레시피 관리",
               path: "recipe",
+              hidden: true,
             },
+            // {
+            //   name: "메뉴판 관리",
+            //   path: "board",
+            // },
           ],
         },
-        {
-          name: "원재료 관리",
-          path: "material",
-        },
-        {
-          name: "샵 관리",
-          path: "shop",
-        },
+
+        // {
+        //   name: "샵 관리",
+        //   path: "shop",
+        //   children: [
+        //     {
+        //       name: "상품 관리",
+        //       path: "list",
+        //     },
+        //     {
+        //       name: "상품 상세 관리",
+        //       path: "write",
+        //       hidden: true,
+        //     },
+        //   ],
+        // },
         {
           name: "일정 관리",
           path: "calendar",
         },
-        {
-          name: "공지사항",
-          path: "notice",
-        },
+
         {
           name: "뉴웨이브",
           path: "new-waves",
@@ -203,7 +237,8 @@ export default {
           dangerMsg: "",
           bodyClass: "px-3 pt-3 pb-2",
           contentClass: "confirm border-0 overflow-hidden ",
-          headerClass: "rounded-0 bg-primary bg-opacity-15 text-left ",
+          headerClass:
+            "rounded-0 bg-primary bg-opacity-15 text-left text-white",
           footerClass: "border-0 d-flex justify-content-end ",
           okTitle: "예",
           okVariant: "primary text-133 py-1 px-3",
@@ -239,12 +274,13 @@ export default {
           dangerMsg: "",
           bodyClass: "px-3 pt-3 pb-2",
           contentClass: "confirm border-0 overflow-hidden",
-          headerClass: "rounded-0 bg-primary bg-opacity-15 text-left ",
+          headerClass:
+            "rounded-0 bg-primary bg-opacity-15 text-left text-white",
           footerClass: "border-0 d-flex justify-content-end",
           okTitle: "예",
           cancelTitle: "아니오",
-          okVariant: "primary text-13 py-1 px-3 text-white",
-          cancelVariant: "secondary text-13 py-1 px-3",
+          okVariant: "outline-alert text-13 py-1 px-3",
+          cancelVariant: "outline-primary text-13 py-1 px-3",
           centered: true,
           size: "sm",
           noCloseOnBackdrop: true,

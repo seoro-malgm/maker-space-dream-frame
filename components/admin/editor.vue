@@ -105,4 +105,164 @@ export default {
     left: 1rem;
   }
 }
+
+$default-line-height: 1.6;
+#editor {
+  position: relative;
+  .ql-editor {
+    min-height: 85vh;
+    overflow-y: scroll;
+    padding-top: 88px;
+    line-height: $default-line-height !important;
+  }
+  .ql-toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: white;
+  }
+  .ql-container {
+    font-family: "Roboto", "Noto Sans KR", "Pretendard-Regular", sans-serif !important;
+  }
+
+  // desc
+  span,
+  span *,
+  p,
+  p * {
+    font-size: 14px;
+    @media (min-width: $breakpoint-md) {
+      font-size: 16px;
+    }
+  }
+  h1,
+  h1 * {
+    font-size: 36px;
+    @media (min-width: $breakpoint-md) {
+      font-size: 40px;
+    }
+  }
+  h2,
+  h2 * {
+    font-size: 32px;
+    @media (min-width: $breakpoint-md) {
+      font-size: 36px;
+    }
+  }
+  h3,
+  h3 * {
+    font-size: 28px;
+    @media (min-width: $breakpoint-md) {
+      font-size: 32px;
+    }
+  }
+  h4,
+  h4 * {
+    font-size: 24px;
+    @media (min-width: $breakpoint-md) {
+      font-size: 28px;
+    }
+  }
+  h5,
+  h5 * {
+    font-size: 18px;
+    @media (min-width: $breakpoint-md) {
+      font-size: 24px;
+    }
+  }
+  h6,
+  h6 * {
+    font-size: 16px;
+    @media (min-width: $breakpoint-md) {
+      font-size: 18px;
+    }
+  }
+  .ql-size-small,
+  .ql-size-small * {
+    font-size: 12px;
+    @media (min-width: $breakpoint-md) {
+      font-size: 13px;
+    }
+  }
+  .ql-size-large,
+  .ql-size-large * {
+    font-size: 22px;
+    @media (min-width: $breakpoint-md) {
+      font-size: 24px;
+    }
+  }
+  .ql-size-huge,
+  .ql-size-huge * {
+    font-size: 30px;
+    @media (min-width: $breakpoint-md) {
+      font-size: 32px;
+    }
+  }
+  $indents: (1, 2, 3, 4, 5, 6, 8);
+  @each $var in $indents {
+    .ql-indent-#{$var},
+    .ql-indent-#{$var} * {
+      padding-left: calc($var * 1rem);
+    }
+  }
+  .ql-font-serif,
+  .ql-font-serif * {
+    font-family: "Noto Serif KR", serif;
+  }
+  .ql-font-monospace,
+  .ql-font-monospace * {
+    font-family: "Roboto Mono", monospace;
+  }
+  ol {
+    list-style-type: decimal;
+    font-size: 16px;
+  }
+  ul {
+    list-style-type: disc;
+    font-size: 16px;
+  }
+  strong,
+  strong * {
+    font-weight: 900 !important;
+  }
+  $text-aligns: (left, right, center, justify);
+  @each $var in $text-aligns {
+    .ql-align-#{$var},
+    .ql-align-#{$var} * {
+      text-align: #{$var};
+    }
+  }
+  .ql-align-right,
+  .ql-align-right * {
+    text-align: right;
+    &.ql-direction-rtl {
+      text-align: right;
+    }
+  }
+  div.ql-video,
+  iframe.ql-video {
+    width: 100%;
+    min-height: 240px;
+    @media (min-width: $breakpoint-lg) {
+      min-height: 480px;
+    }
+  }
+}
+
+h6,
+.h6,
+h5,
+.h5,
+h4,
+.h4,
+h3,
+.h3,
+h2,
+.h2,
+h1,
+.h1 {
+  line-height: $default-line-height !important;
+}
 </style>

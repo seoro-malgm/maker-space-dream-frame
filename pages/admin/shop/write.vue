@@ -85,7 +85,7 @@ import categories from "@/data/categories.json";
 
 export default {
   layout: "dashboard",
-  name: "admin-menu-detail",
+  name: "admin-shop-detail",
   data() {
     return {
       categories,
@@ -136,8 +136,6 @@ export default {
         if (data) {
           this.form = {
             ...data,
-            createdAt: new Date(),
-            updateDate: new Date(),
           };
         }
       } catch (error) {
@@ -148,6 +146,7 @@ export default {
     async submitItem() {
       this.pending.submit = true;
 
+      this.form.createdAt = new Date();
       try {
         // 해쉬 생성
         const id = this.createHash();
@@ -155,7 +154,6 @@ export default {
           ...this.form,
           id,
           viewer: 0,
-          updateDate: new Date(),
         });
         if (data) {
           window.toast("업로드에 성공했습니다.");
@@ -173,7 +171,6 @@ export default {
       try {
         const data = await this.$firebase().updateBoardItem("menu", this.id, {
           ...this.form,
-          updateDate: new Date(),
         });
         if (data) {
           window.toast("업로드에 수정했습니다.");

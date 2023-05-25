@@ -3,6 +3,7 @@
     <global-nav :auth="auth" />
     <!-- 내용 -->
     <main id="main">
+      <transition></transition>
       <Nuxt />
     </main>
     <btn-floating
@@ -55,7 +56,8 @@ export default {
           dangerMsg: "",
           bodyClass: "px-3 pt-3 pb-2",
           contentClass: "confirm border-0 overflow-hidden ",
-          headerClass: "rounded-0 bg-primary bg-opacity-15 text-left ",
+          headerClass:
+            "rounded-0 bg-primary bg-opacity-15 text-left text-white",
           footerClass: "border-0 d-flex justify-content-end ",
           okTitle: "예",
           okVariant: "primary text-133 py-1 px-3",
@@ -91,12 +93,13 @@ export default {
           dangerMsg: "",
           bodyClass: "px-3 pt-3 pb-2",
           contentClass: "confirm border-0 overflow-hidden",
-          headerClass: "rounded-0 bg-primary bg-opacity-15 text-left ",
+          headerClass:
+            "rounded-0 bg-primary bg-opacity-15 text-left text-white",
           footerClass: "border-0 d-flex justify-content-end",
           okTitle: "예",
           cancelTitle: "아니오",
-          okVariant: "primary text-13 py-1 px-3 text-white",
-          cancelVariant: "secondary text-13 py-1 px-3",
+          okVariant: "outline-alert text-13 py-1 px-3",
+          cancelVariant: "outline-primary text-13 py-1 px-3",
           centered: true,
           size: "sm",
           noCloseOnBackdrop: true,

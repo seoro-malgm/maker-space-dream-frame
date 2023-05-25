@@ -25,7 +25,7 @@ export default {
         "beverage",
         "play",
         "coffee",
-        "dessart",
+        "dessert",
         "notice",
         "services",
         "signature",

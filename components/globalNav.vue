@@ -66,16 +66,16 @@ export default {
           path: "/shop",
           icon: "beverage",
         },
-        {
-          name: "Store",
-          path: "/store",
-          icon: "dessart",
-        },
-        {
-          name: "Notice",
-          path: "/notice",
-          icon: "notice",
-        },
+        // {
+        //   name: "Store",
+        //   path: "/store",
+        //   icon: "dessert",
+        // },
+        // {
+        //   name: "Notice",
+        //   path: "/notice",
+        //   icon: "notice",
+        // },
         {
           name: "New Waves",
           path: "/new-waves",

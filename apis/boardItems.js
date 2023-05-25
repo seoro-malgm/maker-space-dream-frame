@@ -28,6 +28,7 @@ class boardItemsAPI {
     queryData = {
       category: null,
       page: 0,
+      createdAt: "desc",
     },
     count
   ) => {
@@ -36,7 +37,7 @@ class boardItemsAPI {
       if (queryData?.category)
         queryConstraints.push(where("category", "==", queryData?.category));
       if (count) queryConstraints.push(limit(count));
-      queryConstraints.push(orderBy("createdAt", "desc"));
+      queryConstraints.push(orderBy("createdAt", queryData.createdAt));
 
       // 최종 쿼리
       const q = query(collection(db, collectionName), ...queryConstraints);
@@ -171,6 +172,25 @@ class boardItemsAPI {
       }
     } catch (error) {
       console.error("error::", error);
+    }
+  };
+
+  // 한 값만 변형
+  updateItemValue = async (collectionName, id, key, value) => {
+    const docId = await this.getDocItem(collectionName, id);
+    if (docId) {
+      const ref = doc(db, collectionName, docId);
+      const response = new Promise(async (resolve, reject) => {
+        try {
+          await updateDoc(ref, {
+            [key]: value,
+          });
+          return resolve(true);
+        } catch (error) {
+          return reject(false);
+        }
+      });
+      return response;
     }
   };
 

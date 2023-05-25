@@ -10,20 +10,15 @@
         <table>
           <thead>
             <tr>
-              <th width="10%">카테고리</th>
-              <th width="5%">사진</th>
+              <th width="10%">사진</th>
               <th class="text-left">이름</th>
               <th width="20%">가격</th>
-              <th width="20%">마진율</th>
               <th width="20%">관리</th>
             </tr>
           </thead>
           <tbody>
             <template v-if="items?.length">
               <tr v-for="(item, i) in items" :key="i">
-                <td class="text-center">
-                  {{ item.category }}
-                </td>
                 <td>
                   <img :src="item?.thumbnail?.url" alt="" class="thumbnail" />
                 </td>
@@ -31,11 +26,7 @@
                   {{ item?.name }}
                 </td>
                 <td class="text-center">
-                  {{ Number(item?.price).toLocaleString() }}원
-                </td>
-                <td class="text-center">
-                  <!-- {{ item?.price }} -->
-                  ...%
+                  {{ item?.price }}
                 </td>
                 <td class="text-center">
                   <b-btn
@@ -49,22 +40,9 @@
                   >
                     수정
                   </b-btn>
-                  <b-btn variant="alert" @click="removeItem(item, i)">
-                    삭제
-                  </b-btn>
-                  <div class="mt-1">
-                    <b-btn
-                      variant="link text-gray-800 text-underlined text-13"
-                      :to="{
-                        path: '/admin/menu/recipe',
-                        query: {
-                          id: item.id,
-                        },
-                      }"
-                    >
-                      레시피 관리
-                    </b-btn>
-                  </div>
+                  <b-btn variant="alert" @click="removeItem(item, i)"
+                    >삭제</b-btn
+                  >
                 </td>
               </tr>
             </template>
@@ -93,7 +71,7 @@
 <script>
 export default {
   layout: "dashboard",
-  name: "admin-menu-list",
+  name: "admin-shop-list",
   data() {
     return {
       pending: false,

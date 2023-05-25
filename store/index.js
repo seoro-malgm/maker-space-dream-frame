@@ -1,11 +1,15 @@
 export const state = () => ({
   // counter: 0,
   user: null,
+  materials: null,
 });
 
 export const getters = {
   getUser(state) {
     return state.user;
+  },
+  getMaterials(state) {
+    return state.materials;
   },
 };
 

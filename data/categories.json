@@ -1,0 +1,13 @@
+{
+  "menu": {
+    "signature": "시그니쳐",
+    "coffee": "커피",
+    "beverage": "음료",
+    "dessert": "시그니쳐"
+  },
+  "units": {
+    "gae": "개",
+    "ml": "ml",
+    "g": "g"
+  }
+}

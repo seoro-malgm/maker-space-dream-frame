@@ -1,7 +1,7 @@
 import { app } from "@/plugins/appConfig";
 // auth
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import errorCodes from "@/utils/errorCodes.json";
+import errorCodes from "@/data/errorCodes.json";
 
 const auth = getAuth(app);
 
