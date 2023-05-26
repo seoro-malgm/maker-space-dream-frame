@@ -209,3 +209,8 @@ a.link {
     }
   }
 }
+
+ul.dropdown-menu {
+  max-height: 300px !important;
+  overflow-y: auto !important;
+}

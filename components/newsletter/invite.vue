@@ -148,7 +148,7 @@ export default {
           email: this.input.email,
           state: {
             on: true,
-            updateDate: new Date(),
+            updateDate: new Date().toLocaleString(),
           },
         });
         if (data) {

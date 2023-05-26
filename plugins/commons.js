@@ -192,3 +192,51 @@ export const getCostPrice = (a, b) => {
 export const getLocale = (str) => {
   return Number(str).toLocaleString();
 };
+
+export const fuzzyMatcher = (text) => {
+  if (!text || text === "") return [];
+  text.replace(/[/\-\\^$*+?.()|[\]{}]/g, "\\$&");
+
+  // 영문이 포함된경우 영문으로 검색
+  const enRegex = new RegExp(/^[A-Za-z]+$/);
+  // 영문인경우
+  if (enRegex.test(text)) {
+    const pattern = text.toUpperCase();
+    return pattern;
+  }
+  // 한국어로 테스트
+  const koRegex = new RegExp(/^[ㄱ-힣]+$/);
+  if (koRegex.test(text)) {
+    let res = "", // 초성으로 변환
+      choArr = [
+        "ㄱ",
+        "ㄲ",
+        "ㄴ",
+        "ㄷ",
+        "ㄸ",
+        "ㄹ",
+        "ㅁ",
+        "ㅂ",
+        "ㅃ",
+        "ㅅ",
+        "ㅆ",
+        "ㅇ",
+        "ㅈ",
+        "ㅉ",
+        "ㅊ",
+        "ㅋ",
+        "ㅌ",
+        "ㅍ",
+        "ㅎ",
+      ];
+    for (let i in text) {
+      const code = Math.floor((text[i].charCodeAt() - 44032) / 588);
+      res += code >= 0 ? choArr[code] : text[i];
+    }
+
+    return res;
+  }
+
+  // 그외엔 text 그대로 return
+  return text;
+};

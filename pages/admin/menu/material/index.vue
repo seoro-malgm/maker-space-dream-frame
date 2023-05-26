@@ -245,8 +245,8 @@ export default {
         const form = {
           ...item,
           id,
-          updateDate: new Date(),
-          createdAt: new Date(),
+          updateDate: new Date().toLocaleString(),
+          createdAt: new Date().toLocaleString(),
         };
         form.price.cost = getCostPrice(item.price.buy, item.size);
         const data = await this.$firebase().addBoardItem("material", {
@@ -275,7 +275,7 @@ export default {
           item.id,
           {
             ...form,
-            updateDate: new Date(),
+            updateDate: new Date().toLocaleString(),
           }
         );
         if (data) {

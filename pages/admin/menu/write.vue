@@ -136,8 +136,8 @@ export default {
         if (data) {
           this.form = {
             ...data,
-            createdAt: new Date(),
-            updateDate: new Date(),
+            createdAt: new Date().toLocaleString(),
+            updateDate: new Date().toLocaleString(),
           };
         }
       } catch (error) {
@@ -155,7 +155,12 @@ export default {
           ...this.form,
           id,
           viewer: 0,
-          updateDate: new Date(),
+          updateDate: new Date().toLocaleString(),
+          // 레시피정보
+          recipe: {
+            data: [],
+            updateDate: null,
+          },
         });
         if (data) {
           window.toast("업로드에 성공했습니다.");
@@ -173,7 +178,7 @@ export default {
       try {
         const data = await this.$firebase().updateBoardItem("menu", this.id, {
           ...this.form,
-          updateDate: new Date(),
+          updateDate: new Date().toLocaleString(),
         });
         if (data) {
           window.toast("업로드에 수정했습니다.");
