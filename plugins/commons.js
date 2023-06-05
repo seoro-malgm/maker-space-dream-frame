@@ -186,7 +186,7 @@ export const getTimestamp = (date) => {
 // 원가 계산기
 export const getCostPrice = (a, b) => {
   const result = Number(+a / +b);
-  return !result ? "ERROR" : result.toLocaleString();
+  return !result ? "0" : result.toLocaleString();
 };
 
 export const getLocale = (str) => {
@@ -207,36 +207,44 @@ export const fuzzyMatcher = (text) => {
   // 한국어로 테스트
   const koRegex = new RegExp(/^[ㄱ-힣]+$/);
   if (koRegex.test(text)) {
-    let res = "", // 초성으로 변환
-      choArr = [
-        "ㄱ",
-        "ㄲ",
-        "ㄴ",
-        "ㄷ",
-        "ㄸ",
-        "ㄹ",
-        "ㅁ",
-        "ㅂ",
-        "ㅃ",
-        "ㅅ",
-        "ㅆ",
-        "ㅇ",
-        "ㅈ",
-        "ㅉ",
-        "ㅊ",
-        "ㅋ",
-        "ㅌ",
-        "ㅍ",
-        "ㅎ",
-      ];
-    for (let i in text) {
-      const code = Math.floor((text[i].charCodeAt() - 44032) / 588);
-      res += code >= 0 ? choArr[code] : text[i];
-    }
-
-    return res;
+    return text;
   }
+};
 
-  // 그외엔 text 그대로 return
-  return text;
+// 원가 계산기
+export const getCostRatio = (arr) => {
+  let result = 0;
+  for (let index = 0; index < arr.length; index++) {
+    const element = arr[index];
+    result += element?.size * element?.cost;
+  }
+  return result.toLocaleString();
+};
+
+export const toNumber = (str) => {
+  if (typeof str === "string") {
+    return Number(str.replace(",", ""));
+  } else return str;
+};
+
+/**
+ * 분자, 분모, 소분량에 따라 비율 구하기
+ * @param {number} deno denominator 분모
+ * @param {number} num numerator 분자
+ * @param {number} cost 소분량
+ */
+export const getPercent = (deno, num, cost) => {
+  const result = toNumber(num) / toNumber(cost) / toNumber(deno);
+  return result !== Infinity && result !== NaN && result
+    ? Number(result * 100).toFixed(2)
+    : 0;
+};
+/**
+ * 원가율을 가지고 가격 구하기
+ * @param {number} price 원가 가격
+ * @param {number} rate 원가 가격을 위 원가율로 설정할 경우의 가격
+ */
+export const getPriceByPercent = (price, rate) => {
+  const result = Math.ceil(toNumber(price) / (1 - toNumber(rate) / 100));
+  return Number(result).toLocaleString();
 };

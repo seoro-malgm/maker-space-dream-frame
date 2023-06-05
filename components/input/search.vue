@@ -13,16 +13,24 @@
             <i class="icon icon-search text-12 mr-2" />
           </template>
           <b-form-input v-model="str" class="p-0" :disabled="disabled" />
+          <!-- <template #append v-if="str && str !== ''">
+            <b-btn variant="text p-1" @click.prevent="str = null">
+              <i class="icon icon-cancel text-13" />
+            </b-btn>
+          </template> -->
         </b-input-group>
         <!-- placeholder="" -->
       </b-dd-form>
       <b-dd-item
-        v-for="(item, i) in array"
+        v-for="(item, i) in arrayFiltered"
         :key="i"
         @click="$emit('select', item)"
-        link-class="p-1 border-bottom"
+        link-class="px-1 py-2 border-bottom "
       >
-        <span v-html="signStrong(item[valueKey], str)" />
+        <span class="text-16" v-html="signStrong(item[valueKey], str)" />
+      </b-dd-item>
+      <b-dd-item v-if="!arrayFiltered?.length">
+        <p class="text-14 text-gray-700 text-center p-2">결과가 없습니다.</p>
       </b-dd-item>
     </b-dd>
   </div>
@@ -56,13 +64,11 @@ export default {
       return fuzzyMatcher(this.str);
     },
     arrayFiltered() {
+      // const koRegex = new RegExp(/^[ㄱ-힣]+$/);
       if (this.str && this.str !== "") {
         const letters = fuzzyMatcher(this.str);
         return this.array.filter((item) => {
-          return item.match(letters);
-          // item.initials.match(letters) ||
-          // item.code.match(letters.toLowerCase()) ||
-          // item.totalWords.includes(this.str)
+          return item?.name.match(letters);
         });
       } else return this.array;
     },

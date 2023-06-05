@@ -212,5 +212,11 @@ a.link {
 
 ul.dropdown-menu {
   max-height: 300px !important;
+  width: 400px !important;
+  max-width: 92vw !important;
   overflow-y: auto !important;
+}
+
+ol.list-ordered {
+  list-style-type: decimal;
 }

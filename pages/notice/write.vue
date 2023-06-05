@@ -259,6 +259,7 @@ export default {
             profile_image_url: this.auth?.profile_image_url || null,
             id: this.auth?.id || null,
           },
+          unitPrice: 0,
         });
         if (data) {
           window.toast("업로드에 성공했습니다.");

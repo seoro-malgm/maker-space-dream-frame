@@ -34,10 +34,10 @@ class boardItemsAPI {
   ) => {
     try {
       const queryConstraints = [];
-      if (queryData?.category)
-        queryConstraints.push(where("category", "==", queryData?.category));
+      for (const [key, value] of Object.entries(queryData)) {
+        queryConstraints.push(where(key, "==", value));
+      }
       if (count) queryConstraints.push(limit(count));
-      queryConstraints.push(orderBy("createdAt", queryData.createdAt));
 
       // 최종 쿼리
       const q = query(collection(db, collectionName), ...queryConstraints);
@@ -50,13 +50,6 @@ class boardItemsAPI {
             ...doc.data(),
           };
         });
-        // for (let index = 0; index < snapshot.docs.length; index++) {
-        //   const isPinned = [];
-        //   const defaults = []
-        //   const item = snapshot.docs[index];
-        //   if (item.isPinned) isPinned.push(item)
-        //   else defaults.push(item);
-        // }
 
         return boardItems;
       }

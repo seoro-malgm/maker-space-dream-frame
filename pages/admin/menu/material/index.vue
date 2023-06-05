@@ -168,6 +168,16 @@ import categories from "@/data/categories";
 export default {
   layout: "dashboard",
   name: "admin-menu-material",
+  async asyncData({ app, query, store }) {
+    const { getAllBoardItems } = app.$firebase();
+    const [items] = await Promise.all([
+      getAllBoardItems("material", { createdAt: "asc" }),
+    ]);
+    store.dispatch("setState", ["materials", [...items]]);
+    return {
+      items,
+    };
+  },
   data() {
     return {
       categories,
@@ -176,7 +186,7 @@ export default {
         submit: false,
       },
       // 목록
-      items: [],
+      // items: [],
       // 추가할 row
       defaultRow: {
         name: null,
@@ -199,9 +209,6 @@ export default {
       return this.categories.units;
     },
   },
-  async mounted() {
-    await this.getMaterialItems();
-  },
   methods: {
     getCostPrice,
     getLocale,
@@ -219,21 +226,7 @@ export default {
         this.editIndex = this.items.length - 1;
       }
     },
-    // 불러오기
-    async getMaterialItems() {
-      this.pending.init = true;
-      try {
-        const data = await this.$firebase().getAllBoardItems("material", {
-          createdAt: "asc",
-        });
-        if (data) {
-          this.items = [...data];
-        }
-      } catch (error) {
-        console.error("error:", error);
-      }
-      this.pending.init = false;
-    },
+
     // 업로드
     async submitItem(item) {
       this.pending.submit = true;

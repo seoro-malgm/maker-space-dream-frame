@@ -14,7 +14,7 @@
               <th width="5%">사진</th>
               <th class="text-left">이름</th>
               <th width="20%">가격</th>
-              <th width="20%">마진율</th>
+              <th width="20%" class="text-left">정보</th>
               <th width="20%">관리</th>
             </tr>
           </thead>
@@ -30,12 +30,39 @@
                 <td>
                   {{ item?.name }}
                 </td>
-                <td class="text-center">
-                  {{ Number(item?.price).toLocaleString() }}원
-                </td>
-                <td class="text-center">
-                  <!-- {{ item?.price }} -->
-                  ...%
+                <td class="text-center">{{ getLocale(item?.price) }}원</td>
+                <td class="text-left">
+                  <ul>
+                    <li class="d-flex align-items-center mb-1">
+                      <strong class="mr-1">원가: </strong>
+                      <span> {{ getLocale(item?.unitPrice) || "-" }}원 </span>
+                    </li>
+                    <li class="d-flex align-items-center mb-1">
+                      <strong class="mr-1">원가율:</strong>
+                      <span v-if="item?.unitPrice && item?.recipe.outputUnit">
+                        {{
+                          getPercent(
+                            +item?.price,
+                            +item?.unitPrice,
+                            +item?.recipe.outputUnit
+                          )
+                        }}%
+                      </span>
+                    </li>
+                    <li class="d-flex align-items-center mb-1">
+                      <strong class="mr-1">마진율:</strong>
+                      <span v-if="item?.unitPrice && item?.recipe.outputUnit">
+                        {{
+                          100 -
+                          getPercent(
+                            +item?.price,
+                            +item?.unitPrice,
+                            +item?.recipe.outputUnit
+                          )
+                        }}%
+                      </span>
+                    </li>
+                  </ul>
                 </td>
                 <td class="text-center">
                   <b-btn
@@ -53,16 +80,8 @@
                     삭제
                   </b-btn>
                   <div class="mt-1">
-                    <b-btn
-                      variant="link text-gray-800 text-underlined text-13"
-                      :to="{
-                        path: '/admin/menu/recipe',
-                        query: {
-                          id: item.id,
-                        },
-                      }"
-                    >
-                      레시피 관리
+                    <b-btn v-b-modal.modal-recipe @click="selectedItem = item">
+                      상세 보기
                     </b-btn>
                   </div>
                 </td>
@@ -70,7 +89,7 @@
             </template>
             <template v-else>
               <tr>
-                <td colspan="3" class="text-center text-14 text-gray-600">
+                <td colspan="6" class="text-center text-14 text-gray-600">
                   <template v-if="pending">
                     <Loading />
                   </template>
@@ -87,35 +106,50 @@
         </table>
       </div>
     </section>
+    <!-- modals -->
+    <modal-menu-detail
+      :item="selectedItem"
+      @close="selectedItem = null"
+      @ok="selectedItem = null"
+    />
   </div>
 </template>
 
 <script>
+import {
+  getLocale,
+  getCostRatio,
+  getPercent,
+  getPriceByPercent,
+} from "~/plugins/commons.js";
+
+import ModalMenuDetail from "@/components/modal/menuDetail.vue";
 export default {
   layout: "dashboard",
   name: "admin-menu-list",
+  components: {
+    ModalMenuDetail,
+  },
+  async asyncData({ app, query, store }) {
+    const menuId = query?.id;
+    const { getBoardItem, getAllBoardItems } = app.$firebase();
+    const [items] = await Promise.all([getAllBoardItems("menu")]);
+
+    return {
+      items,
+    };
+  },
   data() {
     return {
       pending: false,
-      items: [],
+      selectedItem: null,
     };
   },
-  async mounted() {
-    await this.getItems();
-  },
   methods: {
-    async getItems() {
-      this.pending = true;
-      try {
-        const data = await this.$firebase().getAllBoardItems("menu");
-        if (data) {
-          this.items = data;
-        }
-      } catch (error) {
-        console.error("error:", error);
-      }
-      this.pending = false;
-    },
+    getLocale,
+    getCostRatio,
+    getPercent,
+    getPriceByPercent,
     async removeItem(item, index) {
       const bool = await window.confirm(
         `메뉴를 "${item.name}"를 삭제하시겠습니까?`

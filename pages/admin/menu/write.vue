@@ -147,7 +147,6 @@ export default {
     // 업로드
     async submitItem() {
       this.pending.submit = true;
-
       try {
         // 해쉬 생성
         const id = this.createHash();

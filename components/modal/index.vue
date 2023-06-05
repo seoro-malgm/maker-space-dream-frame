@@ -1,7 +1,7 @@
 <template>
   <b-modal
     id="modal-report-board"
-    titleClass="text-left text-1"
+    titleClass="text-left text-16 text-white"
     title="모달"
     bodyClass="px-3 pt-3 pb-2"
     contentClass="confirm border-0 overflow-hidden"
