@@ -170,7 +170,7 @@ $line-heights: (135, 160, 165, 170, 180, 200, 225);
 
 @each $var in $line-heights {
   .lh-#{$var} {
-    // line-height: math.div($var, 100);
+    line-height: calc($var / 100);
   }
 }
 

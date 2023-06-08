@@ -1,7 +1,7 @@
 <template>
   <article class="mb-4">
     <header class="d-flex align-items-center">
-      <h4 class="text-14 fw-700">
+      <h4 class="text-14 fw-700" v-if="title">
         {{ title }}
       </h4>
       <span class="ml-2 text-13 text-gray-700" v-if="desc">

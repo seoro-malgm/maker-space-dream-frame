@@ -31,8 +31,10 @@
       </template>
       <!-- </clint-only> -->
     </section>
-    <!-- ? -->
-    <section class="section-gap">
+    <section class="bg-black text-white py-5">
+      <b-container class="py-5"> asd... </b-container>
+    </section>
+    <!-- <section class="section-gap">
       <b-container>
         <header class="py-3 mb-5">
           <div class="d-flex align-items-center">
@@ -46,15 +48,15 @@
           </p>
         </header>
         <div class="mt-3 mb-5">
-          <calendar-schedule />
+          <calendar-default :admin="false" />
         </div>
       </b-container>
-    </section>
-    <section class="section-gap">
+    </section> -->
+    <!-- <section class="section-gap">
       <map-google />
-    </section>
+    </section> -->
     <!-- sns -->
-    <section class="section-gap mb-0">
+    <!-- <section class="section-gap mb-0">
       <header class="py-3 text-center mb-5">
         <h5 class="text-16 text-md-30">@gongjusalon</h5>
         <p class="text-13 text-md-15 mt-3">
@@ -79,7 +81,7 @@
           </figure>
         </b-col>
       </b-row>
-    </section>
+    </section> -->
   </div>
 </template>
 
@@ -148,7 +150,6 @@ export default {
     async getIntro() {
       try {
         const data = await this.$firebase().getBoardItem("intro-image", "1");
-        console.log("data:", data);
         if (data) {
           return data;
         }

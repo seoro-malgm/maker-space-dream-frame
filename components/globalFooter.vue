@@ -65,7 +65,7 @@ export default {
 
 <style lang="scss" scoped>
 #gnf {
-  background-color: #111;
+  background-color: black;
   color: white;
 
   .footer-nav {

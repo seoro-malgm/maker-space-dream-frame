@@ -15,11 +15,9 @@ export default {
   },
   mounted() {
     if (!this.auth) {
-      console.log("%c Hello 2", "background: #333399; color: #ededed");
       this.$router.push({ name: "auth-login" });
     } else {
       this.$router.push({ name: "admin-main" });
-      console.log("%c Hello 3", "background: #333399; color: #ededed");
     }
   },
 };

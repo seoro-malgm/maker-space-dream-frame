@@ -61,28 +61,40 @@
 </template>
 
 <script>
+import {
+  getLocale,
+  // getCostRatio,
+  // getPercent,
+  // getPriceByPercent,
+} from "~/plugins/commons.js";
+
 export default {
-  data() {
+  async asyncData({ app, query, store }) {
+    const menuId = query?.id;
+    const { getBoardItem, getAllBoardItems } = app.$firebase();
+    const [items] = await Promise.all([getAllBoardItems("menu")]);
+    console.log("items:", items);
     return {
-      items: null,
+      items,
     };
   },
-  async mounted() {
-    await this.getItems();
+  data() {
+    return {};
   },
+
   methods: {
-    async getItems() {
-      this.pending = true;
-      try {
-        const data = await this.$firebase().getAllBoardItems("menu");
-        if (data) {
-          this.items = [...data];
-        }
-      } catch (error) {
-        console.error("error:", error);
-      }
-      this.pending = false;
-    },
+    // async getItems() {
+    //   this.pending = true;
+    //   try {
+    //     const data = await this.$firebase().getAllBoardItems("menu");
+    //     if (data) {
+    //       this.items = [...data];
+    //     }
+    //   } catch (error) {
+    //     console.error("error:", error);
+    //   }
+    //   this.pending = false;
+    // },
     getOptions(item) {
       return [
         {

@@ -23,19 +23,13 @@ const db = getFirestore(app);
 
 class boardItemsAPI {
   // boardItem 전체 불러오기
-  getAllBoardItems = async (
-    collectionName,
-    queryData = {
-      category: null,
-      page: 0,
-      createdAt: "desc",
-    },
-    count
-  ) => {
+  getAllBoardItems = async (collectionName, queryData, count) => {
     try {
       const queryConstraints = [];
-      for (const [key, value] of Object.entries(queryData)) {
-        queryConstraints.push(where(key, "==", value));
+      if (queryData) {
+        for (const [key, value] of Object.entries(queryData)) {
+          queryConstraints.push(where(key, "==", value));
+        }
       }
       if (count) queryConstraints.push(limit(count));
 

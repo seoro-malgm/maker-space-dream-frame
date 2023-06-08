@@ -253,7 +253,7 @@ export default {
     const { getBoardItem, getAllBoardItems } = app.$firebase();
     const [item, materials] = await Promise.all([
       getBoardItem("menu", menuId),
-      getAllBoardItems("material", { createdAt: "asc" }),
+      getAllBoardItems("material"),
     ]);
     if (materials) {
       store.dispatch("setState", ["materials", [...materials]]);

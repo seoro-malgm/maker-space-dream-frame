@@ -6,7 +6,7 @@
       </ul>
     </div>
     <section class="mt-3">
-      <calendar-default />
+      <calendar-default :admin="true" />
     </section>
   </div>
 </template>

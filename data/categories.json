@@ -9,5 +9,36 @@
     "gae": "개",
     "ml": "ml",
     "g": "g"
+  },
+  "YN": [
+    {
+      "text": "예",
+      "value": "Y"
+    },
+    {
+      "text": "아니오",
+      "value": "N"
+    }
+  ],
+
+  "newWaves": {
+    "types": [
+      {
+        "text": "공연",
+        "value": "concert"
+      },
+      {
+        "text": "강연",
+        "value": "lecture"
+      },
+      {
+        "text": "토크쇼",
+        "value": "talk-show"
+      },
+      {
+        "text": "그 외/기타",
+        "value": "etc"
+      }
+    ]
   }
 }

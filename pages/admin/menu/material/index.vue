@@ -170,9 +170,7 @@ export default {
   name: "admin-menu-material",
   async asyncData({ app, query, store }) {
     const { getAllBoardItems } = app.$firebase();
-    const [items] = await Promise.all([
-      getAllBoardItems("material", { createdAt: "asc" }),
-    ]);
+    const [items] = await Promise.all([getAllBoardItems("material")]);
     store.dispatch("setState", ["materials", [...items]]);
     return {
       items,

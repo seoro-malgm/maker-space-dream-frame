@@ -2,6 +2,9 @@ export const state = () => ({
   // counter: 0,
   user: null,
   materials: null,
+  urls: {
+    youtube: "https://www.youtube.com/@gongjusalon/videos",
+  },
 });
 
 export const getters = {

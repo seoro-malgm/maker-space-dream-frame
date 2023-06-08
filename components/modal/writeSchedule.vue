@@ -68,10 +68,6 @@
           <h6 class="text-14 mb-1">연결 링크</h6>
           <b-form-input v-model="form.link" type="text" />
         </li>
-        form:
-        {{
-          form
-        }}
       </ul>
     </template>
   </b-modal>
@@ -81,8 +77,8 @@
 import { createHash } from "~/plugins/commons.js";
 export default {
   props: {
-    id: {
-      type: String,
+    item: {
+      type: Object,
       default: null,
     },
   },
@@ -98,9 +94,18 @@ export default {
       },
     };
   },
+  computed: {
+    id() {
+      return this.item?.id || null;
+    },
+  },
   methods: {
     init() {
-      if (!this.id) {
+      if (this.id) {
+        this.form = {
+          ...this.item,
+        };
+      } else {
         this.form = {
           text: null,
           year: null,
@@ -139,11 +144,11 @@ export default {
           updateDate: new Date().toLocaleString(),
         });
         if (data) {
-          window.toast("업로드에 수정했습니다.");
-          this.$emit("ok");
+          window.toast("스케쥴을 수정했습니다.");
+          this.$emit("edit");
         }
       } catch (error) {
-        window.toast("업로드에 실패했습니다.");
+        window.toast("스케쥴을 실패했습니다.");
         console.error("error:", error);
       }
       this.pending = false;

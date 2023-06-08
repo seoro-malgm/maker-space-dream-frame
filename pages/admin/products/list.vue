@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     submit() {
-      console.log("%c Hello ", "background: #333399; color: #ededed");
+      // console.log("%c Hello ", "background: #333399; color: #ededed");
     },
   },
 };

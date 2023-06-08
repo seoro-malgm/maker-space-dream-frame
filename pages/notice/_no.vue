@@ -117,7 +117,7 @@ export default {
   },
   onLikeToggle: {
     onLikeToggle(n) {
-      console.log("n:", n);
+      // console.log("n:", n);
     },
   },
 
@@ -140,7 +140,7 @@ export default {
     },
     // 댓글 추가
     addReply() {
-      console.log("%c Hello ", "background: #333399; color: #ededed");
+      // console.log("%c Hello ", "background: #333399; color: #ededed");
     },
     // 좋아요 버튼
     async likeToggle() {

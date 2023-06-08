@@ -56,21 +56,21 @@ export default {
           path: "/menu",
           icon: "beverage",
         },
-        {
-          name: "About",
-          path: "/about",
-          icon: "signature",
-        },
-        {
-          name: "Shop",
-          path: "/shop",
-          icon: "beverage",
-        },
         // {
-        //   name: "Store",
-        //   path: "/store",
-        //   icon: "dessert",
+        //   name: "About",
+        //   path: "/about",
+        //   icon: "signature",
         // },
+        // {
+        //   name: "Shop",
+        //   path: "/shop",
+        //   icon: "beverage",
+        // },
+        {
+          name: "Store",
+          path: "/store",
+          icon: "dessert",
+        },
         // {
         //   name: "Notice",
         //   path: "/notice",
