@@ -90,16 +90,24 @@
         <b-col
           cols="6"
           md="4"
-          v-for="(item, i) in list"
+          v-for="(item, i) in items"
           :key="i"
           class="mb-2 px-1"
         >
           <figure class="image-wrapper ratio-100">
-            <img
-              src="https://alxgroup.com.au/wp-content/uploads/2016/04/dummy-post-horisontal.jpg"
-              alt=""
-            />
+            <img :src="item?.image.url" :alt="`${item?.name} 대표 이미지`" />
           </figure>
+          <figcaption class="py-2" v-if="item?.name || item?.summary">
+            <h6 v-if="item?.name" class="mb-1 text-truncate">
+              {{ item.name }}
+            </h6>
+            <span
+              v-if="item?.summary"
+              class="text-13 text-gray-600 text-truncate"
+            >
+              {{ item.summary }}
+            </span>
+          </figcaption>
         </b-col>
       </b-row>
     </b-container>
@@ -178,6 +186,14 @@
 
 <script>
 export default {
+  async asyncData({ app, query, store }) {
+    const { getBoardItem, getAllBoardItems } = app.$firebase();
+    const [items] = await Promise.all([getAllBoardItems("new-waves-artist")]);
+    // console.log("items:", items);
+    return {
+      items,
+    };
+  },
   data() {
     return {
       intro: "",
@@ -185,32 +201,6 @@ export default {
         x: 0,
         y: 0,
       },
-      list: [
-        {
-          title: "",
-          src: "",
-        },
-        {
-          title: "",
-          src: "",
-        },
-        {
-          title: "",
-          src: "",
-        },
-        {
-          title: "",
-          src: "",
-        },
-        {
-          title: "",
-          src: "",
-        },
-        {
-          title: "",
-          src: "",
-        },
-      ],
     };
   },
   mounted() {

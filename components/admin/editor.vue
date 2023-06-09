@@ -36,6 +36,10 @@ export default {
       path: Number,
       default: 1920,
     },
+    description: {
+      type: String,
+      default: null,
+    },
   },
   data() {
     return {
@@ -45,10 +49,14 @@ export default {
     };
   },
   watch: {
+    description(n) {
+      this.form = n;
+    },
     form(n) {
       this.$emit("change", n);
     },
   },
+
   methods: {
     // 에디터에 이미지 추가
     // Vue editor 에서 제공하는 이미지핸들러

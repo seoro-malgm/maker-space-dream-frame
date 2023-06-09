@@ -1,6 +1,6 @@
 <template>
   <div>
-    <template v-if="!item?.length">
+    <template v-if="!items?.length">
       <div class="p-4 text-center">
         <Loading />
         <small class="text-gray-500 text-14">신청이 없습니다</small>

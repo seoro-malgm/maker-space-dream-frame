@@ -12,7 +12,7 @@
           <b-row class="item">
             <b-col cols="12" md="9">
               <div class="mb-4 py-3 border-top border-bottom">
-                <article-content :content="item.desc" />
+                <article-content :content="item.description" />
               </div>
             </b-col>
             <b-col cols="12" md="3">

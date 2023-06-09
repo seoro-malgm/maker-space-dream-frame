@@ -126,8 +126,8 @@ export default {
       msg,
       opt = {
         id: "toast",
-        variant: "darkest",
-        textVariant: "white",
+        variant: "info",
+        textVariant: "darkest",
       }
     ) {
       const h = this.$createElement;
@@ -137,7 +137,7 @@ export default {
         domProps: {
           innerHTML: `
           <div class="text-${opt.textVariant} text-center">
-            <span class="text-13 fw-500">${msg}</span>
+            <span class="text-15 fw-500">${msg}</span>
           </div>
           `,
         },
@@ -149,7 +149,7 @@ export default {
         headerClass: `bg-${opt.variant} p-0 border-0 text-white fw-600`,
         bodyClass: `bg-${opt.variant} py-3 border-0 rounded text-white fw-600`,
         toastClass: "border-0  pt-0",
-        toaster: "b-toaster-bottom-center",
+        toaster: "b-toaster-top-right",
       });
     },
   },

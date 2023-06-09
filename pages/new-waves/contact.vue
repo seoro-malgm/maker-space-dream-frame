@@ -4,6 +4,7 @@
     :style="{
       backgroundImage: `url(${require('@/assets/newwaves-symbol.svg')})`,
     }"
+    v-b-visible="visibleHandler"
   >
     <b-container tag="section">
       <div class="mb-4">
@@ -13,11 +14,7 @@
         </b-btn>
       </div>
       <!-- 폼 -->
-      <div
-        class="form-wrapper p-3 p-md-5"
-        :class="{ visible: isVisible }"
-        v-b-visible="visibleHandler"
-      >
+      <div class="form-wrapper p-3 p-md-5" :class="{ visible: isVisible }">
         <header class="form-header mb-5 pt-1 pb-4 border-bottom">
           <b-row class="mb-3 text-center flex-column" align-v="center">
             <b-col cols="8" md="4">
@@ -37,7 +34,7 @@
               md="9"
               v-if="!pending?.submit && !pending?.submitted"
             >
-              <p class="text-14 mt-3 lh-160">
+              <p class="text-13 text-md-14 mt-3 lh-160">
                 안녕하세요! 공주살롱의 송마담입니다. 지역의 예술가를 SAVE하기
                 위해 공간대여와 전체적인 홍보, 관리서비스를 뉴 웨이브(NEW
                 WAVES)라는 이름으로 제공합니다. 매장에서 본 공연 및 이벤트를

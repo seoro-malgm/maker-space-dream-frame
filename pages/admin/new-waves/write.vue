@@ -4,65 +4,46 @@
       <b-row>
         <b-col cols="4">
           <admin-input-image
-            title="메뉴 썸네일 이미지"
-            desc="썸네일로 사용되는 메뉴 이미지를 변경합니다"
-            path="menuThumbnail"
-            :file="form.thumbnail"
-            @change="($event) => (form.thumbnail = $event)"
-            :size="720"
-          />
-          <admin-input-image
-            title="메뉴 누끼 이미지"
-            desc="메뉴 누끼 이미지를 변경합니다"
-            path="menuBackgroundRemoved"
-            :file="form.backgroundRemoved"
-            @change="($event) => (form.backgroundRemoved = $event)"
-            :size="720"
+            title="아티스트 대표 이미지"
+            desc="썸네일에 사용되는 대표 이미지 입니다"
+            path="artists"
+            :file="form.image"
+            @change="($event) => (form.image = $event)"
+            :size="1440"
           />
         </b-col>
         <b-col cols="8">
-          <b-row>
-            <b-col cols="8">
-              <admin-item title="메뉴 이름">
-                <b-form-input v-model="form.name" />
-              </admin-item>
-            </b-col>
-            <b-col cols="4">
-              <admin-item title="카테고리">
-                <b-form-select v-model="form.category">
-                  <b-form-select-option
-                    v-for="(value, key) in menuCategories"
-                    :value="key"
-                    :key="key"
-                  >
-                    {{ value }}
-                  </b-form-select-option>
-                </b-form-select>
-              </admin-item>
-            </b-col>
-          </b-row>
+          <admin-item title="아티스트 이름">
+            <b-form-input v-model="form.name" />
+          </admin-item>
 
-          <admin-item title="메뉴 가격(원)">
-            <b-form-input v-model="form.price" />
+          <admin-item
+            title="아티스트 짧은 설명"
+            desc="이름과 함게 사용되는 활동명이나, 소속 등의 짧은 설명 표시입니다"
+          >
+            <b-form-input v-model="form.summary" />
           </admin-item>
 
           <admin-item title="옵션" desc="공개여부, 뱃지 표시 옵션설정입니다">
             <b-form-checkbox v-model="form.hidden" switch>
-              <span class="text-13"> 메뉴 비공개 </span>
+              <span class="text-13"> 아티스트 비공개 </span>
             </b-form-checkbox>
             <b-form-checkbox v-model="form.isNew" switch>
-              <span class="text-13"> 신메뉴 표시 </span>
+              <span class="text-13"> new 표시 </span>
             </b-form-checkbox>
-            <b-form-checkbox v-model="form.isBest" switch>
-              <span class="text-13"> 베스트 표시 </span>
+            <b-form-checkbox v-model="form.isComingSoon" switch>
+              <span class="text-13"> 커밍순으로 표시 </span>
             </b-form-checkbox>
+            <!-- <b-form-checkbox v-model="form.isBest" switch>
+              <span class="text-13"> Best 표시 </span>
+            </b-form-checkbox> -->
           </admin-item>
         </b-col>
       </b-row>
       <div class="mt-4">
         <admin-editor
           title="내용"
-          desc="메뉴 상세에서 표시할 상세 내용을 작성합니다"
+          desc="아티스트 상세에서 표시할 상세 내용을 작성합니다"
           storagePath="menuImage"
           @change="($event) => (form.description = $event)"
           :description="form.description"
@@ -72,7 +53,7 @@
         class="mt-3 border-top pt-2 d-flex align-items-center justify-content-end"
       >
         <btn-submit :pending="pending.submit">
-          메뉴
+          아티스트
           {{ id ? "수정" : "추가" }}
         </btn-submit>
       </div>
@@ -86,7 +67,7 @@ import categories from "@/data/categories.json";
 
 export default {
   layout: "dashboard",
-  name: "admin-menu-write",
+  name: "admin-new-waves-write",
   data() {
     return {
       categories,
@@ -94,23 +75,21 @@ export default {
         submit: false,
       },
       form: {
-        // 썸네일
-        thumbnail: null,
-        // 누끼
-        backgroundRemoved: null,
+        // 썸네일, 대표이미지
+        image: null,
         // 이름
         name: null,
-        // 가격
-        price: null,
-        // 카테고리
-        category: "coffee",
+        // 설명
+        summary: null,
         // 내용
         description: null,
-
         // 옵션
         isNew: false,
-        isBest: false,
+        // isBest: false,
+        // 비공개
         hidden: false,
+        // 커밍순
+        isComingSoon: false,
         createdAt: null,
       },
     };
@@ -120,21 +99,25 @@ export default {
       return this.$route?.query?.id;
     },
     menuCategories() {
-      return categories?.menu;
+      return categories?.new - waves - artist;
     },
   },
   async mounted() {
-    await this.getMenuItem();
+    await this.getArtistItem();
   },
   methods: {
     // 해쉬 제작
     createHash,
     // 불러오기
-    async getMenuItem() {
+    async getArtistItem() {
       if (!this.id) return;
       try {
-        const data = await this.$firebase().getBoardItem("menu", this.id);
+        const data = await this.$firebase().getBoardItem(
+          "new-waves-artist",
+          this.id
+        );
         if (data) {
+          console.log(data);
           this.form = {
             ...data,
             createdAt: new Date().toLocaleString(),
@@ -151,20 +134,15 @@ export default {
       try {
         // 해쉬 생성
         const id = this.createHash();
-        const data = await this.$firebase().addBoardItem("menu", {
+        const data = await this.$firebase().addBoardItem("new-waves-artist", {
           ...this.form,
           id,
           viewer: 0,
           updateDate: new Date().toLocaleString(),
-          // 레시피정보
-          recipe: {
-            data: [],
-            updateDate: null,
-          },
         });
         if (data) {
           window.toast("업로드에 성공했습니다.");
-          this.$router.push(`/admin/menu/list`);
+          this.$router.push(`/admin/new-waves/list`);
         }
       } catch (error) {
         window.toast("업로드에 실패했습니다.");
@@ -176,13 +154,17 @@ export default {
     async updateItem() {
       this.pending.submit = true;
       try {
-        const data = await this.$firebase().updateBoardItem("menu", this.id, {
-          ...this.form,
-          updateDate: new Date().toLocaleString(),
-        });
+        const data = await this.$firebase().updateBoardItem(
+          "new-waves-artist",
+          this.id,
+          {
+            ...this.form,
+            updateDate: new Date().toLocaleString(),
+          }
+        );
         if (data) {
           window.toast("업로드에 수정했습니다.");
-          this.$router.push(`/admin/menu/list`);
+          this.$router.push(`/admin/new-waves/list`);
         }
       } catch (error) {
         window.toast("업로드에 실패했습니다.");

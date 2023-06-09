@@ -195,7 +195,7 @@
                         height: 100%;
                         min-width: 14.25%;
                         min-height: 8rem;
-                        padding: 0.5rem 0.75rem;
+                        padding: 0.5rem;
                         border: 1px solid #f2f2f2;
                         font-size: 0.8rem;
                         vertical-align: top;
@@ -245,7 +245,7 @@
                               :style="{
                                 marginLeft: '3px',
                                 display: 'inline-block',
-                                maxWidth: '87%',
+                                maxWidth: '85%',
                                 whiteSpace: 'nowrap',
                                 overflow: 'hidden',
                                 textOverflow: 'ellipsis',
