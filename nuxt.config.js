@@ -6,7 +6,7 @@ export default {
   // ssr: true,
   // target: "server",
   head: {
-    title: "공주살롱",
+    title: "디지털문화유산전 2023",
     htmlAttrs: {
       lang: "ko-KR",
     },
@@ -18,13 +18,13 @@ export default {
         hid: "title",
         name: "title",
         property: "title",
-        content: "공주살롱",
+        content: "디지털문화유산전 2023",
       },
       {
         hid: "description",
         name: "description",
         property: "description",
-        content: "공주살롱",
+        content: "디지털문화유산전 2023",
       },
       {
         name: "keyword",
@@ -41,7 +41,7 @@ export default {
         hid: "og:title",
         name: "og:title",
         property: "og:title",
-        content: "공주살롱",
+        content: "디지털문화유산전 2023",
       },
       {
         hid: "og:description",
@@ -62,7 +62,7 @@ export default {
       {
         name: "og:site_name",
         property: "og:site_name",
-        content: "공주살롱",
+        content: "디지털문화유산전 2023",
       },
 
       {
@@ -92,7 +92,7 @@ export default {
       {
         name: "twitter:title",
         hid: "twitter:title",
-        content: "공주살롱",
+        content: "디지털문화유산전 2023",
       },
       // {
       //   name: "twitter:description",

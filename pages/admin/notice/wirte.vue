@@ -1,5 +1,5 @@
 <template>
-  <div>메뉴 관리</div>
+  <div>공지사항 쓰기</div>
 </template>
 
 <script>

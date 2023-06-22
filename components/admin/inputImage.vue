@@ -127,7 +127,7 @@ export default {
     },
     // 이미지가 제거되었을 때 file의 url을 불러옴
     onImageRemoved(url) {
-      console.log(this.fileURL, url);
+      // console.log(this.fileURL, url);
       this.fileName = null;
       this.fileURL = null;
       this.$emit("change", null);

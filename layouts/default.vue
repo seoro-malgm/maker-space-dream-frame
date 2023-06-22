@@ -3,10 +3,11 @@
     <global-nav :auth="auth" />
     <!-- 내용 -->
     <main id="main">
-      <transition></transition>
+      <!-- <transition> -->
       <Nuxt />
+      <!-- </transition> -->
     </main>
-    <btn-floating
+    <!-- <btn-floating
       :position="{
         bottom: '2.5rem',
         right: '1.5rem',
@@ -18,7 +19,7 @@
         <i class="icon icon-instagram" />
         <span class="mx-1 fw-700 text-133 text-md-14">CONTACT</span>
       </template>
-    </btn-floating>
+    </btn-floating> -->
     <!-- footer -->
 
     <global-footer />
@@ -158,6 +159,6 @@ export default {
 <style lang="scss" scoped>
 // $gnb-height: 82px;
 #main {
-  min-height: 100vh;
+  // min-height: 100vh;
 }
 </style>

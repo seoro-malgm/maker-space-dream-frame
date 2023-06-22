@@ -67,7 +67,7 @@ export default {
   name: "auth-login",
   head() {
     return {
-      title: `공주살롱 | 로그인`,
+      title: `디지털문화유산전 2023 | 로그인`,
     };
   },
   props: {
