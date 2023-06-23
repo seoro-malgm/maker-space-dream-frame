@@ -4,7 +4,7 @@
       <b-row class="min-vh-100 mx-0" align-v="stretch">
         <b-col cols="1" class="sidebar px-0">
           <header class="sidebar-header">
-            <img :src="require('@/assets/logo-ko.svg')" alt="" />
+            <!-- <img :src="require('@/assets/logo-ko.svg')" alt="" /> -->
             <h1 class="text-14 text-md-16 fw-700 mt-3">관리자페이지</h1>
           </header>
           <section class="sidebar-body">
