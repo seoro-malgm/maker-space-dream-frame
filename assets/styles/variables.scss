@@ -73,9 +73,12 @@ $colors: (
 ) !default;
 // scss-docs-end colors-map
 
-$primary: #111;
-// $primary: #970404;
-$secondary: #383332;
+$primary: #11997c;
+$secondary: #9b7455;
+$third: #cc2055;
+$sub-1: #70c3ab;
+$sub-2: #f5b442;
+$sub-3: #efa9c5;
 $darkest: #111;
 $gray: #333;
 $light: #555;
@@ -83,14 +86,18 @@ $lightest: #ddd;
 $alert: #ff0a5c;
 
 $skeleton: #e7e7e7e7;
-$naver: #1ec800;
-$newwaves: #00ffe6;
+// $naver: #1ec800;
+// $newwaves: #00ffe6;
+$transparent: transparent;
 
 $toast-max-width: 50px;
 $theme-colors: (
   "primary": $primary,
   "secondary": $secondary,
-  // "primary-gradient": $primary-gradient,
+  "third": $third,
+  "sub-1": $sub-1,
+  "sub-2": $sub-2,
+  "sub-3": $sub-3,
   "darkest": $darkest,
   "gray": $gray,
   "light": $light,
@@ -111,10 +118,9 @@ $theme-colors: (
   "gray-dark": $gray-800,
   "alert": $alert,
   "skeleton": $skeleton,
-  "naver": $naver,
+  // "naver": $naver,
   "heart": $heart,
-  "newwaves": $newwaves,
-
+  // "newwaves": $newwaves,
   "gray-100": $gray-100,
   "gray-200": $gray-200,
   "gray-300": $gray-300,
@@ -124,6 +130,7 @@ $theme-colors: (
   "gray-700": $gray-700,
   "gray-800": $gray-800,
   "gray-900": $gray-900,
+  "transparent": $transparent,
 ) !default;
 
 // variant
@@ -221,3 +228,5 @@ a.btn {
     background-color: $primary;
   }
 }
+
+$default-ease: cubic-bezier(0.35, 0.05, 0.45, 0.98);

@@ -7,34 +7,7 @@
   letter-spacing: -0.3px;
 }
 
-@font-face {
-  font-family: "Happiness-Sans-Regular";
-  src: url("../font/Happiness-Sans-Regular.woff") format("woff");
-  src: url("../font/Happiness-Sans-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  letter-spacing: -0.3px;
-}
-
-@font-face {
-  font-family: "Happiness-Sans-Bold";
-  src: url("../font/Happiness-Sans-Bold.woff") format("woff");
-  src: url("../font/Happiness-Sans-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: bold;
-  letter-spacing: -0.3px;
-}
-
-@font-face {
-  font-family: "Happiness-Sans-Title";
-  src: url("../font/Happiness-Sans-Title.woff") format("woff");
-  src: url("../font/Happiness-Sans-Title.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  letter-spacing: -0.3px;
-}
-
-// @import url("https://fonts.googleapis.com/css2?family=Vollkorn&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
 
 body,
 button,
@@ -51,16 +24,17 @@ h4,
 h5,
 h6 {
   margin: 0;
-  font-family: "Happiness-Sans-Bold", "Pretendard-Bold", sans-serif;
+  font-family: "Pretendard-Bold", "Noto Sans KR", sans-serif;
 }
 
 input[type="password"] {
-  font-family: "Pretendard-Regular", "Happiness-Sans-Regular", sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
 }
 
-// . {
-//   font-family: "Vollkorn", serif;
-// }
+.text-black-han {
+  font-family: "Black Han Sans", "Noto Sans KR", sans-serif;
+  font-weight: 400;
+}
 
 @for $var from 2 through 9 {
   .fw-#{$var}#{"00"} {
@@ -104,7 +78,14 @@ $font-size: (
   80,
   88,
   90,
-  100
+  100,
+  120,
+  140,
+  160,
+  200,
+  210,
+  240,
+  260
 );
 
 @media print {
@@ -165,8 +146,25 @@ $font-size: (
     }
   }
 }
+@media screen and (min-width: $breakpoint-xl) {
+  @each $var in $font-size {
+    .text-xl-#{$var} {
+      font-size: #{$var}px;
+    }
+    .btn {
+      &.text-xl-#{$var} {
+        font-size: #{$var}px;
+      }
+    }
+    input {
+      &.text-xl-#{$var} {
+        font-size: #{$var}px;
+      }
+    }
+  }
+}
 
-$line-heights: (135, 160, 165, 170, 180, 200, 225);
+$line-heights: (80, 88, 90, 100, 135, 160, 165, 170, 180, 200, 225);
 
 @each $var in $line-heights {
   .lh-#{$var} {

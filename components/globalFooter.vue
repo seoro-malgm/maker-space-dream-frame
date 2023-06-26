@@ -1,7 +1,10 @@
 <template>
   <footer id="gnf">
-    <b-container class="py-3">
-      <ul class="list-unstyled"></ul>
+    <b-container fluid class="py-3">
+      주관:국립공주대학교 공주학연구원 | 알엠소프트 <br />
+      주최:공주시 <br />
+      문의: 공주학연구원 (041-850-0448)
+      <!-- <ul class="list-unstyled"></ul> -->
       <!-- <nav class="footer-nav">
         <b-btn variant="link" :to="{ name: 'terms-privacy' }"
           >개인정보처리방침</b-btn

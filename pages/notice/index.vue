@@ -1,7 +1,7 @@
 <template>
   <b-container class="main-inner-padding">
     <header class="page-header">
-      <h1 class="page-title">Notice</h1>
+      <h1 class="page-title">공지사항</h1>
       <p class="page-description">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, aliquam!
       </p>
@@ -46,7 +46,7 @@ export default {
   async asyncData({ app, $firebase, query }) {
     // const { category } = query;
     // if (!category) app.router.push("/");
-    const items = await $firebase().getAllBoardItems(null);
+    const items = []; // await $firebase().getAllBoardItems(null);
     return {
       items,
     };

@@ -119,3 +119,35 @@ figure.image-wrapper {
   background-size: cover;
   background-position: center center;
 }
+
+.input-group {
+  background-color: white;
+  padding: 0.5rem 1rem;
+  align-items: center;
+  .input-group-prepend {
+    padding: 0.5rem 1rem;
+    font-size: 15px;
+    @media (min-width: $breakpoint-md) {
+      font-size: 20px;
+    }
+  }
+  .form-control,
+  .custom-select {
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    @media (min-width: $breakpoint-md) {
+      font-size: 20px;
+    }
+  }
+  .custom-control-input[type="radio"] {
+    + .custom-control-label {
+      &:after,
+      &:before {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@
     <!-- 내용 -->
     <main id="main">
       <!-- <transition> -->
-      <Nuxt />
+      <NuxtChild :onScrolled="onScrolled" />
       <!-- </transition> -->
     </main>
     <!-- <btn-floating
@@ -29,9 +29,10 @@
 <script>
 export default {
   name: "default",
-  mounted() {
-    this.modal();
-    window.toast = this.toast;
+  data() {
+    return {
+      onScrolled: false,
+    };
   },
   computed: {
     auth() {
@@ -40,6 +41,16 @@ export default {
     routeName() {
       return this.$route.name;
     },
+  },
+  mounted() {
+    this.modal();
+    window.toast = this.toast;
+    // 스크롤 핸들러
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  beforeDestroy() {
+    // 스크롤 핸들러 해제
+    window.removeEventListener("scroll", this.handleScroll);
   },
   methods: {
     linkTo(link) {
@@ -153,12 +164,23 @@ export default {
         toaster: "b-toaster-top-right",
       });
     },
+    handleScroll(e) {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      if (scrollTop <= 50) {
+        this.onScrolled = false;
+      }
+
+      if (scrollTop >= 180) {
+        this.onScrolled = true;
+      }
+    },
   },
 };
 </script>
 <style lang="scss" scoped>
 // $gnb-height: 82px;
 #main {
-  // min-height: 100vh;
+  min-height: 100vh;
+  padding-top: 75px;
 }
 </style>

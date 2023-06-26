@@ -45,6 +45,7 @@ body {
     padding-right: 0 !important;
   }
   word-break: keep-all;
+  line-height: 1.7;
 }
 
 #app {
@@ -236,4 +237,21 @@ ul.list-styled {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.underbar {
+  position: relative;
+  z-index: 2;
+  &:after {
+    position: absolute;
+    z-index: 1;
+    content: "";
+    display: block;
+    bottom: 2rem;
+    left: 50%;
+    width: 100%;
+    height: 1.5rem;
+    transform: translateX(-50%);
+    background-color: $sub-1;
+  }
 }
