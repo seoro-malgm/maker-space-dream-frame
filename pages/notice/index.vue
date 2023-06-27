@@ -18,16 +18,34 @@
           </div>
         </template>
         <template v-else>
-          <b-row class="article-list">
-            <b-col
-              cols="12"
-              class="article-list-item"
-              v-for="(item, i) in items"
-              :key="i"
-            >
-              <article-item :item="item" path="notice" />
-            </b-col>
-          </b-row>
+          <section>
+            <ul class="border-top">
+              <li v-for="(item, i) in items" :key="i">
+                <b-btn
+                  block
+                  variant="text py-3  border-bottom d-flex align-items-center"
+                  v-b-toggle="`item-${i}`"
+                >
+                  <strong class="text-16 mr-2">Q</strong>
+                  <span class="fw-700">
+                    {{ item.title }}
+                  </span>
+                </b-btn>
+                <b-collapse
+                  :id="`item-${i}`"
+                  visible
+                  accordion="faqs"
+                  role="tabpanel"
+                >
+                  <div class="p-3 bg-gray-100 border-bottom">
+                    <p>
+                      {{ item.content }}
+                    </p>
+                  </div>
+                </b-collapse>
+              </li>
+            </ul>
+          </section>
         </template>
       </template>
     </section>

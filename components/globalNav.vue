@@ -22,13 +22,15 @@
     </b-navbar>
     <div class="position-relative">
       <b-collapse id="collapse-links" class="px-0" v-model="visible">
-        <ul class="list-links">
+        <ul class="list-links flex-column">
           <li v-for="(link, i) in links" :key="i">
             <router-link
               :to="link.path"
-              class="btn btn-text text-16 text-lg-20"
+              class="btn btn-text text-20 text-lg-32 text-left"
             >
-              {{ link.name }}
+              <div class="text-black-han">
+                {{ link.name }}
+              </div>
             </router-link>
           </li>
         </ul>
@@ -62,7 +64,7 @@ export default {
           path: "/program",
         },
         {
-          name: "공지사항",
+          name: "FAQ",
           path: "/notice",
         },
         {
@@ -124,8 +126,8 @@ export default {
       justify-content: space-around;
       align-items: stretch;
       margin: 0;
-      border-top: 1px solid $primary;
-      border-bottom: 1px solid $primary;
+      border-top: 1px solid $black;
+      border-bottom: 1px solid $black;
       @media (max-width: $breakpoint-md) {
         flex-direction: column;
       }
@@ -144,7 +146,7 @@ export default {
           &.router-link-active,
           &:hover {
             font-weight: 700;
-            background-color: $primary;
+            background-color: $black;
             color: white;
           }
         }
@@ -166,7 +168,7 @@ export default {
     transition-delay: 0.1s;
     left: 4px;
     height: 4px;
-    background-color: $primary;
+    background-color: $black;
     display: block;
     position: absolute;
     width: 24px;

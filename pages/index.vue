@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="intro my-5 my-lg-0">
+    <section class="intro my-5 my-lg-0 border-top border-black">
       <b-container fluid class="my-5 my-lg-0 py-5">
         <header class="text-center py-5">
           <h1
@@ -69,10 +69,10 @@
               <strong class="text-20 text-md-28">아트센터 고마</strong>
             </div>
             <div class="mt-3">
-              <b-btn variant="primary " to="/info">
+              <b-btn variant="primary " to="/info#일정_안내">
                 <span class="mx-1 fw-700 text-15 text-md-16"
-                  >자세한 일정 보기</span
-                >
+                  >자세한 일정 보기
+                </span>
                 <i class="icon icon-right-big" />
               </b-btn>
             </div>
@@ -87,18 +87,23 @@
         </b-row>
       </b-container>
     </section>
-
+    <marquee-text text="DIVE into DIGITAL HERITAGE" />
     <!-- 지도 및 오시는 길 -->
     <section>
       <b-row>
         <b-col cols="12" md="7">
-          <div class="bg-img ratio-67 bg-gray-200">
-            <span>지도</span>
-          </div>
+          <div
+            class="bg-img ratio-67"
+            :style="{
+              backgroundImage: `url(${require('@/assets/map-dummy.png')})`,
+            }"
+          ></div>
         </b-col>
         <b-col cols="12" md="5">
           <article class="py-5">
-            <h2 class="text-black-han text-24 text-lg-56">오시는 길</h2>
+            <h2 class="text-black-han text-24 text-lg-56 underbar">
+              오시는 길
+            </h2>
             <ul class="list-unstyled">
               <li class="d-flex align-items-center mb-3">
                 <span
@@ -152,10 +157,11 @@
         </b-col>
       </b-row>
     </section>
+    <marquee-text text="DIVE into DIGITAL HERITAGE" />
     <!-- 참여기관 -->
     <section class="py-5 border-top border-bottom border-black">
       <header class="text-center mb-4 py-3">
-        <h2 class="text-black-han text-24 text-lg-56">참여 기관</h2>
+        <h2 class="text-black-han text-24 text-lg-56 underbar">참여 기관</h2>
       </header>
       <b-container class="mb-5 p-5 pb-0 bg-gray-100">
         <b-row>
@@ -167,10 +173,12 @@
         </b-row>
       </b-container>
     </section>
-    <section class="bg-sub-3 py-5">
+    <section class="bg-gray-300 py-5">
       <b-container class="mb-5 py-5">
         <header class="py-3">
-          <h2 class="text-black-han text-24 text-lg-56">사전등록하세요!</h2>
+          <h2 class="text-black-han text-24 text-lg-56 underbar">
+            사전등록하세요!
+          </h2>
           <p class="text-15 text-md-20">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. A similique
             sapiente, nobis debitis consequatur hic. Quae tempora vel eaque

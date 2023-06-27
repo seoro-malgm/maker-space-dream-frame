@@ -181,6 +181,6 @@ export default {
 // $gnb-height: 82px;
 #main {
   min-height: 100vh;
-  padding-top: 75px;
+  padding-top: 75.5px;
 }
 </style>
