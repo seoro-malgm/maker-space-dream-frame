@@ -1,46 +1,52 @@
 <template>
-  <b-container class="main-inner-padding">
-    <header class="page-header">
-      <h1 class="page-title">공지사항</h1>
-      <p class="page-description">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, aliquam!
-      </p>
-    </header>
-
-    <section class="section-gap mt-3">
+  <b-container fluid class="mb-5">
+    <header-underbar title="FAQ" id="faq" variant="sub-2" />
+    <section class="mt-3">
       <template v-if="pending.items">
         <Loading />
       </template>
       <template v-else>
         <template v-if="!items.length">
-          <div class="p-4 text-center">
+          <!-- <div class="p-4 text-center">
             <span class="text-light">글이 아직 없습니다.</span>
-          </div>
+          </div> -->
         </template>
         <template v-else>
           <section>
-            <ul class="border-top">
-              <li v-for="(item, i) in items" :key="i">
-                <b-btn
-                  block
-                  variant="text py-3  border-bottom d-flex align-items-center"
-                  v-b-toggle="`item-${i}`"
-                >
-                  <strong class="text-16 mr-2">Q</strong>
-                  <span class="fw-700">
-                    {{ item.title }}
-                  </span>
-                </b-btn>
-                <b-collapse
-                  :id="`item-${i}`"
-                  visible
-                  accordion="faqs"
-                  role="tabpanel"
-                >
-                  <div class="p-3 bg-gray-100 border-bottom">
-                    <p>
-                      {{ item.content }}
-                    </p>
+            <ul class="border-top border-black">
+              <li
+                v-for="(item, i) in items"
+                :key="i"
+                class="border-bottom border-black"
+              >
+                <b-row class="py-3">
+                  <b-col cols="2">
+                    <strong class="text-15 text-md-20 fw-700 text-uppercase">
+                      {{ item.type }}
+                    </strong>
+                  </b-col>
+                  <b-col cols="10">
+                    <b-btn
+                      block
+                      variant="text p-0 d-flex align-items-start"
+                      v-b-toggle="`item-${i}`"
+                    >
+                      <span class="fw-700 text-15 text-md-20">
+                        {{ item.title }}
+                      </span>
+                    </b-btn>
+                  </b-col>
+                </b-row>
+
+                <b-collapse :id="`item-${i}`" accordion="faqs" role="tabpanel">
+                  <div class="p-3 bg-gray-200">
+                    <b-row>
+                      <b-col cols="10" offset="2">
+                        <p class="text-15 text-md-20">
+                          {{ item.content }}
+                        </p>
+                      </b-col>
+                    </b-row>
                   </div>
                 </b-collapse>
               </li>
@@ -64,7 +70,43 @@ export default {
   async asyncData({ app, $firebase, query }) {
     // const { category } = query;
     // if (!category) app.router.push("/");
-    const items = []; // await $firebase().getAllBoardItems(null);
+    const items = [
+      {
+        type: "faq",
+        title: "~은 어떻게 해야하나요?",
+        content: "~해야합니다",
+      },
+      { type: "공지사항", title: "새로운 소식", content: "~해야합니다" },
+      { type: "규정", title: "규정 제목", content: "규정입니다." },
+      {
+        type: "faq",
+        title: "~은 어떻게 해야하나요?",
+        content: "~해야합니다",
+      },
+      { type: "공지사항", title: "새로운 소식", content: "~해야합니다" },
+      { type: "규정", title: "규정 제목", content: "규정입니다." },
+      {
+        type: "faq",
+        title: "~은 어떻게 해야하나요?",
+        content: "~해야합니다",
+      },
+      { type: "공지사항", title: "새로운 소식", content: "~해야합니다" },
+      { type: "규정", title: "규정 제목", content: "규정입니다." },
+      {
+        type: "faq",
+        title: "~은 어떻게 해야하나요?",
+        content: "~해야합니다",
+      },
+      { type: "공지사항", title: "새로운 소식", content: "~해야합니다" },
+      { type: "규정", title: "규정 제목", content: "규정입니다." },
+      {
+        type: "faq",
+        title: "~은 어떻게 해야하나요?",
+        content: "~해야합니다",
+      },
+      { type: "공지사항", title: "새로운 소식", content: "~해야합니다" },
+      { type: "규정", title: "규정 제목", content: "규정입니다." },
+    ]; // await $firebase().getAllBoardItems(null);
     return {
       items,
     };

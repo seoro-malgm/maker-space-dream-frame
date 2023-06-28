@@ -309,3 +309,14 @@ ul.list-styled {
     }
   }
 }
+
+.btn {
+  .icon.icon-right-big {
+    transition: transform 0.2s;
+  }
+  &:hover {
+    .icon.icon-right-big {
+      transform: translateX(6px);
+    }
+  }
+}

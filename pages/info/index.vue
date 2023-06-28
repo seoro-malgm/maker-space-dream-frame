@@ -45,6 +45,8 @@
         </client-only>
       </div>
     </section>
+    <marquee-text text="DIVE into DIGITAL HERITAGE" class="mt-1" />
+
     <!-- !관람 안내 -->
     <!-- 일정 안내 -->
     <section class="section-gap">
@@ -148,11 +150,7 @@
             <b-form-group>
               <b-form-radio-group
                 v-model="selectedFloor"
-                :options="[
-                  { text: '3F', value: 3 },
-                  { text: '2F', value: 2 },
-                  { text: '1F', value: 1 },
-                ]"
+                :options="floors"
                 size="lg"
                 buttons
                 stacked
@@ -218,11 +216,31 @@
       <header-underbar title="참여 업체" id="참여_업체" variant="sub-2" />
     </section> -->
     <!-- !참여 업체 -->
+    <!-- 플로팅버튼 -->
+    <btn-floating
+      :position="{
+        bottom: onScrolled ? '2.5rem' : '-4rem',
+        right: '1.5rem',
+      }"
+      variant="sub-2 text-white"
+      @click="$router.push('/pre-register')"
+    >
+      <template #content>
+        <span class="mx-1 fw-700 text-15 text-md-16">사전등록 하러가기</span>
+        <i class="icon icon-right-big" />
+      </template>
+    </btn-floating>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    onScrolled: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       introIndex: 0,
@@ -283,7 +301,60 @@ export default {
       ],
       viewMap: true,
       selectedFloor: 1,
+      floors: [
+        {
+          text: "야외",
+          value: 4,
+        },
+        {
+          text: "3F",
+          value: 3,
+        },
+        {
+          text: "2F",
+          value: 2,
+        },
+        {
+          text: "1F",
+          value: 1,
+        },
+      ],
       maps: [
+        {
+          map: require("@/assets/dummy.png"),
+          lists: [
+            {
+              position: "A-1",
+              name: "업체명",
+              type: "업종",
+            },
+            {
+              position: "A-1",
+              name: "업체명",
+              type: "업종",
+            },
+            {
+              position: "A-1",
+              name: "업체명",
+              type: "업종",
+            },
+            {
+              position: "A-1",
+              name: "업체명",
+              type: "업종",
+            },
+            {
+              position: "A-1",
+              name: "업체명",
+              type: "업종",
+            },
+            {
+              position: "A-1",
+              name: "업체명",
+              type: "업종",
+            },
+          ],
+        },
         {
           map: require("@/assets/dummy.png"),
           lists: [

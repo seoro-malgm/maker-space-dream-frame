@@ -3,7 +3,7 @@
     <section class="bg-gray-300 py-5">
       <b-container class="mb-5 py-5">
         <header class="py-3">
-          <h2 class="text-black-han text-24 text-lg-56 underbar">
+          <h2 class="text-black-han text-36 text-md-48 text-lg-56 underbar">
             사전등록하세요!
           </h2>
           <p class="text-15 text-md-20">
@@ -17,9 +17,11 @@
         </header>
         <div class="mt-4">
           <b-form @submit.prevent="preRegister">
-            <b-input-group class="input-group align-items-start mb-4">
+            <b-input-group
+              class="input-group align-items-start mb-4 flex-nowrap"
+            >
               <template #prepend>이름</template>
-              <div class="d-flex flex-column">
+              <div class="d-flex flex-column w-100">
                 <b-form-input
                   placeholder="이름을 입력하세요"
                   class="mt-1"
@@ -40,7 +42,7 @@
               <template #prepend>연락처</template>
               <b-form-input
                 placeholder="연락처를 입력하세요('-' 제외)"
-                v-model="form.name"
+                v-model="form.phone"
               />
             </b-input-group>
             <b-input-group class="input-group mb-4">
@@ -53,9 +55,20 @@
             </b-input-group>
             <b-row class="mt-4" align-h="center">
               <b-col cols="10" md="8" lg="6">
-                <b-btn variant="sub-2 text-white fw-700 px-3 py-3 w-100"
-                  >사전등록</b-btn
+                <b-btn
+                  variant="sub-2 text-white fw-700 px-3 py-3 w-100 text-15 text-md-20"
+                  type="submit"
                 >
+                  사전등록
+                </b-btn>
+                <div class="mt-1 text-center">
+                  <small class="text-13 text-md-14">
+                    사전등록 확인을 하러 오셨나요?
+                  </small>
+                  <b-btn variant="link p-0" to="/pre-register/confirm">
+                    사전등록 확인하기 <i class="icon icon-right-big" />
+                  </b-btn>
+                </div>
               </b-col>
             </b-row>
           </b-form>
@@ -80,6 +93,7 @@ export default {
   methods: {
     preRegister() {
       console.log("this.form:", this.form);
+      this.$router.push("/pre-register/registered");
     },
   },
 };

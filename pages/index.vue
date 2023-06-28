@@ -101,7 +101,7 @@
         </b-col>
         <b-col cols="12" md="5">
           <article class="py-5">
-            <h2 class="text-black-han text-24 text-lg-56 underbar">
+            <h2 class="text-black-han text-36 text-md-48 text-lg-56 underbar">
               오시는 길
             </h2>
             <ul class="list-unstyled">
@@ -161,11 +161,20 @@
     <!-- 참여기관 -->
     <section class="py-5 border-top border-bottom border-black">
       <header class="text-center mb-4 py-3">
-        <h2 class="text-black-han text-24 text-lg-56 underbar">참여 기관</h2>
+        <h2 class="text-black-han text-36 text-md-48 text-lg-56 underbar">
+          참여 기관
+        </h2>
       </header>
       <b-container class="mb-5 p-5 pb-0 bg-gray-100">
         <b-row>
-          <b-col cols="4" md="3" class="mb-4" v-for="(item, i) in 24" :key="i">
+          <b-col
+            cols="6"
+            md="4"
+            lg="3"
+            class="mb-4"
+            v-for="(item, i) in 24"
+            :key="i"
+          >
             <div class="bg-img ratio-35 bg-black">
               <span class="text-white">로고 이미지</span>
             </div>
@@ -173,10 +182,10 @@
         </b-row>
       </b-container>
     </section>
-    <section class="bg-gray-300 py-5">
+    <!-- <section class="bg-gray-300 py-5">
       <b-container class="mb-5 py-5">
         <header class="py-3">
-          <h2 class="text-black-han text-24 text-lg-56 underbar">
+          <h2 class="text-black-han text-36 text-md-48 text-lg-56 underbar">
             사전등록하세요!
           </h2>
           <p class="text-15 text-md-20">
@@ -234,7 +243,7 @@
           </b-form>
         </div>
       </b-container>
-    </section>
+    </section> -->
     <!-- 플로팅버튼 -->
     <btn-floating
       :position="{
@@ -242,7 +251,7 @@
         right: '1.5rem',
       }"
       variant="sub-2 text-white"
-      @click="scrollToBottom"
+      @click="$router.push('/pre-register')"
     >
       <template #content>
         <span class="mx-1 fw-700 text-15 text-md-16">사전등록 하러가기</span>

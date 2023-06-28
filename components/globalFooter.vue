@@ -5,8 +5,10 @@
       주최:공주시 <br />
       문의: 공주학연구원 (041-850-0448)
       <!-- <ul class="list-unstyled"></ul> -->
-      <!-- <nav class="footer-nav">
-        <b-btn variant="link" :to="{ name: 'terms-privacy' }"
+
+      <nav class="footer-nav">
+        <b-btn variant="link" to="/brand"> 브랜드 아이덴티티(BI/CI) </b-btn>
+        <!-- <b-btn variant="link" :to="{ name: 'terms-privacy' }"
           >개인정보처리방침</b-btn
         >
         <b-btn variant="link" :to="{ name: 'customer-services-qna' }"
@@ -14,8 +16,8 @@
         >
         <b-btn variant="link" :to="{ name: 'customer-services-faq' }"
           >자주 묻는 질문</b-btn
-        >
-      </nav> -->
+        > -->
+      </nav>
     </b-container>
   </footer>
 </template>
