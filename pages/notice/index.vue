@@ -1,5 +1,5 @@
 <template>
-  <b-container fluid class="mb-5">
+  <b-container fluid class="my-5">
     <header-underbar title="FAQ" id="faq" variant="sub-2" />
     <section class="mt-3">
       <template v-if="pending.items">

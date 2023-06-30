@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="my-md-5">
     <header-underbar title="프로그램" id="program" variant="sub-2" />
     <b-container fluid class="mt-3">
       <section class="mb-3">

@@ -37,7 +37,7 @@ body {
   scroll-behavior: smooth;
   * {
     &::selection {
-      background-color: $darkest;
+      background-color: $primary;
       color: white;
     }
   }

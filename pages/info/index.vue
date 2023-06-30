@@ -1,8 +1,8 @@
 <template>
   <div>
-    <marquee-text text="DIVE into DIGITAL HERITAGE" class="mt-1" />
+    <marquee-text text="DIVE into DIGITAL HERITAGE" />
     <!-- 관람 안내 -->
-    <section class="section-gap my-0 pb-2 border-bottom border-black">
+    <section class="section-gap my-0 pb-2 border-black">
       <!-- <header-underbar title="관람 안내" id="관람_안내" variant="sub-2" /> -->
 
       <div class="info-carousel">

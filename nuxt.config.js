@@ -68,12 +68,12 @@ export default {
       {
         name: "msapplication-TileColor",
         property: "msapplication-TileColor",
-        content: "#da532c",
+        content: "#11997c",
       },
       {
         name: "theme-color",
         property: "theme-color",
-        content: "#da532c",
+        content: "#11997c",
       },
       {
         name: "twitter:card",
@@ -107,6 +107,12 @@ export default {
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap",
+      },
       {
         rel: "apple-touch-icon",
         sizes: "180x180",
@@ -145,6 +151,7 @@ export default {
     { src: "~/plugins/router.js", mode: "client" },
     { src: "~/plugins/firebase.js" },
     { src: "~/plugins/carousel.js", mode: "client" },
+    { src: "~/plugins/intersectionObserver.client.js", mode: "client" },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -188,7 +195,7 @@ export default {
   },
   // 로딩바
   loading: {
-    color: "#00ffe6",
+    color: "#11997c",
   },
   // 페이지 트랜지션
   // transition: '',

@@ -31,7 +31,7 @@ export default {
     };
   },
   mounted() {
-    console.log(process.env.NODE_ENV);
+    // console.log(process.env.NODE_ENV);
     // if (process.env.NODE_ENV !== "development") {
     this.init();
     // }

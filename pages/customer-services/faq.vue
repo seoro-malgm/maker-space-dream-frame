@@ -1,6 +1,5 @@
 <template>
-  <b-container>
-    <article>
+  <b-container class="my-md-5">
       <header class="mb-3">
         <h3>자주 묻는 질문</h3>
       </header>

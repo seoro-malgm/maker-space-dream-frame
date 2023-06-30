@@ -1,14 +1,60 @@
 <template>
-  <div id="gnb">
-    <b-navbar type="light" variant="transparent">
-      <b-container fluid>
-        <!-- 로고 -->
+  <nav
+    id="gnb"
+    :style="{
+      transform: `translateY(${
+        path === '/' ? (onScrolled ? '0' : '-400px') : '0'
+      })`,
+    }"
+  >
+    <div
+      class="d-flex justify-content-between align-items-stretch border-bottom border-black"
+    >
+      <b-navbar-brand class="px-3">
+        <router-link
+          to="/"
+          replace
+          class="logo-link btn btn-text px-0 py-1 py-xl-2 border-0"
+        >
+          <div
+            class="letter text-24 text-md-32 text-xl-40 mb-n1 text-black-han text-left lh-100"
+          >
+            디지털 유산전 2023
+            <br class="d-block d-xl-none" />
+            <span class="text-16 text-md-32 text-xl-40">
+              : DIVE into DIGITAL HERITAGE
+            </span>
+          </div>
+        </router-link>
+      </b-navbar-brand>
+      <section
+        class="px-2 text-right border-left border-black d-flex align-items-center justify-content-center flex-column"
+      >
+        <b-btn variant="text btn-hbg" v-b-toggle.collapse-links>
+          <div class="hbg">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+          </div>
+        </b-btn>
+      </section>
+    </div>
+    <!-- 로고
         <b-navbar-brand class="ml-0">
           <router-link to="/" replace class="logo-link">
             <img :src="require('@/assets/logo.png')" alt="" />
           </router-link>
+          <router-link
+            to="/"
+            replace
+            class="logo-link btn btn-text p-0 border-0"
+          >
+            <div class="letter text-24 text-md-36 text-black-han mb-n2">
+              디지털 유산전 2023 : DIVE into DIGITAL HERITAGE
+            </div>
+          </router-link>
         </b-navbar-brand>
-        <!-- 햄버거 -->
+        햄버거
         <section class="utils">
           <b-btn variant="text btn-hbg" v-b-toggle.collapse-links>
             <div class="hbg">
@@ -17,16 +63,14 @@
               <span class="line"></span>
             </div>
           </b-btn>
-        </section>
-      </b-container>
-    </b-navbar>
-    <div class="position-relative">
+        </section> -->
+    <div class="collapse-warp">
       <b-collapse id="collapse-links" class="px-0" v-model="visible">
         <ul class="list-links flex-column">
           <li v-for="(link, i) in links" :key="i">
             <router-link
               :to="link.path"
-              class="btn btn-text text-20 text-lg-32 text-left"
+              class="btn btn-text text-32 text-lg-40 text-left"
             >
               <div class="text-black-han">
                 {{ link.name }}
@@ -36,12 +80,16 @@
         </ul>
       </b-collapse>
     </div>
-  </div>
+  </nav>
 </template>
 
 <script>
 export default {
   props: {
+    onScrolled: {
+      type: Boolean,
+      default: false,
+    },
     auth: {
       type: [String, Boolean],
       default: false,
@@ -78,6 +126,9 @@ export default {
     path() {
       return this.$route.path;
     },
+    mainActive() {
+      return this.path === "/" && this.onScrolled;
+    },
   },
   watch: {
     path(n) {
@@ -89,14 +140,19 @@ export default {
 
 <style lang="scss" scoped>
 #gnb {
-  padding: 0.5rem 0 1rem;
+  // padding: 0.5rem 0 1rem;
+  padding: 0;
   position: fixed;
-  top: 0;
+  width: 100%;
+  max-width: 100vw;
+  // top: 0;
+  transition: transform 0.3s $default-ease;
   left: 0;
   z-index: 3000;
   width: 100%;
   max-width: 100vw;
-  background-color: white;
+  background-color: rgba($color: #fff, $alpha: 0.3);
+  backdrop-filter: blur(6px);
   .navbar {
     padding: 0 1rem;
   }
@@ -107,17 +163,27 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    .letter {
+      // mix-blend-mode: difference;
+    }
+    &:hover {
+      color: $primary;
+    }
     img {
       width: 200px;
     }
   }
-
+  .collapse-warp {
+    position: relative;
+  }
   #collapse-links {
+    background-color: white;
     position: absolute;
-    top: 1rem;
+    top: 0;
+    // top: 1rem;
     left: 0;
     width: 100%;
-    background-color: white;
+    // background-color: white;
     z-index: 2000;
     .list-links {
       display: flex;
@@ -126,7 +192,8 @@ export default {
       justify-content: space-around;
       align-items: stretch;
       margin: 0;
-      border-top: 1px solid $black;
+      padding: 0;
+      // border-top: 1px solid $black;
       border-bottom: 1px solid $black;
       @media (max-width: $breakpoint-md) {
         flex-direction: column;
@@ -137,7 +204,7 @@ export default {
         white-space: nowrap;
         // text-align: center;
         a {
-          padding: 0.75rem 2rem;
+          padding: 0.5rem 1rem;
           transition: all 0.2s;
           border-radius: 0;
           width: 100%;
@@ -183,7 +250,7 @@ export default {
     }
   }
   &.not-collapsed {
-    background-color: white;
+    // background-color: white;
     .line {
       width: 28px;
       top: 50%;

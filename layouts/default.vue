@@ -1,27 +1,27 @@
 <template>
   <div id="app">
-    <global-nav :auth="auth" />
+    <global-nav :onScrolled="onScrolled" :auth="auth" />
     <!-- 내용 -->
-    <main id="main">
+    <main id="main" :class="{ 'is-main': path === '/' }">
       <!-- <transition> -->
-      <NuxtChild :onScrolled="onScrolled" />
+      <NuxtChild :scrollY="scrollY" :onScrolled="onScrolled" />
       <!-- </transition> -->
     </main>
-    <!-- <btn-floating
+    <btn-floating
       :position="{
-        bottom: '2.5rem',
+        bottom: onScrolled ? '2.5rem' : '-4rem',
         right: '1.5rem',
       }"
-      variant="primary text-white"
-      @click="linkTo('https://www.instagram.com/gongjusalon/')"
+      variant="sub-2 text-white"
+      @click="$router.push('/pre-register')"
     >
       <template #content>
-        <i class="icon icon-instagram" />
-        <span class="mx-1 fw-700 text-133 text-md-14">CONTACT</span>
+        <span class="mx-1 fw-700 text-15 text-md-16">사전등록 하러가기</span>
+        <i class="icon icon-right-big" />
       </template>
-    </btn-floating> -->
-    <!-- footer -->
+    </btn-floating>
 
+    <!-- footer -->
     <global-footer />
   </div>
 </template>
@@ -31,12 +31,16 @@ export default {
   name: "default",
   data() {
     return {
+      scrollY: 0,
       onScrolled: false,
     };
   },
   computed: {
     auth() {
       return this.$store.getters.getUser;
+    },
+    path() {
+      return this.$route.path;
     },
     routeName() {
       return this.$route.name;
@@ -166,6 +170,7 @@ export default {
     },
     handleScroll(e) {
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      this.scrollY = scrollTop;
       if (scrollTop <= 50) {
         this.onScrolled = false;
       }
@@ -181,6 +186,9 @@ export default {
 // $gnb-height: 82px;
 #main {
   min-height: 100vh;
-  padding-top: 75.5px;
+  padding-top: 63px;
+  &.is-main {
+    padding-top: 0;
+  }
 }
 </style>
