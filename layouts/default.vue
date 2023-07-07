@@ -7,7 +7,7 @@
       <NuxtChild :scrollY="scrollY" :onScrolled="onScrolled" />
       <!-- </transition> -->
     </main>
-    <btn-floating
+    <!-- <btn-floating
       :position="{
         bottom: onScrolled ? '2.5rem' : '-4rem',
         right: '1.5rem',
@@ -19,10 +19,10 @@
         <span class="mx-1 fw-700 text-15 text-md-16">사전등록 하러가기</span>
         <i class="icon icon-right-big" />
       </template>
-    </btn-floating>
+    </btn-floating> -->
 
     <!-- footer -->
-    <global-footer />
+    <!-- <global-footer /> -->
   </div>
 </template>
 
@@ -142,7 +142,7 @@ export default {
       msg,
       opt = {
         id: "toast",
-        variant: "info",
+        variant: "primary",
         textVariant: "darkest",
       }
     ) {
@@ -186,9 +186,9 @@ export default {
 // $gnb-height: 82px;
 #main {
   min-height: 100vh;
-  padding-top: 63px;
+  padding: 0 0 120px;
   &.is-main {
-    padding-top: 0;
+    padding: 0;
   }
 }
 </style>

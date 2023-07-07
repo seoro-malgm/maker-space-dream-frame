@@ -1,4 +1,4 @@
-$white: #fff !default;
+$white: #ffffff !default;
 $gray-100: #f8f9fa !default;
 $gray-200: #e9ecef !default;
 $gray-300: #dee2e6 !default;
@@ -73,16 +73,11 @@ $colors: (
 ) !default;
 // scss-docs-end colors-map
 
-$primary: #11997c;
-$secondary: #9b7455;
-$third: #cc2055;
-$sub-1: #70c3ab;
-$sub-2: #f5b442;
-$sub-3: #efa9c5;
-$darkest: #121212;
+$primary: #d0df00;
+$darkest: #352f2d;
 $gray: #333;
 $light: #555;
-$lightest: #ddd;
+$lightest: #f5f3f2;
 $alert: #ff0a5c;
 
 $skeleton: #e7e7e7e7;
@@ -93,11 +88,6 @@ $transparent: transparent;
 $toast-max-width: 50px;
 $theme-colors: (
   "primary": $primary,
-  "secondary": $secondary,
-  "third": $third,
-  "sub-1": $sub-1,
-  "sub-2": $sub-2,
-  "sub-3": $sub-3,
   "darkest": $darkest,
   "gray": $gray,
   "light": $light,

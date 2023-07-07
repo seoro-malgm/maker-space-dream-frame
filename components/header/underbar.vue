@@ -45,7 +45,7 @@ export default {
       width: 120%;
       height: 35%;
       transform: translateX(-50%);
-      background-color: $sub-2;
+      background-color: $primary;
     }
     @each $color, $order in $theme-colors {
       &[variant="#{$color}"] {

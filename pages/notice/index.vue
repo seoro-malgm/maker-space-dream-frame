@@ -1,6 +1,8 @@
 <template>
-  <b-container fluid class="my-5">
-    <header-underbar title="FAQ" id="faq" variant="sub-2" />
+  <b-container>
+    <header class="text-center mt-4 mb-5">
+      <h1 class="text-24 text-md-48">공지사항</h1>
+    </header>
     <section class="mt-3">
       <template v-if="pending.items">
         <Loading />
@@ -29,7 +31,7 @@
                     <b-btn
                       block
                       variant="text p-0 d-flex align-items-start"
-                      v-b-toggle="`item-${i}`"
+                      to="/notice/1"
                     >
                       <span class="fw-700 text-15 text-md-20">
                         {{ item.title }}
@@ -37,18 +39,6 @@
                     </b-btn>
                   </b-col>
                 </b-row>
-
-                <b-collapse :id="`item-${i}`" accordion="faqs" role="tabpanel">
-                  <div class="p-3 bg-gray-200">
-                    <b-row>
-                      <b-col cols="10" offset="2">
-                        <p class="text-15 text-md-20">
-                          {{ item.content }}
-                        </p>
-                      </b-col>
-                    </b-row>
-                  </div>
-                </b-collapse>
               </li>
             </ul>
           </section>

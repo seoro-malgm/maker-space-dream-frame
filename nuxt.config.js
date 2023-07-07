@@ -6,7 +6,7 @@ export default {
   // ssr: true,
   // target: "server",
   head: {
-    title: "2023 디지털유산전",
+    title: "다다맵",
     htmlAttrs: {
       lang: "ko-KR",
     },
@@ -18,13 +18,13 @@ export default {
         hid: "title",
         name: "title",
         property: "title",
-        content: "2023 디지털유산전",
+        content: "다다맵",
       },
       {
         hid: "description",
         name: "description",
         property: "description",
-        content: "2023 디지털유산전",
+        content: "다다맵",
       },
       {
         name: "keyword",
@@ -41,7 +41,7 @@ export default {
         hid: "og:title",
         name: "og:title",
         property: "og:title",
-        content: "2023 디지털유산전",
+        content: "다다맵",
       },
       {
         hid: "og:description",
@@ -62,7 +62,7 @@ export default {
       {
         name: "og:site_name",
         property: "og:site_name",
-        content: "2023 디지털유산전",
+        content: "다다맵",
       },
 
       {
@@ -92,7 +92,7 @@ export default {
       {
         name: "twitter:title",
         hid: "twitter:title",
-        content: "2023 디지털유산전",
+        content: "다다맵",
       },
       // {
       //   name: "twitter:description",
@@ -113,30 +113,30 @@ export default {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap",
       },
-      {
-        rel: "apple-touch-icon",
-        sizes: "180x180",
-        href: "/apple-touch-icon.png",
-      },
-      {
-        rel: "icon",
-        sizes: "32x32",
-        href: "/favicon-32x32.png",
-      },
-      {
-        rel: "icon",
-        sizes: "16x16",
-        href: "/favicon-16x16.png",
-      },
-      {
-        rel: "manifest",
-        href: "/site.webmanifest",
-      },
-      {
-        rel: "mask-icon",
-        color: "#5bbad5",
-        href: "/safari-pinned-tab.svg",
-      },
+      // {
+      //   rel: "apple-touch-icon",
+      //   sizes: "180x180",
+      //   href: "/apple-touch-icon.png",
+      // },
+      // {
+      //   rel: "icon",
+      //   sizes: "32x32",
+      //   href: "/favicon-32x32.png",
+      // },
+      // {
+      //   rel: "icon",
+      //   sizes: "16x16",
+      //   href: "/favicon-16x16.png",
+      // },
+      // {
+      //   rel: "manifest",
+      //   href: "/site.webmanifest",
+      // },
+      // {
+      //   rel: "mask-icon",
+      //   color: "#5bbad5",
+      //   href: "/safari-pinned-tab.svg",
+      // },
     ],
   },
   css: [
@@ -152,6 +152,7 @@ export default {
     { src: "~/plugins/firebase.js" },
     { src: "~/plugins/carousel.js", mode: "client" },
     { src: "~/plugins/intersectionObserver.client.js", mode: "client" },
+    { src: "~/plugins/googleMaps.js", mode: "client" },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -187,6 +188,7 @@ export default {
     "vue2-editor/nuxt",
     "@nuxtjs/style-resources",
   ],
+  transpile: [/^vue2-google-maps($|\/)/],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
