@@ -73,12 +73,21 @@ $colors: (
 ) !default;
 // scss-docs-end colors-map
 
-$primary: #d0df00;
+$primary: #eb6d8e;
 $darkest: #352f2d;
 $gray: #333;
 $light: #555;
 $lightest: #f5f3f2;
 $alert: #ff0a5c;
+$contest-pink: #eb6d8e;
+$contest-yellow: #fdf7c5;
+$contest-blue: #9fc7e0;
+$contest-black: #393332;
+
+$supporters-orange: #f18d00;
+$supporters-green: #00a458;
+$supporters-white: #ffffff;
+$supporters-black: #201515;
 
 $skeleton: #e7e7e7e7;
 // $naver: #1ec800;
@@ -121,6 +130,16 @@ $theme-colors: (
   "gray-800": $gray-800,
   "gray-900": $gray-900,
   "transparent": $transparent,
+
+  "contest-pink": $contest-pink,
+  "contest-yellow": $contest-yellow,
+  "contest-blue": $contest-blue,
+  "contest-black": $contest-black,
+
+  "supporters-orange": $supporters-orange,
+  "supporters-green": $supporters-green,
+  "supporters-white": $supporters-white,
+  "supporters-black": $supporters-black,
 ) !default;
 
 // variant
@@ -217,6 +236,7 @@ a.btn {
     height: 50%;
     background-color: $primary;
   }
+  // transition: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-$default-ease: cubic-bezier(0.35, 0.05, 0.45, 0.98);
+$default-ease: cubic-bezier(0.19, 1, 0.22, 1);

@@ -74,3 +74,31 @@ $icons: ();
     height: auto;
   }
 }
+@keyframes loop-right {
+  0% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(12px);
+  }
+}
+
+@keyframes loop-left {
+  0% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(-12px);
+  }
+}
+
+.btn {
+  .icon.icon-right-hand {
+    animation: loop-right 0.4s $default-ease 0s infinite alternate forwards;
+    // transition: transform 0.2s;
+  }
+  .icon.icon-left-hand {
+    animation: loop-left 0.4s $default-ease 0s infinite alternate forwards;
+    // transition: transform 0.2s;
+  }
+}

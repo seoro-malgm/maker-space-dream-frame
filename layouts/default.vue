@@ -1,25 +1,23 @@
 <template>
   <div id="app">
-    <global-nav :onScrolled="onScrolled" :auth="auth" />
     <!-- 내용 -->
     <main id="main" :class="{ 'is-main': path === '/' }">
       <!-- <transition> -->
-      <NuxtChild :scrollY="scrollY" :onScrolled="onScrolled" />
+      <NuxtChild :scrollY="scrollY" :onScrolled="onScrolled" :auth="auth" />
       <!-- </transition> -->
     </main>
-    <!-- <btn-floating
+    <btn-floating
       :position="{
-        bottom: onScrolled ? '2.5rem' : '-4rem',
+        bottom: onScrolled ? '2rem' : '-4rem',
         right: '1.5rem',
       }"
-      variant="sub-2 text-white"
-      @click="$router.push('/pre-register')"
+      variant="contest-black text-white"
+      @click="scrollTo(0, 0)"
     >
       <template #content>
-        <span class="mx-1 fw-700 text-15 text-md-16">사전등록 하러가기</span>
-        <i class="icon icon-right-big" />
+        <span class="mx-1 fw-700 text-15 text-md-16">맨 위로</span>
       </template>
-    </btn-floating> -->
+    </btn-floating>
 
     <!-- footer -->
     <!-- <global-footer /> -->
@@ -179,6 +177,9 @@ export default {
         this.onScrolled = true;
       }
     },
+    scrollTo(x, y) {
+      window.scrollTo(x, y);
+    },
   },
 };
 </script>
@@ -186,7 +187,9 @@ export default {
 // $gnb-height: 82px;
 #main {
   min-height: 100vh;
-  padding: 0 0 120px;
+  // padding: 0 0 120px;
+  max-width: 100vw;
+  overflow-x: hidden;
   &.is-main {
     padding: 0;
   }

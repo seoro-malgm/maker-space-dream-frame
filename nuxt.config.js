@@ -1,12 +1,12 @@
 require("dotenv").config();
-// import head from "./utils/head.json";
+// const fs = require("fs");
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   // ssr: true,
   // target: "server",
   head: {
-    title: "다다맵",
+    title: "메이커스 꿈:틀",
     htmlAttrs: {
       lang: "ko-KR",
     },
@@ -18,13 +18,13 @@ export default {
         hid: "title",
         name: "title",
         property: "title",
-        content: "다다맵",
+        content: "메이커스 꿈:틀",
       },
       {
         hid: "description",
         name: "description",
         property: "description",
-        content: "다다맵",
+        content: "메이커스 꿈:틀",
       },
       {
         name: "keyword",
@@ -41,7 +41,7 @@ export default {
         hid: "og:title",
         name: "og:title",
         property: "og:title",
-        content: "다다맵",
+        content: "메이커스 꿈:틀",
       },
       {
         hid: "og:description",
@@ -62,7 +62,7 @@ export default {
       {
         name: "og:site_name",
         property: "og:site_name",
-        content: "다다맵",
+        content: "메이커스 꿈:틀",
       },
 
       {
@@ -92,7 +92,7 @@ export default {
       {
         name: "twitter:title",
         hid: "twitter:title",
-        content: "다다맵",
+        content: "메이커스 꿈:틀",
       },
       // {
       //   name: "twitter:description",
@@ -170,10 +170,7 @@ export default {
       },
     },
   },
-  // buildDir: "client",
-  generate: {
-    dir: "dist",
-  },
+
   styleResources: {
     scss: ["~/assets/styles/variables.scss"],
   },
@@ -205,6 +202,7 @@ export default {
   env: {
     BASE_URL: process.env.BASE_URL || "http://localhost:3000",
     API_KEY: process.env.API_KEY,
+    FIREBASE_PROJECT_NAME: process.env.FIREBASE_PROJECT_NAME,
     PROJECT_ID: process.env.PROJECT_ID,
     APP_ID: process.env.APP_ID,
     AUTH_DOMAIN: process.env.AUTH_DOMAIN,
@@ -216,4 +214,31 @@ export default {
     // NAVER_CLIENT_ID: process.env.NAVER_CLIENT_ID,
     // GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
   },
+  // buildDir: "client",
+  generate: {
+    dir: "dist",
+    // async done({ nuxt }) {
+    //   console.error("generate done() function called!");
+    // .env 파일에서 환경 변수를 가져옴
+    // const firebaseProjectName = process.env.FIREBASE_PROJECT_NAME;
+
+    // // .firebaserc 파일 읽기
+    // const firebasercPath = ".firebaserc";
+    // const firebasercData = JSON.parse(fs.readFileSync(firebasercPath));
+
+    // // 프로젝트 이름 업데이트
+    // firebasercData.projects.default = firebaseProjectName;
+
+    // // .firebaserc 파일 업데이트
+    // fs.writeFileSync(firebasercPath, JSON.stringify(firebasercData, null, 2));
+    // console.table("projects:", firebasercData.projects.default);
+    // },
+  },
+  // process: {
+  //   on:
+  //     ("unhandledRejection",
+  //     (err) => {
+  //       console.error("Unhandled Promise Rejection:", err);
+  //     }),
+  // },
 };
