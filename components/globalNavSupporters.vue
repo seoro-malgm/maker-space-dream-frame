@@ -6,23 +6,12 @@
         variant="text p-0"
         class="logo"
         :style="{
-          maxWidth: onScrolled ? '50vw' : 'unset',
-          width: onScrolled ? '300px' : '100%',
-          top: onScrolled ? '0rem' : '6rem',
-          transform: `translate(-50%, ${onScrolled ? '0.5rem' : '0'})`,
+          opacity: onScrolled ? 1 : 0,
+          transform: `translate(-50%, ${onScrolled ? '2.5rem' : '0'})`,
         }"
         @click="scrollTo(0, 0)"
       >
-        <svg-contest-logo />
-        <span
-          class="title text-20 text-lg-24"
-          :style="{
-            opacity: onScrolled ? 0 : 1,
-            transform: `translate(-50%, 0rem)`,
-          }"
-        >
-          당신만의 아름다운 공주를 만들어주세요
-        </span>
+        <img :src="require('@/assets/images/letter-supporters.png')" alt="" />
       </b-btn>
     </b-navbar>
   </header>
@@ -75,25 +64,21 @@ export default {
   .logo {
     position: fixed;
     left: 50%;
+    text-align: center;
     transition: all 0.3s $default-ease;
-    max-width: 96vw;
-
-    @media (max-width: $breakpoint-lg) {
-      margin-top: 64px;
+    width: 200px;
+    max-width: 50vw;
+    margin-top: 96px;
+    img {
+      width: 100%;
     }
   }
-  .title {
-    position: absolute;
-    display: inline-block;
-    white-space: nowrap;
-    left: 50%;
-    bottom: -30%;
-    color: $contest-black;
-    @media (min-width: $breakpoint-lg) {
-      bottom: 15%;
+  @media (min-width: $breakpoint-lg) {
+    .logo {
+      margin-top: 0;
+      width: 300px;
+      max-width: 60vw;
     }
-    transition: all 0.3s $default-ease;
-    font-weight: 900;
   }
 }
 </style>

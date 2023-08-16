@@ -32,10 +32,10 @@
                 메이커스 꿈:틀 인스타그램 릴스 공모전
               </h2>
               <p class="text-15 text-md-18">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Perspiciatis reprehenderit fugiat qui doloremque, blanditiis at
-                nisi expedita enim quisquam necessitatibus esse velit voluptatum
-                vero hic sunt in nostrum iure voluptate.
+                공주시를 더 공주시답게 만들기 위해서 특별한 릴스 영상 공모전을
+                개최합니다. 공주시 문화&관광 자원들을 활용하여, 춤 영상, vlog,
+                여행 꿀팁, 공주 정보 요약, 공주 음식먹방등 다양하고 창의적인
+                주제로 <strong>공주의 모습을 만들어보세요~!</strong>
               </p>
             </b-col>
             <b-col cols="12" md="7">
@@ -43,7 +43,7 @@
                 공모기간
               </h2>
               <p class="text-28 text-md-48 fw-800 lh-100 text-suite">
-                2023.8.10.(목) ~ 10.31.(화)
+                2023.8.14.(월) ~ 11.03.(금)
               </p>
             </b-col>
           </b-row>
@@ -75,7 +75,7 @@
             시상
             <template #desc>
               <span class="text-20 text-md-28 mt-1 mb-0 fw-800"
-                >총 700만원 상당</span
+                >총 600만원 상당</span
               >
             </template>
           </section-title>
@@ -149,7 +149,7 @@
                   </b-btn>
                 </header>
 
-                <b-collapse :id="`faq-${i}`" accordion="faqs" role="tabpanel">
+                <b-collapse :id="`faq-${i}`" role="tabpanel">
                   <div class="p-3 border-top border-contest-pink">
                     <p class="text-15 text-md-20 pl-2">A. {{ item.content }}</p>
                   </div>
@@ -162,8 +162,19 @@
       <section class="section">
         <b-container>
           <section-title> 수상작 </section-title>
-          <article>
-            <div class="text-13 text-md-15">준비중입니다</div>
+          <article class="position-relative">
+            <b-row class="mx-n2">
+              <b-col cols="4" v-for="(item, i) in 3" :key="i" class="px-2">
+                <div class="bg-img ratio-100 bg-contest-pink mb-2" />
+              </b-col>
+            </b-row>
+            <div
+              class="text-16 text-md-18 position-absolute fw-700 text-center"
+              :style="{ top: '50%', left: '50%', transform: 'translate(-50%)' }"
+            >
+              준비중입니다 <br />
+              (11월 말일 공개 예정)
+            </div>
           </article>
         </b-container>
       </section>
@@ -206,11 +217,11 @@
         <b-container>
           <section-title> 주최 </section-title>
           <article>
-            <b-row align-v="center">
+            <b-row align-v="center" class="mx-md-n5">
               <b-col
                 cols="4"
-                md="2"
-                class="text-center"
+                md="3"
+                class="text-center px-md-5"
                 v-for="(item, i) in companies"
                 :key="i"
               >
@@ -235,7 +246,13 @@
         <b-container>
           <section-title> 문의처 </section-title>
           <article>
-            <div class="text-13 text-md-15">준비중입니다</div>
+            <div class="text-13 text-md-15">
+              인스타그램 공식계정
+              <strong>{{ profile?.sns }}</strong>
+              으로 DM문의 혹은
+              <strong>{{ profile?.email }}</strong>
+              으로 메일 문의
+            </div>
           </article>
         </b-container>
       </section>
@@ -284,6 +301,10 @@ export default {
   },
   data() {
     return {
+      profile: {
+        email: "princessmaker2023@gmail.com",
+        sns: "@princessmaker2023",
+      },
       pending: {
         getItems: false,
       },
@@ -319,17 +340,24 @@ export default {
         {
           name: "예시",
           content:
-            " 공주를 배경으로 한 춤 영상, 공주 VLOG, 공주 여행 꿀팁, 공주 정보 요약, 공주 음식먹방 등",
+            "공주를 배경으로 한 춤 영상, 공주 VLOG, 공주 여행 꿀팁, 공주 정보 요약, 공주 음식먹방 등",
         },
         {
           name: "참여 대상 조건",
           content: "나이불문, 지역불문, 개인 혹은 2인 이상의 팀 구성 참여",
         },
         {
+          name: "평가 기준",
+          content:
+            "영상 좋아요 수, 공주와 관련성, 창의성, 퀄리티 각각 25% 비율로 평가",
+        },
+
+        {
           name: "시상 및 발표",
           content:
-            "11월 말일, 신청자들 한에서 업로드한 인스타그램 계정으로 개별 DM 연락하여 발표 예정",
+            "11월 30일, 신청자들 한에서 업로드한 인스타그램 계정으로 개별 DM 연락하여 발표 예정",
         },
+
         {
           name: "저작권 귀속",
           content: "공주시 공주대학교 산학협력단",
@@ -362,23 +390,38 @@ export default {
       faqs: [
         {
           type: "faq",
-          title: "사전등록은 언제 시작되나요?",
-          content: "7월중 예정입니다",
+          title: "어떻게 참여해야 하나요?",
+          content:
+            "개인 인스타그램계정으로 참여방법대로 릴스영상을 업로드하시면 참여됩니다! 나이불문, 지역불문, 개인 혹은 2인 이상의 팀 구성 참여가 가능합니다",
         },
         {
           type: "faq",
-          title: "사전등록은 언제 시작되나요?",
-          content: "7월중 예정입니다",
+          title: "참여자 조건이 따로 있나요?",
+          content:
+            "나이불문, 지역불문, 개인 혹은 2인 이상의 팀 구성 참여가 가능합니다. 참! 인스타그램 계정이 있어야만 참여 가능합니다!",
         },
         {
           type: "faq",
-          title: "사전등록은 언제 시작되나요?",
-          content: "7월중 예정입니다",
+          title: "언제 수상이 발표되나요?",
+          content: "11월 말일에 수상 인원에게 개별연락을 통해 발표됩니다.",
         },
         {
           type: "faq",
-          title: "사전등록은 언제 시작되나요?",
-          content: "7월중 예정입니다",
+          title: "공모전 시상작은 어디에 사용되나요?",
+          content:
+            "공주시청과 공주대학교 산학협력단에 저작권이 귀속되며 공주시청 홍보팀에서 활용할 수 있습니다.",
+        },
+        {
+          type: "faq",
+          title: "시상식은 어떻게 이루어지나요?",
+          content:
+            "11월 말일에 시상 발표를 개별적으로 하고, 시상식 내용을 안내합니다. *시상식에 참여해야만 수여가 가능합니다.",
+        },
+        {
+          type: "faq",
+          title: "평가 기준이 어떻게 되나요?",
+          content:
+            "영상 좋아요 수, 공주와 관련성, 창의성, 퀄리티 각각 25% 비율로 평가합니다.",
         },
       ],
 
@@ -393,6 +436,7 @@ export default {
         },
         {
           name: "공주대학교 산학협력관",
+          image: "ci-kiucf.svg",
         },
       ],
 

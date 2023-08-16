@@ -1,6 +1,9 @@
 <template>
   <div class="mb-4 wrap">
-    <h3 class="section-title text-24 text-md-32 px-4 pt-1 pb-2 mr-2">
+    <h3
+      class="section-title text-24 text-md-32 px-4 pt-1 pb-2 mr-2"
+      :class="titleClass"
+    >
       <slot></slot>
     </h3>
     <slot name="desc"> </slot>
@@ -8,7 +11,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    titleClass: {
+      type: String,
+      default: "",
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
