@@ -33,9 +33,8 @@
               </h2>
               <p class="text-15 text-md-18">
                 공주시를 더 공주시답게 만들기 위해서 특별한 릴스 영상 공모전을
-                개최합니다. 공주시 문화&관광 자원들을 활용하여, 춤 영상, vlog,
-                여행 꿀팁, 공주 정보 요약, 공주 음식먹방등 다양하고 창의적인
-                주제로 <strong>공주의 모습을 만들어보세요~!</strong>
+                개최합니다. 공주시 문화&관광 자원들을 활용하여, 다양하고
+                창의적인 주제로 <strong>공주의 모습을 만들어보세요~!</strong>
               </p>
             </b-col>
             <b-col cols="12" md="7">
@@ -54,7 +53,7 @@
         <b-container>
           <section-title id="infos"> 공모전 개요 </section-title>
           <article>
-            <div class="mb-3" v-for="(item, i) in infos" :key="i">
+            <div class="mb-4" v-for="(item, i) in infos" :key="i">
               <b-row>
                 <b-col cols="12" md="2">
                   <h4 class="text-18 text-md-22">{{ item.name }}</h4>
@@ -74,9 +73,9 @@
           <section-title id="infos">
             시상
             <template #desc>
-              <span class="text-20 text-md-28 mt-1 mb-0 fw-800"
-                >총 600만원 상당</span
-              >
+              <span class="text-20 text-md-28 mt-1 mb-0 fw-800">
+                총 600만원 상당
+              </span>
             </template>
           </section-title>
           <article>
@@ -102,21 +101,26 @@
             <ul>
               <li class="text-16 text-md-20 mb-3">
                 <span class="circle-number">1</span> 인스타그램 릴스
-                양식의(1080*1920px) 크기로 긴 1분 이하로 영상을 제작한다
+                양식의(1080*1920px) 크기. 1분 이하의 영상을 제작한다.
               </li>
               <li class="text-16 text-md-20 mb-3">
-                <span class="circle-number">2</span> 해시태그
-                <strong>#프린세스메이커공모전 #공주시 #촬영혹은주제장소</strong>
-                (신관동, 신풍면, 공산성, 둔치공원, 황새바위, 공주대학교 등)를
-                추가한다
+                <span class="circle-number">2</span>
+                해시태그 빠밤!
+                <strong>#프린세스메이커공모전 #공주시 #장소 #행사</strong>를
+                추가한다.
+                <div>
+                  EX)
+                  #프린세스메이커공모전#공주시#공주시맛집#공주시핫플#대백제전#신관동#제민천청년기업탐방
+                </div>
               </li>
               <li class="text-16 text-md-20 mb-3">
-                <span class="circle-number">3</span> 공모 전용 인스타그램계정
-                <strong>@계정명</strong> 언급
+                <span class="circle-number">3</span>
+                공모 전용 인스타그램계정
+                <strong>{{ profile.sns }}</strong> 언급
               </li>
               <li class="text-16 text-md-20 mb-3">
-                <span class="circle-number">4</span>해시태그와 계정을 모두 추가
-                및 언급했다면, 업로드하여 참여 완료!
+                <span class="circle-number">4</span> 해시태그와 계정을 모두 추가
+                및 언급 했다면, 업로드하는 것으로 참여 완료!
               </li>
             </ul>
           </article>
@@ -200,7 +204,7 @@
                 <b-btn
                   variant="contest-blue w-100"
                   pill
-                  href="https://www.instagram.com/gong__star2021/"
+                  href="https://www.instagram.com/princessmaker2023/"
                   target="_blank"
                 >
                   <span class="text-18 text-md-30"
@@ -338,26 +342,27 @@ export default {
             "공주시 문화&관광 자원들을 활용하여 창의적이고 재밌는 릴스 영상 제작",
         },
         {
-          name: "예시",
+          name: "공모 분야",
           content:
-            "공주를 배경으로 한 춤 영상, 공주 VLOG, 공주 여행 꿀팁, 공주 정보 요약, 공주 음식먹방 등",
+            "공주를 배경으로 한 코레오그래피, 공주 V-LOG, 공주 여행 꿀팁, 공주 생생 정보, 공주 음식 먹방 등의 영상",
         },
         {
           name: "참여 대상 조건",
-          content: "나이불문, 지역불문, 개인 혹은 2인 이상의 팀 구성 참여",
+          content: "나이 불문, 지역 불문, 개인 혹은 2인 이상의 팀 구성 참여",
         },
         {
           name: "평가 기준",
           content:
-            "영상 좋아요 수, 공주와 관련성, 창의성, 퀄리티 각각 25% 비율로 평가",
+            "공주와 관련성, 영상 좋아요 수, 창의성, 퀄리티 각각 25% 비율로 평가",
         },
-
         {
-          name: "시상 및 발표",
-          content:
-            "11월 30일, 신청자들 한에서 업로드한 인스타그램 계정으로 개별 DM 연락하여 발표 예정",
+          name: "수상자 선정",
+          content: "신청자에 한하여, 업로드한 인스타그램 계정으로 DM 개별 통보",
         },
-
+        {
+          name: "시상식",
+          content: "11월 30일",
+        },
         {
           name: "저작권 귀속",
           content: "공주시 공주대학교 산학협력단",
@@ -392,36 +397,37 @@ export default {
           type: "faq",
           title: "어떻게 참여해야 하나요?",
           content:
-            "개인 인스타그램계정으로 참여방법대로 릴스영상을 업로드하시면 참여됩니다! 나이불문, 지역불문, 개인 혹은 2인 이상의 팀 구성 참여가 가능합니다",
+            "참여 안내에 따라, 개인 인스타그램 계정으로 릴스 영상을 업로드하시면 됩니다!",
         },
         {
           type: "faq",
           title: "참여자 조건이 따로 있나요?",
           content:
-            "나이불문, 지역불문, 개인 혹은 2인 이상의 팀 구성 참여가 가능합니다. 참! 인스타그램 계정이 있어야만 참여 가능합니다!",
+            "나이 불문, 지역 불문,개인 혹은 2인 이상의 팀 구성하여 참여가 가능합니다. 참! 인스타그램 계정이 없다면 참여 할 수 없겠네요.",
         },
         {
           type: "faq",
-          title: "언제 수상이 발표되나요?",
-          content: "11월 말일에 수상 인원에게 개별연락을 통해 발표됩니다.",
+          title: "어떻게 수상 여부를 알 수 있나요?",
+          content:
+            "11월 말, 선별 과정을 거쳐 수상자에게 개별 연락을 통해 발표됩니다.",
         },
         {
           type: "faq",
           title: "공모전 시상작은 어디에 사용되나요?",
           content:
-            "공주시청과 공주대학교 산학협력단에 저작권이 귀속되며 공주시청 홍보팀에서 활용할 수 있습니다.",
+            "공주 시청과 공주대학교 산학협력단에 저작권이 귀속되며, 공주 시청 홍보팀에서 활용할 수 있습니다.",
         },
         {
           type: "faq",
           title: "시상식은 어떻게 이루어지나요?",
           content:
-            "11월 말일에 시상 발표를 개별적으로 하고, 시상식 내용을 안내합니다. *시상식에 참여해야만 수여가 가능합니다.",
+            "11월 말, 수상 발표를 개별적으로 전달함과 동시에 시상식 내용을 안내해 드리도록 하겠습니다. *시상식에 참여해야만 수여가 가능합니다.",
         },
         {
           type: "faq",
           title: "평가 기준이 어떻게 되나요?",
           content:
-            "영상 좋아요 수, 공주와 관련성, 창의성, 퀄리티 각각 25% 비율로 평가합니다.",
+            "공주와의 관련성, 영상 좋아요 수, 창의성, 퀄리티 각각 25% 비율로 평가합니다.",
         },
       ],
 
