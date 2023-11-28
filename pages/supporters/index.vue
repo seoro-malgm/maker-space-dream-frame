@@ -44,10 +44,8 @@
                 메이커스 꿈:틀 공주시 문화발굴단 서포터즈
               </h2>
               <p class="text-15 text-md-18">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel
-                magnam sapiente nemo culpa architecto sed delectus aut doloribus
-                nam? Itaque aliquid nihil consectetur enim eveniet quia minima
-                ut sequi a?
+                생생한 문화가 싱그러운 사회를 만든다. <br />
+                공주에 뿌리내린 소중한 우리 문화가 시들지 않도록 도와주세요!
               </p>
             </b-col>
             <b-col cols="12" md="5">
@@ -127,7 +125,7 @@
                   <h6 class="text-20 text-md-32">[공주 문화 가이드 만들기]</h6>
                   <p class="text-15 text-md-18">
                     나만 알고 싶은 공주시의 문화, 장소, 사람을 조사하여 제공되는
-                    ‘가이드 라인’에 맞게 정리한 후 제출한다.
+                    ‘가이드 라인’에 맞게 정리한 후 제출
                   </p>
                 </div>
               </b-col>
@@ -143,16 +141,16 @@
             <p class="text-15 text-md-18">
               위 내용 택 1. 아래 가이드라인에 맞는 ‘원고 작성’ 후
               <a
-                href="https://dada-lab.web.app/"
+                href="https://dada-magazine.com/"
                 target="_blank"
                 class="btn mx-2 px-3 py-1 btn-supporters-orange text-supporters-black fw-700 rounded-pill"
                 ><i class="icon icon-paper-plane"></i> 다재다능매거진</a
               >에 투고 다재다능매거진 사이트 주소:
               <a
-                href="https://dada-lab.web.app/"
+                href="https://dada-magazine.com/"
                 target="_blank"
                 class="text-white"
-                >https://dada-lab.web.app/</a
+                >https://dada-magazine.com/</a
               >
             </p>
           </div>
@@ -273,6 +271,16 @@
                 </template>
               </b-col>
             </b-row>
+          </article>
+        </b-container>
+      </section>
+      <section class="section">
+        <b-container>
+          <section-title titleClass="bg-supporters-orange border-0">
+            문의처
+          </section-title>
+          <article>
+            <p class="text-15 text-md-18">princessmaker2023@gmail.com</p>
           </article>
         </b-container>
       </section>

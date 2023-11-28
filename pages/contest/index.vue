@@ -8,15 +8,12 @@
       <b-container fluid>
         <b-nav class="nav-links" v-b-scrollspy>
           <template v-for="link in links">
-            <b-nav-item
-              v-if="link?.name"
-              :key="link.id"
-              class="link-item p-0"
-              :href="`#${link.path}`"
-            >
+            <b-nav-item v-if="link?.name" :key="link.id" class="link-item p-0" :href="`#${link.path}`">
               <span class="text-13 text-md-18"> {{ link.name }}</span>
             </b-nav-item>
-            <template v-else> <div></div> </template>
+            <template v-else>
+              <div></div>
+            </template>
           </template>
         </b-nav>
       </b-container>
@@ -82,8 +79,7 @@
             <div class="mb-3" v-for="(item, i) in prices" :key="i">
               <div class="d-flex align-items-center">
                 <h4
-                  class="text-20 text-md-30 border rounded-pill d-inline-block border-contest-pink px-3 text-contest-pink"
-                >
+                  class="text-20 text-md-30 border rounded-pill d-inline-block border-contest-pink px-3 text-contest-pink">
                   {{ item.name }}
                 </h4>
                 <p class="text-20 text-md-30 ml-3">
@@ -136,17 +132,9 @@
           </section-title>
           <div>
             <ul class="border-top border-contest-pink">
-              <li
-                v-for="(item, i) in faqs"
-                :key="i"
-                class="border-bottom border-contest-pink"
-              >
+              <li v-for="(item, i) in faqs" :key="i" class="border-bottom border-contest-pink">
                 <header class="py-3">
-                  <b-btn
-                    block
-                    variant="text p-0 d-flex align-items-start"
-                    v-b-toggle="`faq-${i}`"
-                  >
+                  <b-btn block variant="text p-0 d-flex align-items-start" v-b-toggle="`faq-${i}`">
                     <span class="fw-700 text-15 text-md-20">
                       Q. {{ item.title }}
                     </span>
@@ -168,17 +156,17 @@
           <section-title> 수상작 </section-title>
           <article class="position-relative">
             <b-row class="mx-n2">
-              <b-col cols="4" v-for="(item, i) in 3" :key="i" class="px-2">
-                <div class="bg-img ratio-100 bg-contest-pink mb-2" />
+              <b-col cols="4" v-for="(item, i) in winners" :key="i" class="px-2 position-relative">
+                <div :class="`prize prize-${item.prize}`" v-if="item?.prize">
+                  {{ item.prize }}등</div>
+                <a :href="item?.link" target="_blank">
+                  <div class="bg-img ratio-100 mb-2" :style="{
+                    backgroundImage: `url(${require(`@/assets/images/winners/${i}.png`)})`
+                  }" />
+                </a>
+
               </b-col>
             </b-row>
-            <div
-              class="text-16 text-md-18 position-absolute fw-700 text-center"
-              :style="{ top: '50%', left: '50%', transform: 'translate(-50%)' }"
-            >
-              준비중입니다 <br />
-              (11월 말일 공개 예정)
-            </div>
           </article>
         </b-container>
       </section>
@@ -188,27 +176,17 @@
           <article>
             <b-row>
               <b-col cols="12" md="6" class="mb-3 mb-md-0">
-                <b-btn
-                  variant="contest-blue w-100"
-                  pill
-                  href="https://www.instagram.com/explore/tags/프린세스메이커공모전/"
-                  target="_blank"
-                >
-                  <span class="text-18 text-md-30"
-                    >릴스 참가작 보러가기
+                <b-btn variant="contest-blue w-100" pill href="https://www.instagram.com/explore/tags/프린세스메이커공모전/"
+                  target="_blank">
+                  <span class="text-18 text-md-30">릴스 참가작 보러가기
                     <i class="icon icon-right-hand"></i>
                   </span>
                 </b-btn>
               </b-col>
               <b-col cols="12" md="6">
-                <b-btn
-                  variant="contest-blue w-100"
-                  pill
-                  href="https://www.instagram.com/princessmaker2023/"
-                  target="_blank"
-                >
-                  <span class="text-18 text-md-30"
-                    >공모전 인스타 계정 보기
+                <b-btn variant="contest-blue w-100" pill href="https://www.instagram.com/princessmaker2023/"
+                  target="_blank">
+                  <span class="text-18 text-md-30">공모전 인스타 계정 보기
                     <i class="icon icon-right-hand"></i>
                   </span>
                 </b-btn>
@@ -222,19 +200,9 @@
           <section-title> 주최 </section-title>
           <article>
             <b-row align-v="center" class="mx-md-n5">
-              <b-col
-                cols="4"
-                md="3"
-                class="text-center px-md-5"
-                v-for="(item, i) in companies"
-                :key="i"
-              >
+              <b-col cols="4" md="3" class="text-center px-md-5" v-for="(item, i) in companies" :key="i">
                 <template v-if="item?.image">
-                  <img
-                    :src="require(`@/assets/svg/${item.image}`)"
-                    :alt="item?.name"
-                    class="w-100"
-                  />
+                  <img :src="require(`@/assets/svg/${item.image}`)" :alt="item?.name" class="w-100" />
                 </template>
                 <template v-else>
                   <strong class="fw-800 text-suite">
@@ -262,21 +230,16 @@
       </section>
       <!-- 배경 -->
       <div id="symbols">
-        <img
-          :src="require('@/assets/images/symbol-contest.png')"
-          alt="배경 심볼"
-          v-for="(item, i) in symbols"
-          :key="i"
+        <img :src="require('@/assets/images/symbol-contest.png')" alt="배경 심볼" v-for="(item, i) in symbols" :key="i"
           :style="{
             top: item.top,
             left: item.left,
             width: item.width,
             transform: `
-          translate(${item.translate ? item.translate : '0, 0'})
-          `,
+                                                                                                                                                                                                                                                                                                                                                                                                          translate(${item.translate ? item.translate : '0, 0'})
+                                                                                                                                                                                                                                                                                                                                                                                                          `,
             transformOrigin: 'center center',
-          }"
-        />
+          }" />
       </div>
     </div>
   </div>
@@ -485,7 +448,57 @@ export default {
         //   translate: "-50%, 0",
         // },
       ],
-    };
+      winners: [
+        {
+          link: "https://www.instagram.com/reel/CzASVutvisy",
+
+          prize: 1,
+        },
+        {
+          link: "https://www.instagram.com/reel/CzL_hGSC1pa",
+
+          prize: 2,
+        },
+        {
+          link: "https://www.instagram.com/reel/CzDGyHNhZ_L",
+
+          prize: 3,
+        },
+        {
+          link: "https://www.instagram.com/reel/CzEC8_0r_KB",
+
+          prize: 3,
+        },
+        {
+          link: "https://www.instagram.com/reel/CzLmW6WRh-o",
+
+          prize: 3,
+        },
+        {
+          link: "https://www.instagram.com/reel/Cy2cdzzh95h",
+
+          prize: 4,
+        },
+        {
+          link: "https://www.instagram.com/reel/Cyibi2CPQOT",
+
+          prize: 4,
+        },
+        {
+          link: "https://www.instagram.com/reel/CzJcRu7rLZu",
+
+          prize: 4,
+        },
+        {
+          link: "https://www.instagram.com/reel/CzLaJLmpKiP", 
+          prize: 4,
+        },
+        {
+          link: "https://www.instagram.com/reel/CxpBD8RJxF5",
+          prize: 4
+        },
+      ]
+    }; 
   },
 };
 </script>
@@ -512,19 +525,23 @@ export default {
     width: 100%;
     background-color: $contest-yellow;
     backdrop-filter: blur(6px);
+
     .nav-links {
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       .link-item {
         font-weight: 700;
+
         .nav-link {
           border: 1px solid $contest-pink;
           background-color: transparent;
           transition: all 0.2s $default-ease;
           border-radius: 40rem;
           color: $contest-pink;
+
           &.active {
             background-color: $contest-pink;
             color: white !important;
@@ -534,17 +551,21 @@ export default {
     }
   }
 }
+
 #content {
   position: relative;
   z-index: 2;
   padding-top: 60vh;
   max-width: 100vw;
   overflow: hidden;
+
   .section {
     padding-bottom: 150px;
+
     @media (min-width: $breakpoint-md) {
       padding-bottom: 200px;
     }
+
     position: relative;
     z-index: 3;
   }
@@ -555,14 +576,17 @@ export default {
   width: 100vw;
   max-width: 100vw;
   overflow: hidden;
+
   img {
     pointer-events: none;
     position: absolute;
     z-index: 2;
     opacity: 0.7;
+
     @media (max-width: $breakpoint-md) {
       max-width: 700px;
     }
+
     height: auto;
     display: block;
   }
@@ -580,5 +604,43 @@ export default {
   color: $contest-pink;
   border-radius: 50%;
   margin-right: 0.75rem;
+}
+
+.prize {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  border-radius: 50%;
+  z-index: 140;
+  box-shadow: 0 3px 10px rgba($color: #000000, $alpha: 0.3);
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 20px;
+
+  &.prize-1 {
+    background-color: $contest-pink;
+    color: white;
+    font-size: 28px;
+  }
+
+  &.prize-2 {
+    background-color: $contest-yellow;
+    color: $contest-black;
+    font-size: 24px;
+  }
+
+  &.prize-3 {
+    background-color: $contest-blue;
+    color: $contest-black;
+  }
+
+  &.prize-4 {
+    background-color: $lightest;
+    color: $contest-black;
+  }
 }
 </style>
